@@ -107,8 +107,17 @@ class NetworkService {
         }
     }
 
-    func loadData(using request: URLRequest, with completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        URLSession.shared.loadData(using: request, with: completion)
+    /// Asyncronously load data using a URL Request
+    /// - Parameters:
+    ///   - request: an unwrapped URLRequest
+    ///   - completion: Similar to `URLSession.shared.dataTask`'s completion except the response is downcasted to a HTTPURLResponse or nil
+    class func loadData(using request: URLRequest, with completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
+        URLSession.shared.loadData(using: request) { (data, response, error) in
+            if let response = response as? HTTPURLResponse {
+                completion(data, response, error)
+            } else {
+                completion(data, nil, error)
+            }
+        }
     }
 }
-
