@@ -12,7 +12,7 @@
 		B95B655E2478EBE0009C6D16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95B655C2478EBE0009C6D16 /* Main.storyboard */; };
 		B95B65602478EBE1009C6D16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B95B655F2478EBE1009C6D16 /* Assets.xcassets */; };
 		B95B65632478EBE1009C6D16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95B65612478EBE1009C6D16 /* LaunchScreen.storyboard */; };
-		B95B656E2478EBE1009C6D16 /* WunderListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B656D2478EBE1009C6D16 /* WunderListTests.swift */; };
+		B95B656E2478EBE1009C6D16 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B656D2478EBE1009C6D16 /* NetworkTests.swift */; };
 		B95B65792478EBE1009C6D16 /* WunderListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65782478EBE1009C6D16 /* WunderListUITests.swift */; };
 		B95B65902478ED61009C6D16 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B658F2478ED61009C6D16 /* NetworkHelper.swift */; };
 		B95B65922478EDCE009C6D16 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65912478EDCE009C6D16 /* ViewController.swift */; };
@@ -46,7 +46,7 @@
 		B95B65622478EBE1009C6D16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B95B65642478EBE1009C6D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B95B65692478EBE1009C6D16 /* WunderListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WunderListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B95B656D2478EBE1009C6D16 /* WunderListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WunderListTests.swift; sourceTree = "<group>"; };
+		B95B656D2478EBE1009C6D16 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		B95B656F2478EBE1009C6D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B95B65742478EBE1009C6D16 /* WunderListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WunderListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95B65782478EBE1009C6D16 /* WunderListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WunderListUITests.swift; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 		B95B656C2478EBE1009C6D16 /* WunderListTests */ = {
 			isa = PBXGroup;
 			children = (
-				B95B656D2478EBE1009C6D16 /* WunderListTests.swift */,
+				B95B656D2478EBE1009C6D16 /* NetworkTests.swift */,
 				B95B656F2478EBE1009C6D16 /* Info.plist */,
 			);
 			path = WunderListTests;
@@ -345,7 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B95B656E2478EBE1009C6D16 /* WunderListTests.swift in Sources */,
+				B95B656E2478EBE1009C6D16 /* NetworkTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
