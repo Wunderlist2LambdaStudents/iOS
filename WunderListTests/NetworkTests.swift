@@ -32,15 +32,19 @@ class NetworkTests: XCTestCase {
         struct MockUser: Decodable {
             let username: String
         }
-        
+        let expectation = self.expectation(description: "\(#file), \(#function): WaitForResults")
         let mockDataLoader = MockDataLoader(data: Data.mockData(with: "GoodUserData"), response: nil, error: nil)
         let networkService = NetworkService(dataLoader: mockDataLoader)
         let request = URLRequest(url: URL(string: "https://google.com")!)
         networkService.dataLoader.loadData(using: request) { (data, response, error) in
             XCTAssertNotNil(data)
+            // FIXME: Once refactored to live user, change type ALSO CHANGE MOCK JSON TO MATCH BACKEND SAMPLE JSON
+            print(networkService.decode(to: MockUser.self, data: data!))
+            expectation.fulfill()
         }
-        // FIXME: Once refactored to live user, change type ALSO CHANGE MOCK JSON TO MATCH BACKEND SAMPLE JSON
-        print(networkService.decode(to: MockUser.self, data: mockDataLoader.data!))
+        wait(for: [expectation], timeout: 1.0)
+
+
     }
 
 }
