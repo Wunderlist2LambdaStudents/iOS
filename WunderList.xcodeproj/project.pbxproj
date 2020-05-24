@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E0AA4C4247A3869006E09F4 /* sweet purple.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E0AA4C3247A3869006E09F4 /* sweet purple.ttf */; };
+		8E4DE212247A197500EF76E4 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DE211247A197500EF76E4 /* CoreDataStack.swift */; };
+		8E4DE214247A20F000EF76E4 /* CustomAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4DE213247A20F000EF76E4 /* CustomAssets.xcassets */; };
+		8E4DE216247A229700EF76E4 /* sse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DE215247A229700EF76E4 /* sse.swift */; };
+		8E90DE87247A25EC000916A3 /* Jonah-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E90DE86247A25EC000916A3 /* Jonah-Regular.ttf */; };
+		8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E90DE88247A2767000916A3 /* CustomFonts.swift */; };
 		B95B65572478EBE0009C6D16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65562478EBE0009C6D16 /* AppDelegate.swift */; };
 		B95B65592478EBE0009C6D16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65582478EBE0009C6D16 /* SceneDelegate.swift */; };
 		B95B655E2478EBE0009C6D16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95B655C2478EBE0009C6D16 /* Main.storyboard */; };
@@ -15,7 +21,6 @@
 		B95B656E2478EBE1009C6D16 /* WunderListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B656D2478EBE1009C6D16 /* WunderListTests.swift */; };
 		B95B65792478EBE1009C6D16 /* WunderListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65782478EBE1009C6D16 /* WunderListUITests.swift */; };
 		B95B65902478ED61009C6D16 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B658F2478ED61009C6D16 /* NetworkHelper.swift */; };
-		B95B65922478EDCE009C6D16 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65912478EDCE009C6D16 /* ViewController.swift */; };
 		B95B65942478EE55009C6D16 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95B65932478EE55009C6D16 /* Auth.storyboard */; };
 		B95B65962478EE6B009C6D16 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95B65952478EE6B009C6D16 /* Onboarding.storyboard */; };
 /* End PBXBuildFile section */
@@ -38,6 +43,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8E0AA4C3247A3869006E09F4 /* sweet purple.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sweet purple.ttf"; sourceTree = "<group>"; };
+		8E4DE211247A197500EF76E4 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		8E4DE213247A20F000EF76E4 /* CustomAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CustomAssets.xcassets; sourceTree = "<group>"; };
+		8E4DE215247A229700EF76E4 /* sse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = sse.swift; path = WunderList/View/Storyboards/sse.swift; sourceTree = SOURCE_ROOT; };
+		8E90DE86247A25EC000916A3 /* Jonah-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jonah-Regular.ttf"; sourceTree = "<group>"; };
+		8E90DE88247A2767000916A3 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
 		B95B65532478EBE0009C6D16 /* WunderList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WunderList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95B65562478EBE0009C6D16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B95B65582478EBE0009C6D16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,7 +63,6 @@
 		B95B65782478EBE1009C6D16 /* WunderListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WunderListUITests.swift; sourceTree = "<group>"; };
 		B95B657A2478EBE1009C6D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B95B658F2478ED61009C6D16 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
-		B95B65912478EDCE009C6D16 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B95B65932478EE55009C6D16 /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		B95B65952478EE6B009C6D16 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +92,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E4DE210247A195200EF76E4 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				8E4DE211247A197500EF76E4 /* CoreDataStack.swift */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		8E90DE85247A25C7000916A3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8E90DE86247A25EC000916A3 /* Jonah-Regular.ttf */,
+				8E0AA4C3247A3869006E09F4 /* sweet purple.ttf */,
+				8E90DE88247A2767000916A3 /* CustomFonts.swift */,
+			);
+			name = Fonts;
+			path = "WunderList/View/Custom Views/Fonts";
+			sourceTree = "<group>";
+		};
+		8E90DE8A247A277C000916A3 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
 		B95B654A2478EBE0009C6D16 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +141,7 @@
 		B95B65552478EBE0009C6D16 /* WunderList */ = {
 			isa = PBXGroup;
 			children = (
+				8E4DE210247A195200EF76E4 /* Core Data */,
 				B95B658B2478ED00009C6D16 /* Model */,
 				B95B658D2478ED33009C6D16 /* View */,
 				B95B65892478ECEB009C6D16 /* Controller */,
@@ -145,7 +182,7 @@
 		B95B65872478ECD8009C6D16 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B95B65912478EDCE009C6D16 /* ViewController.swift */,
+				8E4DE215247A229700EF76E4 /* sse.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -181,6 +218,7 @@
 				B95B65582478EBE0009C6D16 /* SceneDelegate.swift */,
 				B95B655F2478EBE1009C6D16 /* Assets.xcassets */,
 				B95B65642478EBE1009C6D16 /* Info.plist */,
+				8E4DE213247A20F000EF76E4 /* CustomAssets.xcassets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -197,6 +235,8 @@
 		B95B658E2478ED38009C6D16 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				8E90DE8A247A277C000916A3 /* Colors */,
+				8E90DE85247A25C7000916A3 /* Fonts */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -308,6 +348,9 @@
 				B95B65942478EE55009C6D16 /* Auth.storyboard in Resources */,
 				B95B65962478EE6B009C6D16 /* Onboarding.storyboard in Resources */,
 				B95B65632478EBE1009C6D16 /* LaunchScreen.storyboard in Resources */,
+				8E4DE214247A20F000EF76E4 /* CustomAssets.xcassets in Resources */,
+				8E0AA4C4247A3869006E09F4 /* sweet purple.ttf in Resources */,
+				8E90DE87247A25EC000916A3 /* Jonah-Regular.ttf in Resources */,
 				B95B65602478EBE1009C6D16 /* Assets.xcassets in Resources */,
 				B95B655E2478EBE0009C6D16 /* Main.storyboard in Resources */,
 			);
@@ -334,9 +377,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E4DE212247A197500EF76E4 /* CoreDataStack.swift in Sources */,
 				B95B65902478ED61009C6D16 /* NetworkHelper.swift in Sources */,
 				B95B65572478EBE0009C6D16 /* AppDelegate.swift in Sources */,
-				B95B65922478EDCE009C6D16 /* ViewController.swift in Sources */,
+				8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */,
+				8E4DE216247A229700EF76E4 /* sse.swift in Sources */,
 				B95B65592478EBE0009C6D16 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,8 +556,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 34P4RF23ET;
+				DEVELOPMENT_TEAM = 3D4XZP25Z6;
 				INFOPLIST_FILE = WunderList/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -529,8 +575,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 34P4RF23ET;
+				DEVELOPMENT_TEAM = 3D4XZP25Z6;
 				INFOPLIST_FILE = WunderList/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
