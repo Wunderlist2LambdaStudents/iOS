@@ -12,7 +12,7 @@ import XCTest
 class NetworkTests: XCTestCase {
 
     func testGettingData() {
-        let expectation = self.expectation(description: "Wait for google")
+        let expectation = self.expectation(description: "\(#file), \(#function): WaitForGenericGetResult")
         let networkService = NetworkService()
         //test creating request
         let request = networkService.createRequest(url: URL(string: "https://www.google.com"), method: .get)
@@ -32,19 +32,19 @@ class NetworkTests: XCTestCase {
         struct MockUser: Decodable {
             let username: String
         }
-        let expectation = self.expectation(description: "\(#file), \(#function): WaitForResults")
+        let expectation = self.expectation(description: "\(#file), \(#function): WaitForDecodingMockData")
         let mockDataLoader = MockDataLoader(data: Data.mockData(with: "GoodUserData"), response: nil, error: nil)
         let networkService = NetworkService(dataLoader: mockDataLoader)
         let request = URLRequest(url: URL(string: "https://google.com")!)
         networkService.dataLoader.loadData(using: request) { (data, response, error) in
             XCTAssertNotNil(data)
+            XCTAssertNil(response)
+            XCTAssertNil(error)
             // FIXME: Once refactored to live user, change type ALSO CHANGE MOCK JSON TO MATCH BACKEND SAMPLE JSON
-            print(networkService.decode(to: MockUser.self, data: data!))
+            let mockUser = networkService.decode(to: MockUser.self, data: data!)
+            XCTAssertNotNil(mockUser)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1.0)
-
-
     }
-
 }
