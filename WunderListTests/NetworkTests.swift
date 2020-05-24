@@ -13,11 +13,12 @@ class NetworkTests: XCTestCase {
 
     func testGettingData() {
         let expectation = self.expectation(description: "Wait for google")
+        let networkService = NetworkService()
         //test creating request
-        let request = NetworkService.createRequest(url: URL(string: "https://www.google.com"), method: .get)
+        let request = networkService.createRequest(url: URL(string: "https://www.google.com"), method: .get)
         XCTAssertNotNil(request)
         //test loading data from request
-        NetworkService.loadData(using: request!) { (data, response, error) in
+        networkService.dataLoader.loadData(using: request!) { (data, response, error) in
             XCTAssertNotNil(data)
             XCTAssertNotNil(response)
             XCTAssertEqual(response?.statusCode, 200)
@@ -27,8 +28,19 @@ class NetworkTests: XCTestCase {
     }
 
     func testDecodingMockUserData() {
+        // FIXME: Once refactored to live user, remove this
+        struct MockUser: Decodable {
+            let username: String
+        }
+        
         let mockDataLoader = MockDataLoader(data: Data.mockData(with: "GoodUserData"), response: nil, error: nil)
-        mockDataLoader.loadData(using: <#T##URLRequest#>, with: <#T##(Data?, URLResponse?, Error?) -> Void#>)
+        let networkService = NetworkService(dataLoader: mockDataLoader)
+        let request = URLRequest(url: URL(string: "https://google.com")!)
+        networkService.dataLoader.loadData(using: request) { (data, response, error) in
+            XCTAssertNotNil(data)
+        }
+        // FIXME: Once refactored to live user, change type ALSO CHANGE MOCK JSON TO MATCH BACKEND SAMPLE JSON
+        print(networkService.decode(to: MockUser.self, data: mockDataLoader.data!))
     }
 
 }

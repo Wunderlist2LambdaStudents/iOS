@@ -11,13 +11,26 @@ protocol NetworkLoader {
     func loadData(using request: URLRequest, with completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void)
 }
 
-//extension URLSession: NetworkLoader {
-//    func loadData(using request: URLRequest, with completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
-//        self.dataTask(with: request, completionHandler: completion).resume()
-//    }
-//}
+extension URLSession: NetworkLoader {
+    /// Asyncronously load data using a URL Request
+    /// - Parameters:
+    ///   - request: an unwrapped URLRequest
+    ///   - completion: Similar to `URLSession.shared.dataTask`'s completion except the response is downcasted to a HTTPURLResponse or nil
+    func loadData(using request: URLRequest, with completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
+        self.dataTask(with: request) { (data, response, error) in
+            completion(data, response as? HTTPURLResponse, error)
+        }.resume()
+    }
+}
 
-class NetworkService: NetworkLoader {
+class NetworkService {
+    ///used to switch between live and Mock Data
+    var dataLoader: NetworkLoader
+
+    init(dataLoader: NetworkLoader = URLSession.shared) {
+        self.dataLoader = dataLoader
+    }
+
     ///Used to set a`URLRequest`'s HTTP Method
     enum HttpMethod: String {
         case get = "GET"
@@ -105,15 +118,5 @@ class NetworkService: NetworkLoader {
             print("Error Decoding JSON into \(String(describing: type)) Object \(error)")
             return nil
         }
-    }
-
-    /// Asyncronously load data using a URL Request
-    /// - Parameters:
-    ///   - request: an unwrapped URLRequest
-    ///   - completion: Similar to `URLSession.shared.dataTask`'s completion except the response is downcasted to a HTTPURLResponse or nil
-    func loadData(using request: URLRequest, with completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            completion(data, response as? HTTPURLResponse, error)
-        }.resume()
     }
 }
