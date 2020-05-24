@@ -26,4 +26,9 @@ class NetworkTests: XCTestCase {
         wait(for: [expectation], timeout: 2.0)
     }
 
+    func testDecodingMockUserData() {
+        let mockDataLoader = MockDataLoader(data: Data.mockData(with: "GoodUserData"), response: nil, error: nil)
+        mockDataLoader.loadData(using: <#T##URLRequest#>, with: <#T##(Data?, URLResponse?, Error?) -> Void#>)
+    }
+
 }

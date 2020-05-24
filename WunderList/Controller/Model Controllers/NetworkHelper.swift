@@ -8,16 +8,16 @@
 import Foundation
 
 protocol NetworkLoader {
-    func loadData(using request: URLRequest, with completion: @escaping (Data?, URLResponse?, Error?) -> Void)
+    func loadData(using request: URLRequest, with completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void)
 }
 
-extension URLSession: NetworkLoader {
-    func loadData(using request: URLRequest, with completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        self.dataTask(with: request, completionHandler: completion).resume()
-    }
-}
+//extension URLSession: NetworkLoader {
+//    func loadData(using request: URLRequest, with completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+//        self.dataTask(with: request, completionHandler: completion).resume()
+//    }
+//}
 
-class NetworkService {
+class NetworkService: NetworkLoader {
     ///Used to set a`URLRequest`'s HTTP Method
     enum HttpMethod: String {
         case get = "GET"
@@ -60,7 +60,7 @@ class NetworkService {
     /**
      Create a request given a URL and requestMethod (get, post, create, etc...)
      */
-    class func createRequest(url: URL?, method: HttpMethod, headerType: HttpHeaderType? = nil, headerValue: HttpHeaderValue? = nil) -> URLRequest? {
+    func createRequest(url: URL?, method: HttpMethod, headerType: HttpHeaderType? = nil, headerValue: HttpHeaderValue? = nil) -> URLRequest? {
         guard let requestUrl = url else {
             NSLog("request URL is nil")
             return nil
@@ -80,7 +80,7 @@ class NetworkService {
      - parameter request: the URLRequest used to transmit the encoded result to the remote server
      - parameter dateFormatter: optional for use with JSONEncoder.dateEncodingStrategy
      */
-    class func encode<T:Encodable>(from type: T, request: inout URLRequest, dateFormatter df: DateFormatter? = nil) -> EncodingStatus {
+    func encode<T:Encodable>(from type: T, request: inout URLRequest, dateFormatter df: DateFormatter? = nil) -> EncodingStatus {
         let jsonEncoder = JSONEncoder()
         if let df = df {
             jsonEncoder.dateEncodingStrategy = .formatted(df)
@@ -94,7 +94,7 @@ class NetworkService {
         return EncodingStatus(request: request, error: nil)
     }
 
-    class func decode<T:Decodable>(to type: T.Type, data: Data, dateFormatter df: DateFormatter? = nil) -> T? {
+    func decode<T:Decodable>(to type: T.Type, data: Data, dateFormatter df: DateFormatter? = nil) -> T? {
         let decoder = JSONDecoder()
         if let df = df {
             decoder.dateDecodingStrategy = .formatted(df)
@@ -111,13 +111,9 @@ class NetworkService {
     /// - Parameters:
     ///   - request: an unwrapped URLRequest
     ///   - completion: Similar to `URLSession.shared.dataTask`'s completion except the response is downcasted to a HTTPURLResponse or nil
-    class func loadData(using request: URLRequest, with completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
-        URLSession.shared.loadData(using: request) { (data, response, error) in
-            if let response = response as? HTTPURLResponse {
-                completion(data, response, error)
-            } else {
-                completion(data, nil, error)
-            }
-        }
+    func loadData(using request: URLRequest, with completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            completion(data, response as? HTTPURLResponse, error)
+        }.resume()
     }
 }

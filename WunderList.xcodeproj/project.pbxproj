@@ -18,6 +18,8 @@
 		B95B65922478EDCE009C6D16 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65912478EDCE009C6D16 /* ViewController.swift */; };
 		B95B65942478EE55009C6D16 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95B65932478EE55009C6D16 /* Auth.storyboard */; };
 		B95B65962478EE6B009C6D16 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95B65952478EE6B009C6D16 /* Onboarding.storyboard */; };
+		B98DB57F247AE71A00EBFB2D /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */; };
+		B98DB581247AF01C00EBFB2D /* GoodUserData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB580247AF01C00EBFB2D /* GoodUserData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		B95B65912478EDCE009C6D16 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B95B65932478EE55009C6D16 /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		B95B65952478EE6B009C6D16 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
+		B98DB580247AF01C00EBFB2D /* GoodUserData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GoodUserData.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,8 @@
 			children = (
 				B95B656D2478EBE1009C6D16 /* NetworkTests.swift */,
 				B95B656F2478EBE1009C6D16 /* Info.plist */,
+				B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */,
+				B98DB580247AF01C00EBFB2D /* GoodUserData.json */,
 			);
 			path = WunderListTests;
 			sourceTree = "<group>";
@@ -317,6 +323,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B98DB581247AF01C00EBFB2D /* GoodUserData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B98DB57F247AE71A00EBFB2D /* MockDataLoader.swift in Sources */,
 				B95B656E2478EBE1009C6D16 /* NetworkTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
