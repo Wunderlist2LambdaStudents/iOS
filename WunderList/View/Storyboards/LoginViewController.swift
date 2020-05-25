@@ -65,13 +65,15 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func signInButtonAction(_ sender: UIButton) {
-        guard let name = nameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
-            name.isEmpty == false,
-            let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
-            password.isEmpty == false,
-            let email = emailTextField.text,
-            email.isEmpty == false else {
-                return }
+        // We want this for production, skipping for development
+//        guard let name = nameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+//            name.isEmpty == false,
+//            let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+//            password.isEmpty == false,
+//            let email = emailTextField.text,
+//            email.isEmpty == false else {
+//                return }
+        self.dismiss(animated: true, completion: nil)
     }
      // MARK: - Navigation
      // In a storyboard-based application, you will often want to do a little preparation before navigation
