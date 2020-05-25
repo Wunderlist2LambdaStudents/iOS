@@ -34,6 +34,12 @@ extension Data {
     static func mockData(with name: String) -> Data {
         let bundle = Bundle(for: MockDataLoader.self)
         let url = bundle.url(forResource: name, withExtension: "json")!
-        return try! Data(contentsOf: url)
+        var data = Data()
+        do {
+            data = try Data(contentsOf: url)
+        } catch let fileError {
+            print("Error loading file: \(fileError)")
+        }
+        return data
     }
 }
