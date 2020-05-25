@@ -29,6 +29,8 @@
 		B98DB585247B5B7300EBFB2D /* GoodTodoData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB584247B5B7300EBFB2D /* GoodTodoData.json */; };
 		B98DB587247B5C0800EBFB2D /* BadTodoData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB586247B5C0800EBFB2D /* BadTodoData.json */; };
 		B98DB589247B5CA900EBFB2D /* TodoRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB588247B5CA900EBFB2D /* TodoRepresentation.swift */; };
+		B98DB58B247C202200EBFB2D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58A247C202200EBFB2D /* AuthService.swift */; };
+		B98DB58D247C210D00EBFB2D /* UserRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58C247C210D00EBFB2D /* UserRepresentation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,8 @@
 		B98DB584247B5B7300EBFB2D /* GoodTodoData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GoodTodoData.json; sourceTree = "<group>"; };
 		B98DB586247B5C0800EBFB2D /* BadTodoData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BadTodoData.json; sourceTree = "<group>"; };
 		B98DB588247B5CA900EBFB2D /* TodoRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRepresentation.swift; sourceTree = "<group>"; };
+		B98DB58A247C202200EBFB2D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		B98DB58C247C210D00EBFB2D /* UserRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepresentation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				B95B658F2478ED61009C6D16 /* NetworkService.swift */,
+				B98DB58A247C202200EBFB2D /* AuthService.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -225,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				B98DB588247B5CA900EBFB2D /* TodoRepresentation.swift */,
+				B98DB58C247C210D00EBFB2D /* UserRepresentation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -427,6 +433,8 @@
 				8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */,
 				8E4DE216247A229700EF76E4 /* sse.swift in Sources */,
 				B95B65592478EBE0009C6D16 /* SceneDelegate.swift in Sources */,
+				B98DB58D247C210D00EBFB2D /* UserRepresentation.swift in Sources */,
+				B98DB58B247C202200EBFB2D /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
