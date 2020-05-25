@@ -55,7 +55,6 @@ class AuthService {
     }
 
     func logoutUser() {
-        token = nil
         AuthService.activeUser = nil
         //global function to return user to login screen? local method here?
     }
