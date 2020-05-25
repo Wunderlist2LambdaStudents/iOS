@@ -11,7 +11,7 @@
 		8E0AA4C4247A3869006E09F4 /* sweet purple.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E0AA4C3247A3869006E09F4 /* sweet purple.ttf */; };
 		8E4DE212247A197500EF76E4 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DE211247A197500EF76E4 /* CoreDataStack.swift */; };
 		8E4DE214247A20F000EF76E4 /* CustomAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4DE213247A20F000EF76E4 /* CustomAssets.xcassets */; };
-		8E4DE216247A229700EF76E4 /* sse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DE215247A229700EF76E4 /* sse.swift */; };
+		8E4DE216247A229700EF76E4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DE215247A229700EF76E4 /* LoginViewController.swift */; };
 		8E90DE87247A25EC000916A3 /* Jonah-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E90DE86247A25EC000916A3 /* Jonah-Regular.ttf */; };
 		8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E90DE88247A2767000916A3 /* CustomFonts.swift */; };
 		B95B65572478EBE0009C6D16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65562478EBE0009C6D16 /* AppDelegate.swift */; };
@@ -32,6 +32,7 @@
 		B98DB589247B5CA900EBFB2D /* TodoRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB588247B5CA900EBFB2D /* TodoRepresentation.swift */; };
 		B98DB58B247C202200EBFB2D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58A247C202200EBFB2D /* AuthService.swift */; };
 		B98DB58D247C210D00EBFB2D /* UserRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58C247C210D00EBFB2D /* UserRepresentation.swift */; };
+		B98DB58F247C813200EBFB2D /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58E247C813200EBFB2D /* TodoListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +57,7 @@
 		8E0AA4C3247A3869006E09F4 /* sweet purple.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sweet purple.ttf"; sourceTree = "<group>"; };
 		8E4DE211247A197500EF76E4 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		8E4DE213247A20F000EF76E4 /* CustomAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CustomAssets.xcassets; sourceTree = "<group>"; };
-		8E4DE215247A229700EF76E4 /* sse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = sse.swift; path = WunderList/View/Storyboards/sse.swift; sourceTree = SOURCE_ROOT; };
+		8E4DE215247A229700EF76E4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = WunderList/View/Storyboards/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		8E90DE86247A25EC000916A3 /* Jonah-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jonah-Regular.ttf"; sourceTree = "<group>"; };
 		8E90DE88247A2767000916A3 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
 		B95B65532478EBE0009C6D16 /* WunderList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WunderList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +84,7 @@
 		B98DB588247B5CA900EBFB2D /* TodoRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRepresentation.swift; sourceTree = "<group>"; };
 		B98DB58A247C202200EBFB2D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B98DB58C247C210D00EBFB2D /* UserRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepresentation.swift; sourceTree = "<group>"; };
+		B98DB58E247C813200EBFB2D /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TodoListViewController.swift; path = WunderList/Model/TodoListViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,7 +208,8 @@
 		B95B65872478ECD8009C6D16 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8E4DE215247A229700EF76E4 /* sse.swift */,
+				8E4DE215247A229700EF76E4 /* LoginViewController.swift */,
+				B98DB58E247C813200EBFB2D /* TodoListViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -433,8 +436,9 @@
 				B95B65902478ED61009C6D16 /* NetworkService.swift in Sources */,
 				B95B65572478EBE0009C6D16 /* AppDelegate.swift in Sources */,
 				B98DB589247B5CA900EBFB2D /* TodoRepresentation.swift in Sources */,
+				B98DB58F247C813200EBFB2D /* TodoListViewController.swift in Sources */,
 				8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */,
-				8E4DE216247A229700EF76E4 /* sse.swift in Sources */,
+				8E4DE216247A229700EF76E4 /* LoginViewController.swift in Sources */,
 				B95B65592478EBE0009C6D16 /* SceneDelegate.swift in Sources */,
 				B98DB58D247C210D00EBFB2D /* UserRepresentation.swift in Sources */,
 				B98DB58B247C202200EBFB2D /* AuthService.swift in Sources */,

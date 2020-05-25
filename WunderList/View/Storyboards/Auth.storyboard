@@ -16,7 +16,7 @@
         <!--LoginViewController-->
         <scene sceneID="Usu-Pf-aXk">
             <objects>
-                <viewController id="Pjm-zE-LXG" userLabel="LoginViewController" customClass="LoginViewController" customModule="WunderList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AuthVC" id="Pjm-zE-LXG" userLabel="LoginViewController" customClass="LoginViewController" customModule="WunderList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xtc-Ja-rV2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,7 +42,7 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wunderlist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ci5-YN-qCT">
-                                        <rect key="frame" x="138" y="119" width="192" height="76"/>
+                                        <rect key="frame" x="26.5" y="120" width="303.5" height="75"/>
                                         <color key="tintColor" name="Purple"/>
                                         <fontDescription key="fontDescription" name="sweetpurple" family="sweet purple" pointSize="64"/>
                                         <color key="textColor" name="Aqua"/>
