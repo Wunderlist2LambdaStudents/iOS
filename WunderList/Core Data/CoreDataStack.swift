@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 class CoreDataStack {
-    
+
     // MARK: - Properties
     static let shared = CoreDataStack()
-    
+
     lazy var container: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Movie")
         container.loadPersistentStores { _, error in
@@ -23,7 +23,7 @@ class CoreDataStack {
         }
         return container
     }()
-    
+
     var mainContext: NSManagedObjectContext {
         return container.viewContext
     }

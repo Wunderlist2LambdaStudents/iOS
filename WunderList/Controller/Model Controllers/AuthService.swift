@@ -21,12 +21,12 @@ class AuthService {
     //static so it's always accessible and always the same user (until another user is logged in)
     static var activeUser: UserRepresentation?
 
-    //MARK: - Init -
+    // MARK: - Init -
     init(dataLoader: NetworkLoader = URLSession.shared) {
         self.dataLoader = dataLoader
     }
 
-    //MARK: - Methods -
+    // MARK: - Methods -
     func loginUser(with username: String, password: String, completion: @escaping () -> Void) {
         guard var request = networkService.createRequest(url: baseURL, method: .post, headerType: .auth) else {
             print("Error forming request, bad URL?")

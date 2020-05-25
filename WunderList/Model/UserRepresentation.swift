@@ -12,5 +12,5 @@ struct UserRepresentation: Codable {
     let username: String
     //optional to avoid storing in CoreData
     let password: String?
-    var token: String? = nil
+    var token: String?
 }
