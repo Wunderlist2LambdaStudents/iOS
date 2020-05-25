@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		189074D0247C3DBE00F659BB /* IsUITesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189074CF247C3DBE00F659BB /* IsUITesting.swift */; };
 		8E0AA4C4247A3869006E09F4 /* sweet purple.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E0AA4C3247A3869006E09F4 /* sweet purple.ttf */; };
 		8E4DE212247A197500EF76E4 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DE211247A197500EF76E4 /* CoreDataStack.swift */; };
 		8E4DE214247A20F000EF76E4 /* CustomAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4DE213247A20F000EF76E4 /* CustomAssets.xcassets */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		189074CF247C3DBE00F659BB /* IsUITesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsUITesting.swift; sourceTree = "<group>"; };
 		8E0AA4C3247A3869006E09F4 /* sweet purple.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sweet purple.ttf"; sourceTree = "<group>"; };
 		8E4DE211247A197500EF76E4 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		8E4DE213247A20F000EF76E4 /* CustomAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CustomAssets.xcassets; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			children = (
 				B95B65782478EBE1009C6D16 /* WunderListUITests.swift */,
 				B95B657A2478EBE1009C6D16 /* Info.plist */,
+				189074CF247C3DBE00F659BB /* IsUITesting.swift */,
 			);
 			path = WunderListUITests;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				189074D0247C3DBE00F659BB /* IsUITesting.swift in Sources */,
 				B95B65792478EBE1009C6D16 /* WunderListUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
