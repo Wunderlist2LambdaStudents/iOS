@@ -20,10 +20,13 @@ class AuthService {
     private let baseURL = URL(string: "https://www.google.com")!
     //static so it's always accessible and always the same user (until another user is logged in)
     static var activeUser: UserRepresentation?
+
+    //MARK: - Init -
     init(dataLoader: NetworkLoader = URLSession.shared) {
         self.dataLoader = dataLoader
     }
 
+    //MARK: - Methods -
     func loginUser(with username: String, password: String, completion: @escaping () -> Void) {
         guard var request = networkService.createRequest(url: baseURL, method: .post, headerType: .auth) else {
             print("Error forming request, bad URL?")
@@ -40,7 +43,7 @@ class AuthService {
         }
         networkService.dataLoader.loadData(using: requestWithUser) { (data, response, error) in
             if let error = error {
-                NSLog("Error loggin user in: \(error)")
+                NSLog("Error logging user in: \(error)")
                 completion()
                 return
             }
@@ -50,7 +53,7 @@ class AuthService {
                 return
             }
             if response?.statusCode == 200 {
-                //once the user is logged in, assign the token to the user for use in methods external to this class
+                //once the user is logged in, assign the active user for use in methods external to this class
                 loginUser.token = self.networkService.decode(to: Bearer.self, data: data)?.token
                 //assign the static activeUser
                 AuthService.activeUser = loginUser
