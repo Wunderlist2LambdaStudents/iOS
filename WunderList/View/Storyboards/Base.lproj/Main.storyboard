@@ -113,7 +113,7 @@
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="  Enter Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eGA-9r-EF7">
                                 <rect key="frame" x="35" y="505.5" width="344" height="35.5"/>
-                                <accessibility key="accessibilityConfiguration" identifier="loginNameTextField"/>
+                                <accessibility key="accessibilityConfiguration" identifier="LoginViewController.NameTextField"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -125,7 +125,7 @@
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="  Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G2S-53-GTP">
                                 <rect key="frame" x="35" y="649" width="344" height="35.5"/>
-                                <accessibility key="accessibilityConfiguration" identifier="loginPasswordTextField"/>
+                                <accessibility key="accessibilityConfiguration" identifier="LoginViewController.PWTextField"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -135,7 +135,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Hq-mt-3Lk">
                                         <rect key="frame" x="0.0" y="0.0" width="314" height="65"/>
                                         <color key="backgroundColor" name="Purple"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="loginGetStartedButton"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="LoginViewController.GetStartedButton"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="65" id="yP5-yt-wSg"/>
                                         </constraints>
@@ -156,7 +156,7 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Conditions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afz-bt-cRe">
                                         <rect key="frame" x="0.0" y="109" width="314" height="33.5"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="loginT&amp;CLabel"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="LoginViewController.T&amp;CLabel"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="13"/>
                                         <color key="textColor" name="Purple"/>
                                         <nil key="highlightedColor"/>
@@ -165,7 +165,7 @@
                             </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="  you@yourdomain.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fff-je-FzP">
                                 <rect key="frame" x="35" y="588.5" width="344" height="35.5"/>
-                                <accessibility key="accessibilityConfiguration" identifier="loginEmailTextField"/>
+                                <accessibility key="accessibilityConfiguration" identifier="LoginViewController.EmailTextField"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
