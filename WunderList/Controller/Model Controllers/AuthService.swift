@@ -14,14 +14,12 @@ struct Bearer: Codable {
 
 class AuthService {
     // MARK: - Properties -
-    private var token: String?
     private let networkService = NetworkService()
     private let dataLoader: NetworkLoader
     // FIXME: Set this once backend is established
     private let baseURL = URL(string: "")!
     //static so it's always accessible and always the same user (until another user is logged in)
     static var activeUser: UserRepresentation?
-
     init(dataLoader: NetworkLoader = URLSession.shared) {
         self.dataLoader = dataLoader
     }
@@ -31,7 +29,8 @@ class AuthService {
             print("Error forming request, bad URL?")
             return
         }
-        let loginUser = UserRepresentation(username: username, password: password)
+        //token is nil in UserRepresentation by default, so not required in the initializer
+        var loginUser = UserRepresentation(username: username, password: password)
         let encodedUser = networkService.encode(from: loginUser, request: &request)
         guard let requestWithUser = encodedUser.request else {
             print("requestWithUser failed, error encoding user?")
@@ -47,7 +46,9 @@ class AuthService {
                 return
             }
             if response?.statusCode == 200 {
-                self.token = self.networkService.decode(to: Bearer.self, data: data)?.token
+                //once the user is logged in, assign the token to the user for use in methods external to this class
+                loginUser.token = self.networkService.decode(to: Bearer.self, data: data)?.token
+                //assign the static activeUser
                 AuthService.activeUser = loginUser
             }
         }
@@ -55,6 +56,7 @@ class AuthService {
 
     func logoutUser() {
         token = nil
+        AuthService.activeUser = nil
         //global function to return user to login screen? local method here?
     }
 }
