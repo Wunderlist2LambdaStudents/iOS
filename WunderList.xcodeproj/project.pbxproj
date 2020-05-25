@@ -28,6 +28,7 @@
 		B98DB583247B5B5400EBFB2D /* BadUserData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB582247B5B5400EBFB2D /* BadUserData.json */; };
 		B98DB585247B5B7300EBFB2D /* GoodTodoData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB584247B5B7300EBFB2D /* GoodTodoData.json */; };
 		B98DB587247B5C0800EBFB2D /* BadTodoData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB586247B5C0800EBFB2D /* BadTodoData.json */; };
+		B98DB589247B5CA900EBFB2D /* TodoRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB588247B5CA900EBFB2D /* TodoRepresentation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		B98DB582247B5B5400EBFB2D /* BadUserData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BadUserData.json; sourceTree = "<group>"; };
 		B98DB584247B5B7300EBFB2D /* GoodTodoData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GoodTodoData.json; sourceTree = "<group>"; };
 		B98DB586247B5C0800EBFB2D /* BadTodoData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BadTodoData.json; sourceTree = "<group>"; };
+		B98DB588247B5CA900EBFB2D /* TodoRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRepresentation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +224,7 @@
 		B95B658B2478ED00009C6D16 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B98DB588247B5CA900EBFB2D /* TodoRepresentation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				8E4DE212247A197500EF76E4 /* CoreDataStack.swift in Sources */,
 				B95B65902478ED61009C6D16 /* NetworkService.swift in Sources */,
 				B95B65572478EBE0009C6D16 /* AppDelegate.swift in Sources */,
+				B98DB589247B5CA900EBFB2D /* TodoRepresentation.swift in Sources */,
 				8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */,
 				8E4DE216247A229700EF76E4 /* sse.swift in Sources */,
 				B95B65592478EBE0009C6D16 /* SceneDelegate.swift in Sources */,
