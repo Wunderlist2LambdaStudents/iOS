@@ -73,6 +73,7 @@ class LoginViewController: UIViewController {
 //            let email = emailTextField.text,
 //            email.isEmpty == false else {
 //                return }
+        delegate?.updateViews()
         self.dismiss(animated: true, completion: nil)
     }
      // MARK: - Navigation
