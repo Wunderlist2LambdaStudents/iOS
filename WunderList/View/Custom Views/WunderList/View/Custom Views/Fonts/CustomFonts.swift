@@ -9,5 +9,6 @@
 import Foundation
 
 struct Fonts {
-    static let jonahText = "Jonah-Regular"
+    static let jonahText = "Jonah"
+    static let wunderlistFont = "sweet purple"
 }
