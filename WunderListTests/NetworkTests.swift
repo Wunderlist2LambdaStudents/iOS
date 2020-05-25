@@ -34,11 +34,12 @@ class NetworkTests: XCTestCase {
     }
 
     func testDecodingMockUserData() {
-
         let expectation = self.expectation(description: "\(#file), \(#function): WaitForDecodingMockData")
+        //create mockDataLoader and create Request
         let mockDataLoader = MockDataLoader(data: Data.mockData(with: "GoodUserData"), response: nil, error: nil)
         let networkService = NetworkService(dataLoader: mockDataLoader)
         let request = URLRequest(url: URL(string: "https://google.com")!)
+        //load mock data and test
         networkService.dataLoader.loadData(using: request) { (data, response, error) in
             XCTAssertNotNil(data)
             XCTAssertNil(response)
@@ -53,16 +54,20 @@ class NetworkTests: XCTestCase {
 
     func testDecodingMockTodo() {
         let expectation = self.expectation(description: "\(#file), \(#function): WaitForDecodingMockData")
+        //create mockDataLoader and create Request
         let mockDataLoader = MockDataLoader(data: Data.mockData(with: "GoodTodoData"), response: nil, error: nil)
         let networkService = NetworkService(dataLoader: mockDataLoader)
         let request = URLRequest(url: URL(string: "https://google.com")!)
+        //load mock data and test
         networkService.dataLoader.loadData(using: request) { (data, response, error) in
             XCTAssertNotNil(data)
             XCTAssertNil(response)
             XCTAssertNil(error)
-            // FIXME: Once refactored to live user, change type ALSO CHANGE MOCK JSON TO MATCH BACKEND SAMPLE JSON
-            let mockUser = networkService.decode(to: TodoRepresentation.self, data: data!)
-            XCTAssertNotNil(mockUser)
+            //create dateFormatter to decode date string
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            let mockTodo = networkService.decode(to: TodoRepresentation.self, data: data!, dateFormatter: dateFormatter)
+            XCTAssertNotNil(mockTodo)
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 1.0)

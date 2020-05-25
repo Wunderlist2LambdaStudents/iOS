@@ -1,12 +1,12 @@
 {
-  "identifier": "123456"
-  "title": "Title"
-  "body": "Body"
-  "due_date": 2020-05-25T01:49:56+0000
-  "complete": false
-  "recurring": "none"
+  "identifier": "123456",
+  "title": "Title",
+  "body": "Body",
+  "due_date": "2020-05-25T02:16:55+0000",
+  "complete": false,
+  "recurring": "none",
   "location": {
-    "x": 0
+    "x": 0,
     "y": 0
   }
 }

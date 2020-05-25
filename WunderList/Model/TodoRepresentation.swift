@@ -18,6 +18,11 @@ enum Recurring: String, Codable {
 struct LocationRepresentation: Codable {
     var xLocation: Double
     var yLocation: Double
+
+    enum CodingKeys: String, CodingKey {
+        case xLocation = "x"
+        case yLocation = "y"
+    }
 }
 
 struct TodoRepresentation: Codable {
