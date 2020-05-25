@@ -19,7 +19,7 @@ class NetworkTests: XCTestCase {
         XCTAssertNotNil(request)
         //test loading data from request
         networkService.dataLoader.loadData(using: request!) { (data, response, error) in
-            XCTAssertNotNil(error)
+            XCTAssertNil(error)
             XCTAssertNotNil(data)
             XCTAssertNotNil(response)
             XCTAssertEqual(response?.statusCode, 200)
@@ -28,9 +28,15 @@ class NetworkTests: XCTestCase {
         wait(for: [expectation], timeout: 2.0)
     }
 
-    // FIXME: Once refactored to live user, remove this
-    struct MockUser: Codable {
-        let username: String
+    //test is intentionally failing (TDD)
+    func testLoggingInUser() {
+        let expectation = self.expectation(description: "\(#file), \(#function): WaitForLoginResult")
+        let authService = AuthService()
+        authService.loginUser(with: "testiOSUser", password: "123456") {
+            XCTAssertNotNil(AuthService.activeUser)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 2.0)
     }
 
     func testDecodingMockUserData() {
@@ -44,8 +50,7 @@ class NetworkTests: XCTestCase {
             XCTAssertNotNil(data)
             XCTAssertNil(response)
             XCTAssertNil(error)
-            // FIXME: Once refactored to live user, change type ALSO CHANGE MOCK JSON TO MATCH BACKEND SAMPLE JSON
-            let mockUser = networkService.decode(to: MockUser.self, data: data!)
+            let mockUser = networkService.decode(to: UserRepresentation.self, data: data!)
             XCTAssertNotNil(mockUser)
             expectation.fulfill()
         }
