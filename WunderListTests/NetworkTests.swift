@@ -42,7 +42,7 @@ class NetworkTests: XCTestCase {
     func testDecodingMockUserData() {
         let expectation = self.expectation(description: "\(#file), \(#function): WaitForDecodingMockData")
         //create mockDataLoader and create Request
-        let mockDataLoader = MockDataLoader(data: Data.mockData(with: "GoodUserData"), response: nil, error: nil)
+        let mockDataLoader = MockDataLoader(data: Data.mockData(with: .goodUserData), response: nil, error: nil)
         let networkService = NetworkService(dataLoader: mockDataLoader)
         let request = URLRequest(url: URL(string: "https://google.com")!)
         //load mock data and test
@@ -60,7 +60,7 @@ class NetworkTests: XCTestCase {
     func testDecodingMockTodo() {
         let expectation = self.expectation(description: "\(#file), \(#function): WaitForDecodingMockData")
         //create mockDataLoader and create Request
-        let mockDataLoader = MockDataLoader(data: Data.mockData(with: "GoodTodoData"), response: nil, error: nil)
+        let mockDataLoader = MockDataLoader(data: Data.mockData(with: .goodTodoData), response: nil, error: nil)
         let networkService = NetworkService(dataLoader: mockDataLoader)
         let request = URLRequest(url: URL(string: "https://google.com")!)
         //load mock data and test

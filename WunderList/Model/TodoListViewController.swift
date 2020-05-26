@@ -9,33 +9,33 @@
 import UIKit
 
 class TodoListViewController: UIViewController {
-    
+
     // Quick Dummy data
     var dailyTodo = ["Walk The Dog", "walk the Dog again"]
     var weeklyTodo = ["Pick Up Dog", "Feed Dog"]
     var monthlyTodo = ["Eat dog", "walk the dog again"]
 
-    //MARK: -Outlets
+    // MARK: - Outlets -
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var todoTitle: UILabel!
     @IBOutlet weak var todoBodyTextView: UITextView!
-    
+
     @IBOutlet weak var switchTableViewSegmentedControlAction: UISegmentedControl!
     var currentSelectedSegment = 1
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         switchTableViewSegmentedControlAction.backgroundColor = #colorLiteral(red: 0.3939243257, green: 0.3406436443, blue: 0.820184648, alpha: 0.7223886986)
         switchTableViewSegmentedControlAction.selectedSegmentTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-
-
     }
-    
-    
+
     func updateViews() {
         //update the view after the user is logged in
         if AuthService.activeUser != nil {
             //do work
+        } else {
+            print("no active user, mocking user:")
+            TodoController().loadMockUser()
         }
     }
 
@@ -48,7 +48,7 @@ class TodoListViewController: UIViewController {
             currentSelectedSegment = 3
         }
         self.tableView.reloadData()
-        
+
     }
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,9 +65,12 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
             return monthlyTodo.count
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell1 = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as? TodoTableViewCell,
+        guard let cell1 = tableView.dequeueReusableCell(
+            withIdentifier: "TodoCell",
+            for: indexPath
+        ) as? TodoTableViewCell,
             let cell2 = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as? TodoTableViewCell,
             let cell3 = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as? TodoTableViewCell
         else { return UITableViewCell() }

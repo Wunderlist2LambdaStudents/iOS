@@ -148,4 +148,16 @@ class TodoController {
         todo.complete = representation.complete
         todo.dueDate = representation.dueDate
     }
+
+    func loadMockUser() {
+        let data = Data.mockData(with: .goodUserData)
+        let response = HTTPURLResponse(
+            url: URL(string: "https://www.google.com")!,
+            statusCode: 200, httpVersion: nil,
+            headerFields: nil
+        )
+        let mockDataLoader = MockDataLoader(data: data, response: response, error: nil)
+        let networkService = NetworkService(dataLoader: mockDataLoader)
+        print(networkService.decode(to: UserRepresentation.self, data: data) as Any)
+    }
 }
