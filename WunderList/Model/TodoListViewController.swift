@@ -16,10 +16,10 @@ class TodoListViewController: UIViewController {
     
     lazy var fetchedResultsController: NSFetchedResultsController<Todo> = {
          let fetchRequest: NSFetchRequest<Todo> = Todo.fetchRequest()
-         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "priority", ascending: true),
-                                         NSSortDescriptor(key: "name", ascending: true)]
+         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "complete", ascending: true),
+                                         NSSortDescriptor(key: "title", ascending: true)]
          let context = CoreDataStack.shared.mainContext
-         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: "priority", cacheName: nil)
+         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
          frc.delegate = self
          do {
              try frc.performFetch()
