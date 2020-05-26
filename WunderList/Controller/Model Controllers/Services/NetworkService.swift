@@ -8,16 +8,30 @@
 import Foundation
 
 protocol NetworkLoader {
-    func loadData(using request: URLRequest, with completion: @escaping (Data?, URLResponse?, Error?) -> Void)
+    func loadData(using request: URLRequest, with completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void)
 }
 
 extension URLSession: NetworkLoader {
-    func loadData(using request: URLRequest, with completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        self.dataTask(with: request, completionHandler: completion).resume()
+    /// Asyncronously load data using a URL Request
+    /// - Parameters:
+    ///   - request: an unwrapped URLRequest
+    ///   - completion: Similar to `URLSession.shared.dataTask`'s
+    ///    completion except the response is downcasted to a HTTPURLResponse or nil
+    func loadData(using request: URLRequest, with completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
+        self.dataTask(with: request) { (data, response, error) in
+            completion(data, response as? HTTPURLResponse, error)
+        }.resume()
     }
 }
 
 class NetworkService {
+    ///used to switch between live and Mock Data
+    var dataLoader: NetworkLoader
+
+    init(dataLoader: NetworkLoader = URLSession.shared) {
+        self.dataLoader = dataLoader
+    }
+
     ///Used to set a`URLRequest`'s HTTP Method
     enum HttpMethod: String {
         case get = "GET"
@@ -32,6 +46,7 @@ class NetworkService {
      */
     enum HttpHeaderType: String {
         case contentType = "Content-Type"
+        case auth = "Authentication"
     }
 
     /**
@@ -50,17 +65,21 @@ class NetworkService {
         let error: Error?
     }
 
-    static var df: DateFormatter {
-        let df = DateFormatter()
-        df.dateStyle = .short
-        df.timeStyle = .short
-        return df
+    static var dateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return dateFormatter
     }
 
     /**
      Create a request given a URL and requestMethod (get, post, create, etc...)
      */
-    class func createRequest(url: URL?, method: HttpMethod, headerType: HttpHeaderType? = nil, headerValue: HttpHeaderValue? = nil) -> URLRequest? {
+    func createRequest(
+        url: URL?,
+        method: HttpMethod,
+        headerType: HttpHeaderType? = nil,
+        headerValue: HttpHeaderValue? = nil
+    ) -> URLRequest? {
         guard let requestUrl = url else {
             NSLog("request URL is nil")
             return nil
@@ -75,15 +94,20 @@ class NetworkService {
     }
 
     /**
-     Encode from a Swift object to JSON for transmitting to an endpoint and returns an EncodingStatus object which should either contain an error and nil request or request and nil error
+     Encode from a Swift object to JSON for transmitting to an endpoint and returns an EncodingStatus
+     object which should either contain an error and nil request or request and nil error
      - parameter type: the type to be encoded (i.e. MyCustomType.self)
      - parameter request: the URLRequest used to transmit the encoded result to the remote server
      - parameter dateFormatter: optional for use with JSONEncoder.dateEncodingStrategy
      */
-    class func encode<T:Encodable>(from type: T, request: inout URLRequest, dateFormatter df: DateFormatter? = nil) -> EncodingStatus {
+    func encode<EncodableData: Encodable>(
+        from type: EncodableData,
+        request: inout URLRequest,
+        dateFormatter: DateFormatter? = nil
+    ) -> EncodingStatus {
         let jsonEncoder = JSONEncoder()
-        if let df = df {
-            jsonEncoder.dateEncodingStrategy = .formatted(df)
+        if let dateFormatter = dateFormatter {
+            jsonEncoder.dateEncodingStrategy = .formatted(dateFormatter)
         }
         do {
             request.httpBody = try jsonEncoder.encode(type)
@@ -94,21 +118,20 @@ class NetworkService {
         return EncodingStatus(request: request, error: nil)
     }
 
-    class func decode<T:Decodable>(to type: T.Type, data: Data, dateFormatter df: DateFormatter? = nil) -> T? {
+    func decode<DecodableType: Decodable>(
+        to type: DecodableType.Type,
+        data: Data,
+        dateFormatter: DateFormatter? = nil
+    ) -> DecodableType? {
         let decoder = JSONDecoder()
-        if let df = df {
-            decoder.dateDecodingStrategy = .formatted(df)
+        if let dateFormatter = dateFormatter {
+            decoder.dateDecodingStrategy = .formatted(dateFormatter)
         }
         do {
-            return try decoder.decode(T.self, from: data)
+            return try decoder.decode(DecodableType.self, from: data)
         } catch {
             print("Error Decoding JSON into \(String(describing: type)) Object \(error)")
             return nil
         }
     }
-
-    func loadData(using request: URLRequest, with completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        URLSession.shared.loadData(using: request, with: completion)
-    }
 }
-

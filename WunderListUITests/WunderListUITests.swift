@@ -11,25 +11,59 @@ import XCTest
 class WunderListUITests: XCTestCase {
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+               continueAfterFailure = false
+               let app = XCUIApplication()
+               app.launchArguments = ["UITesting"]
+               app.launch()
+           }
 
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+    enum Identifier: String {
+        case loginNameTextField = "LoginViewController.NameTextField"
+        case loginPasswordField = "LoginViewController.PWTextField"
+        case loginStartButton = "LoginViewController.GetStartedButton"
+        case loginTCLabel = "LoginViewController.T&CLabel"
+        case loginEmailTextField = "LoginViewController.EmailTextField"
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    private var testUserName = "Test Name"
+    private var testUserEmail = "test@test.com"
+    private var testUserPW = "password"
+
+    private var app: XCUIApplication {
+        return XCUIApplication()
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
+    private func textField(identifier: Identifier) -> XCUIElement {
+        return app.textFields[identifier.rawValue]
+    }
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    private var emailTextField: XCUIElement {
+        return textField(identifier: .loginEmailTextField)
+      }
+
+    private var nameTextField: XCUIElement {
+           return textField(identifier: .loginNameTextField)
+         }
+
+    private var pwTextField: XCUIElement {
+        return textField(identifier: .loginPasswordField)
+    }
+
+    func testUserSignUp() throws {
+        let signInButton = app.segmentedControls.buttons["Sign Up"]
+        XCTAssert(signInButton.isHittable)
+        signInButton.tap()
+
+        XCTAssert(nameTextField.isHittable)
+        nameTextField.tap()
+        nameTextField.typeText(testUserName)
+
+        XCTAssert(emailTextField.isHittable)
+        emailTextField.tap()
+        emailTextField.typeText(testUserEmail)
+
+        pwTextField.tap()
+        pwTextField.typeText(testUserEmail)
     }
 
     func testLaunchPerformance() throws {

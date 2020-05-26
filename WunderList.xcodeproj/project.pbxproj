@@ -7,17 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		189074D0247C3DBE00F659BB /* IsUITesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189074CF247C3DBE00F659BB /* IsUITesting.swift */; };
+		8E0AA4C4247A3869006E09F4 /* sweet purple.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E0AA4C3247A3869006E09F4 /* sweet purple.ttf */; };
+		8E4DE212247A197500EF76E4 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DE211247A197500EF76E4 /* CoreDataStack.swift */; };
+		8E4DE214247A20F000EF76E4 /* CustomAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E4DE213247A20F000EF76E4 /* CustomAssets.xcassets */; };
+		8E4DE216247A229700EF76E4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DE215247A229700EF76E4 /* LoginViewController.swift */; };
+		8E56EF5A247D697C00D53083 /* Todo + Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E56EF59247D697C00D53083 /* Todo + Convenience.swift */; };
+		8E56EF5E247D724700D53083 /* TodoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E56EF5D247D724700D53083 /* TodoController.swift */; };
+		8E56EF66247DA0D600D53083 /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E56EF65247DA0D600D53083 /* TodoTableViewCell.swift */; };
+		8E90DE87247A25EC000916A3 /* Jonah-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E90DE86247A25EC000916A3 /* Jonah-Regular.ttf */; };
+		8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E90DE88247A2767000916A3 /* CustomFonts.swift */; };
 		B95B65572478EBE0009C6D16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65562478EBE0009C6D16 /* AppDelegate.swift */; };
 		B95B65592478EBE0009C6D16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65582478EBE0009C6D16 /* SceneDelegate.swift */; };
 		B95B655E2478EBE0009C6D16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95B655C2478EBE0009C6D16 /* Main.storyboard */; };
 		B95B65602478EBE1009C6D16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B95B655F2478EBE1009C6D16 /* Assets.xcassets */; };
 		B95B65632478EBE1009C6D16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95B65612478EBE1009C6D16 /* LaunchScreen.storyboard */; };
-		B95B656E2478EBE1009C6D16 /* WunderListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B656D2478EBE1009C6D16 /* WunderListTests.swift */; };
+		B95B656E2478EBE1009C6D16 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B656D2478EBE1009C6D16 /* NetworkTests.swift */; };
 		B95B65792478EBE1009C6D16 /* WunderListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65782478EBE1009C6D16 /* WunderListUITests.swift */; };
-		B95B65902478ED61009C6D16 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B658F2478ED61009C6D16 /* NetworkHelper.swift */; };
-		B95B65922478EDCE009C6D16 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65912478EDCE009C6D16 /* ViewController.swift */; };
+		B95B65902478ED61009C6D16 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B658F2478ED61009C6D16 /* NetworkService.swift */; };
 		B95B65942478EE55009C6D16 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95B65932478EE55009C6D16 /* Auth.storyboard */; };
 		B95B65962478EE6B009C6D16 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95B65952478EE6B009C6D16 /* Onboarding.storyboard */; };
+		B98DB581247AF01C00EBFB2D /* GoodUserData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB580247AF01C00EBFB2D /* GoodUserData.json */; };
+		B98DB583247B5B5400EBFB2D /* BadUserData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB582247B5B5400EBFB2D /* BadUserData.json */; };
+		B98DB585247B5B7300EBFB2D /* GoodTodoData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB584247B5B7300EBFB2D /* GoodTodoData.json */; };
+		B98DB587247B5C0800EBFB2D /* BadTodoData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB586247B5C0800EBFB2D /* BadTodoData.json */; };
+		B98DB589247B5CA900EBFB2D /* TodoRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB588247B5CA900EBFB2D /* TodoRepresentation.swift */; };
+		B98DB58B247C202200EBFB2D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58A247C202200EBFB2D /* AuthService.swift */; };
+		B98DB58D247C210D00EBFB2D /* UserRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58C247C210D00EBFB2D /* UserRepresentation.swift */; };
+		B98DB58F247C813200EBFB2D /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58E247C813200EBFB2D /* TodoListViewController.swift */; };
+		B98DB593247D88E700EBFB2D /* WunderList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B98DB591247D88E600EBFB2D /* WunderList.xcdatamodeld */; };
+		B98DB595247D8DD500EBFB2D /* User+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB594247D8DD500EBFB2D /* User+Convenience.swift */; };
+		B98DB597247DAE1A00EBFB2D /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */; };
+		B98DB599247DB10100EBFB2D /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */; };
+		B98DB59A247DB10700EBFB2D /* GoodUserData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB580247AF01C00EBFB2D /* GoodUserData.json */; };
+		B98DB59B247DB10900EBFB2D /* BadUserData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB582247B5B5400EBFB2D /* BadUserData.json */; };
+		B98DB59C247DB10B00EBFB2D /* GoodTodoData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB584247B5B7300EBFB2D /* GoodTodoData.json */; };
+		B98DB59D247DB10E00EBFB2D /* BadTodoData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB586247B5C0800EBFB2D /* BadTodoData.json */; };
+		B98DB59F247DB43B00EBFB2D /* Data+MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB59E247DB43B00EBFB2D /* Data+MockData.swift */; };
+		B98DB5A0247DB52400EBFB2D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B658F2478ED61009C6D16 /* NetworkService.swift */; };
+		B98DB5A1247DB57900EBFB2D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58A247C202200EBFB2D /* AuthService.swift */; };
+		B98DB5A2247DB5A700EBFB2D /* TodoRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB588247B5CA900EBFB2D /* TodoRepresentation.swift */; };
+		B98DB5A3247DB5AB00EBFB2D /* UserRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58C247C210D00EBFB2D /* UserRepresentation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +68,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		189074CF247C3DBE00F659BB /* IsUITesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsUITesting.swift; sourceTree = "<group>"; };
+		8E0AA4C3247A3869006E09F4 /* sweet purple.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sweet purple.ttf"; sourceTree = "<group>"; };
+		8E4DE211247A197500EF76E4 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		8E4DE213247A20F000EF76E4 /* CustomAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CustomAssets.xcassets; sourceTree = "<group>"; };
+		8E4DE215247A229700EF76E4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = WunderList/View/Storyboards/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
+		8E56EF59247D697C00D53083 /* Todo + Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todo + Convenience.swift"; sourceTree = "<group>"; };
+		8E56EF5D247D724700D53083 /* TodoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoController.swift; sourceTree = "<group>"; };
+		8E56EF65247DA0D600D53083 /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
+		8E90DE86247A25EC000916A3 /* Jonah-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jonah-Regular.ttf"; sourceTree = "<group>"; };
+		8E90DE88247A2767000916A3 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
 		B95B65532478EBE0009C6D16 /* WunderList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WunderList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95B65562478EBE0009C6D16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B95B65582478EBE0009C6D16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,15 +86,26 @@
 		B95B65622478EBE1009C6D16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B95B65642478EBE1009C6D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B95B65692478EBE1009C6D16 /* WunderListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WunderListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B95B656D2478EBE1009C6D16 /* WunderListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WunderListTests.swift; sourceTree = "<group>"; };
+		B95B656D2478EBE1009C6D16 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		B95B656F2478EBE1009C6D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B95B65742478EBE1009C6D16 /* WunderListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WunderListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95B65782478EBE1009C6D16 /* WunderListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WunderListUITests.swift; sourceTree = "<group>"; };
 		B95B657A2478EBE1009C6D16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B95B658F2478ED61009C6D16 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
-		B95B65912478EDCE009C6D16 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B95B658F2478ED61009C6D16 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		B95B65932478EE55009C6D16 /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		B95B65952478EE6B009C6D16 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
+		B98DB580247AF01C00EBFB2D /* GoodUserData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GoodUserData.json; sourceTree = "<group>"; };
+		B98DB582247B5B5400EBFB2D /* BadUserData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BadUserData.json; sourceTree = "<group>"; };
+		B98DB584247B5B7300EBFB2D /* GoodTodoData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GoodTodoData.json; sourceTree = "<group>"; };
+		B98DB586247B5C0800EBFB2D /* BadTodoData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BadTodoData.json; sourceTree = "<group>"; };
+		B98DB588247B5CA900EBFB2D /* TodoRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRepresentation.swift; sourceTree = "<group>"; };
+		B98DB58A247C202200EBFB2D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		B98DB58C247C210D00EBFB2D /* UserRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepresentation.swift; sourceTree = "<group>"; };
+		B98DB58E247C813200EBFB2D /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TodoListViewController.swift; path = WunderList/Model/TodoListViewController.swift; sourceTree = SOURCE_ROOT; };
+		B98DB592247D88E600EBFB2D /* WunderList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WunderList.xcdatamodel; sourceTree = "<group>"; };
+		B98DB594247D8DD500EBFB2D /* User+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Convenience.swift"; sourceTree = "<group>"; };
+		B98DB59E247DB43B00EBFB2D /* Data+MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+MockData.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +133,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E4DE210247A195200EF76E4 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				8EB8DF30247D66BA00444E97 /* CD Models */,
+				8E56EF58247D696100D53083 /* Convenience  */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
+		8E56EF58247D696100D53083 /* Convenience  */ = {
+			isa = PBXGroup;
+			children = (
+				8E4DE211247A197500EF76E4 /* CoreDataStack.swift */,
+				8E56EF59247D697C00D53083 /* Todo + Convenience.swift */,
+				B98DB594247D8DD500EBFB2D /* User+Convenience.swift */,
+			);
+			path = "Convenience ";
+			sourceTree = "<group>";
+		};
+		8E90DE85247A25C7000916A3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8E90DE86247A25EC000916A3 /* Jonah-Regular.ttf */,
+				8E0AA4C3247A3869006E09F4 /* sweet purple.ttf */,
+				8E90DE88247A2767000916A3 /* CustomFonts.swift */,
+			);
+			name = Fonts;
+			path = "WunderList/View/Custom Views/Fonts";
+			sourceTree = "<group>";
+		};
+		8E90DE8A247A277C000916A3 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		8EB8DF2F247D651700444E97 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B98DB598247DB0E200EBFB2D /* MockDataLoader */,
+				B95B658F2478ED61009C6D16 /* NetworkService.swift */,
+				B98DB58A247C202200EBFB2D /* AuthService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8EB8DF30247D66BA00444E97 /* CD Models */ = {
+			isa = PBXGroup;
+			children = (
+				B98DB591247D88E600EBFB2D /* WunderList.xcdatamodeld */,
+			);
+			path = "CD Models";
+			sourceTree = "<group>";
+		};
 		B95B654A2478EBE0009C6D16 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +211,7 @@
 		B95B65552478EBE0009C6D16 /* WunderList */ = {
 			isa = PBXGroup;
 			children = (
+				8E4DE210247A195200EF76E4 /* Core Data */,
 				B95B658B2478ED00009C6D16 /* Model */,
 				B95B658D2478ED33009C6D16 /* View */,
 				B95B65892478ECEB009C6D16 /* Controller */,
@@ -116,7 +223,7 @@
 		B95B656C2478EBE1009C6D16 /* WunderListTests */ = {
 			isa = PBXGroup;
 			children = (
-				B95B656D2478EBE1009C6D16 /* WunderListTests.swift */,
+				B95B656D2478EBE1009C6D16 /* NetworkTests.swift */,
 				B95B656F2478EBE1009C6D16 /* Info.plist */,
 			);
 			path = WunderListTests;
@@ -127,6 +234,7 @@
 			children = (
 				B95B65782478EBE1009C6D16 /* WunderListUITests.swift */,
 				B95B657A2478EBE1009C6D16 /* Info.plist */,
+				189074CF247C3DBE00F659BB /* IsUITesting.swift */,
 			);
 			path = WunderListUITests;
 			sourceTree = "<group>";
@@ -145,7 +253,8 @@
 		B95B65872478ECD8009C6D16 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B95B65912478EDCE009C6D16 /* ViewController.swift */,
+				8E4DE215247A229700EF76E4 /* LoginViewController.swift */,
+				B98DB58E247C813200EBFB2D /* TodoListViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -162,7 +271,8 @@
 		B95B658A2478ECF3009C6D16 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B95B658F2478ED61009C6D16 /* NetworkHelper.swift */,
+				8E56EF5D247D724700D53083 /* TodoController.swift */,
+				8EB8DF2F247D651700444E97 /* Services */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -170,6 +280,8 @@
 		B95B658B2478ED00009C6D16 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B98DB588247B5CA900EBFB2D /* TodoRepresentation.swift */,
+				B98DB58C247C210D00EBFB2D /* UserRepresentation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -181,6 +293,7 @@
 				B95B65582478EBE0009C6D16 /* SceneDelegate.swift */,
 				B95B655F2478EBE1009C6D16 /* Assets.xcassets */,
 				B95B65642478EBE1009C6D16 /* Info.plist */,
+				8E4DE213247A20F000EF76E4 /* CustomAssets.xcassets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -197,8 +310,24 @@
 		B95B658E2478ED38009C6D16 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				8E90DE8A247A277C000916A3 /* Colors */,
+				8E90DE85247A25C7000916A3 /* Fonts */,
+				8E56EF65247DA0D600D53083 /* TodoTableViewCell.swift */,
 			);
 			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		B98DB598247DB0E200EBFB2D /* MockDataLoader */ = {
+			isa = PBXGroup;
+			children = (
+				B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */,
+				B98DB580247AF01C00EBFB2D /* GoodUserData.json */,
+				B98DB582247B5B5400EBFB2D /* BadUserData.json */,
+				B98DB584247B5B7300EBFB2D /* GoodTodoData.json */,
+				B98DB586247B5C0800EBFB2D /* BadTodoData.json */,
+				B98DB59E247DB43B00EBFB2D /* Data+MockData.swift */,
+			);
+			path = MockDataLoader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +340,7 @@
 				B95B654F2478EBE0009C6D16 /* Sources */,
 				B95B65502478EBE0009C6D16 /* Frameworks */,
 				B95B65512478EBE0009C6D16 /* Resources */,
+				185E5D25247B20B50021C436 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -307,9 +437,16 @@
 			files = (
 				B95B65942478EE55009C6D16 /* Auth.storyboard in Resources */,
 				B95B65962478EE6B009C6D16 /* Onboarding.storyboard in Resources */,
+				B98DB59B247DB10900EBFB2D /* BadUserData.json in Resources */,
+				B98DB59C247DB10B00EBFB2D /* GoodTodoData.json in Resources */,
 				B95B65632478EBE1009C6D16 /* LaunchScreen.storyboard in Resources */,
+				8E4DE214247A20F000EF76E4 /* CustomAssets.xcassets in Resources */,
+				8E0AA4C4247A3869006E09F4 /* sweet purple.ttf in Resources */,
+				8E90DE87247A25EC000916A3 /* Jonah-Regular.ttf in Resources */,
 				B95B65602478EBE1009C6D16 /* Assets.xcassets in Resources */,
+				B98DB59A247DB10700EBFB2D /* GoodUserData.json in Resources */,
 				B95B655E2478EBE0009C6D16 /* Main.storyboard in Resources */,
+				B98DB59D247DB10E00EBFB2D /* BadTodoData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +454,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B98DB583247B5B5400EBFB2D /* BadUserData.json in Resources */,
+				B98DB581247AF01C00EBFB2D /* GoodUserData.json in Resources */,
+				B98DB585247B5B7300EBFB2D /* GoodTodoData.json in Resources */,
+				B98DB587247B5C0800EBFB2D /* BadTodoData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,15 +470,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		185E5D25247B20B50021C436 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B95B654F2478EBE0009C6D16 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B95B65902478ED61009C6D16 /* NetworkHelper.swift in Sources */,
+				B98DB593247D88E700EBFB2D /* WunderList.xcdatamodeld in Sources */,
+				8E4DE212247A197500EF76E4 /* CoreDataStack.swift in Sources */,
+				B98DB597247DAE1A00EBFB2D /* MockDataLoader.swift in Sources */,
+				B98DB59F247DB43B00EBFB2D /* Data+MockData.swift in Sources */,
+				B95B65902478ED61009C6D16 /* NetworkService.swift in Sources */,
 				B95B65572478EBE0009C6D16 /* AppDelegate.swift in Sources */,
-				B95B65922478EDCE009C6D16 /* ViewController.swift in Sources */,
+				B98DB589247B5CA900EBFB2D /* TodoRepresentation.swift in Sources */,
+				B98DB58F247C813200EBFB2D /* TodoListViewController.swift in Sources */,
+				B98DB595247D8DD500EBFB2D /* User+Convenience.swift in Sources */,
+				8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */,
+				8E4DE216247A229700EF76E4 /* LoginViewController.swift in Sources */,
+				8E56EF5E247D724700D53083 /* TodoController.swift in Sources */,
+				8E56EF66247DA0D600D53083 /* TodoTableViewCell.swift in Sources */,
 				B95B65592478EBE0009C6D16 /* SceneDelegate.swift in Sources */,
+				8E56EF5A247D697C00D53083 /* Todo + Convenience.swift in Sources */,
+				B98DB58D247C210D00EBFB2D /* UserRepresentation.swift in Sources */,
+				B98DB58B247C202200EBFB2D /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +519,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B95B656E2478EBE1009C6D16 /* WunderListTests.swift in Sources */,
+				B98DB599247DB10100EBFB2D /* MockDataLoader.swift in Sources */,
+				B98DB5A3247DB5AB00EBFB2D /* UserRepresentation.swift in Sources */,
+				B98DB5A2247DB5A700EBFB2D /* TodoRepresentation.swift in Sources */,
+				B98DB5A0247DB52400EBFB2D /* NetworkService.swift in Sources */,
+				B95B656E2478EBE1009C6D16 /* NetworkTests.swift in Sources */,
+				B98DB5A1247DB57900EBFB2D /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +532,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				189074D0247C3DBE00F659BB /* IsUITesting.swift in Sources */,
 				B95B65792478EBE1009C6D16 /* WunderListUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,8 +691,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 34P4RF23ET;
+				DEVELOPMENT_TEAM = 3D4XZP25Z6;
 				INFOPLIST_FILE = WunderList/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -529,8 +710,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 34P4RF23ET;
+				DEVELOPMENT_TEAM = 3D4XZP25Z6;
 				INFOPLIST_FILE = WunderList/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -666,6 +848,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B98DB591247D88E600EBFB2D /* WunderList.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B98DB592247D88E600EBFB2D /* WunderList.xcdatamodel */,
+			);
+			currentVersion = B98DB592247D88E600EBFB2D /* WunderList.xcdatamodel */;
+			path = WunderList.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B95B654B2478EBE0009C6D16 /* Project object */;
 }
