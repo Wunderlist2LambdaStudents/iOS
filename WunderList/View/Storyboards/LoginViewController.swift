@@ -72,7 +72,7 @@ class LoginViewController: UIViewController {
         //subscribe to a Notification which will fire before the keyboard will hide
         subscribeToNotification(UIResponder.keyboardWillHideNotification, selector: #selector(keyboardWillShowOrHide))
 
-        //we make a call to our keyboard handling function as soon as the view is loaded.
+        //make a call to our keyboard handling function as soon as the view is loaded.
         initializeHideKeyboard()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -147,7 +147,6 @@ extension LoginViewController {
 
     @objc func dismissMyKeyboard() {
         //endEditing causes the view (or one of its embedded text fields) to resign the first responder status.
-        //In short- Dismiss the active keyboard.
         view.endEditing(true)
     }
     func subscribeToNotification(_ notification: NSNotification.Name, selector: Selector) {
@@ -174,7 +173,7 @@ extension LoginViewController {
 
             // Set the scroll view's content inset & scroll indicator to avoid the keyboard
             scrollView.contentInset.bottom = keyboardOverlap
-            scrollView.scrollIndicatorInsets.bottom = keyboardOverlap
+            scrollView.verticalScrollIndicatorInsets.bottom = keyboardOverlap
 
             let duration = (durationValue as AnyObject).doubleValue
             let options = UIView.AnimationOptions(rawValue: UInt((curveValue as AnyObject).integerValue << 16))
