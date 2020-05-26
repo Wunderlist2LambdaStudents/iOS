@@ -49,6 +49,8 @@ class LoginViewController: UIViewController {
         pinkSquareView.layer.cornerRadius = 10.0
         signUpSignInSegementedControl.backgroundColor = #colorLiteral(red: 0.3939243257, green: 0.3406436443, blue: 0.820184648, alpha: 0.7223886986)
         signUpSignInSegementedControl.selectedSegmentTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        signUpSignInSegementedControl.subviews[0].accessibilityIdentifier = "LoginViewController.SignUpSegment"
+        signUpSignInSegementedControl.subviews[1].accessibilityIdentifier = "LoginViewController.SignInSegment"
     }
 
     // MARK: - Actions
