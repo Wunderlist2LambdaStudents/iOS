@@ -14,6 +14,7 @@
 		8E4DE216247A229700EF76E4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DE215247A229700EF76E4 /* LoginViewController.swift */; };
 		8E56EF5A247D697C00D53083 /* Todo + Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E56EF59247D697C00D53083 /* Todo + Convenience.swift */; };
 		8E56EF5E247D724700D53083 /* TodoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E56EF5D247D724700D53083 /* TodoController.swift */; };
+		8E56EF66247DA0D600D53083 /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E56EF65247DA0D600D53083 /* TodoTableViewCell.swift */; };
 		8E90DE87247A25EC000916A3 /* Jonah-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E90DE86247A25EC000916A3 /* Jonah-Regular.ttf */; };
 		8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E90DE88247A2767000916A3 /* CustomFonts.swift */; };
 		B95B65572478EBE0009C6D16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65562478EBE0009C6D16 /* AppDelegate.swift */; };
@@ -64,6 +65,7 @@
 		8E4DE215247A229700EF76E4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = WunderList/View/Storyboards/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		8E56EF59247D697C00D53083 /* Todo + Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todo + Convenience.swift"; sourceTree = "<group>"; };
 		8E56EF5D247D724700D53083 /* TodoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoController.swift; sourceTree = "<group>"; };
+		8E56EF65247DA0D600D53083 /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
 		8E90DE86247A25EC000916A3 /* Jonah-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jonah-Regular.ttf"; sourceTree = "<group>"; };
 		8E90DE88247A2767000916A3 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
 		B95B65532478EBE0009C6D16 /* WunderList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WunderList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,6 +162,7 @@
 		8EB8DF2F247D651700444E97 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8E56EF5D247D724700D53083 /* TodoController.swift */,
 				B95B658F2478ED61009C6D16 /* NetworkService.swift */,
 				B98DB58A247C202200EBFB2D /* AuthService.swift */,
 			);
@@ -263,7 +266,6 @@
 			isa = PBXGroup;
 			children = (
 				8EB8DF2F247D651700444E97 /* Services */,
-				8E56EF5D247D724700D53083 /* TodoController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -303,6 +305,7 @@
 			children = (
 				8E90DE8A247A277C000916A3 /* Colors */,
 				8E90DE85247A25C7000916A3 /* Fonts */,
+				8E56EF65247DA0D600D53083 /* TodoTableViewCell.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -478,6 +481,8 @@
 				8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */,
 				8E4DE216247A229700EF76E4 /* LoginViewController.swift in Sources */,
 				8E56EF5E247D724700D53083 /* TodoController.swift in Sources */,
+				8EB8DF2E247D645E00444E97 /* Todo.xcdatamodeld in Sources */,
+				8E56EF66247DA0D600D53083 /* TodoTableViewCell.swift in Sources */,
 				B95B65592478EBE0009C6D16 /* SceneDelegate.swift in Sources */,
 				8E56EF5A247D697C00D53083 /* Todo + Convenience.swift in Sources */,
 				B98DB58D247C210D00EBFB2D /* UserRepresentation.swift in Sources */,

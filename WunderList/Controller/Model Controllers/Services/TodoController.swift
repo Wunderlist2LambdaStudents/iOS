@@ -25,40 +25,38 @@ let baseURL = URL(string: "https://google.com/")!
 class TodoController {
 
     var networkService: NetworkService?
-
-    init() {
-        fetchTodosFromServer()
-    }
-
-    // MARK: - Methods
-
-    func fetchTodosFromServer(completion: @escaping CompletionHandler = { _ in }) {
-        let requestURL = baseURL.appendingPathComponent("json")
-
-        URLSession.shared.dataTask(with: requestURL) { data, _, error in
-            if let error = error {
-                NSLog("Error fetching tasks: \(error)")
-                completion(.failure(.otherError))
-                return
-            }
-
-            guard let data = data else {
-                NSLog("No data returned from request")
-                completion(.failure(.noData))
-                return
-            }
-
-            do {
-                let todoRepresentations = Array(
-                    try JSONDecoder().decode([String: TodoRepresentation].self, from: data).values
-                )
-                try self.updateTodos(with: todoRepresentations)
-            } catch {
-                NSLog("Error decoding todos: \(error)")
-            }
-        }.resume()
-    }
-
+//    
+//    init() {
+//        fetchTodosFromServer()
+//    }
+    
+    //MARK: - Methods
+//
+//    func fetchTodosFromServer(completion: @escaping CompletionHandler = { _ in }) {
+//        let requestURL = baseURL.appendingPathComponent("json")
+//
+//        URLSession.shared.dataTask(with: requestURL) { data, _, error in
+//            if let error = error {
+//                NSLog("Error fetching tasks: \(error)")
+//                completion(.failure(.otherError))
+//                return
+//            }
+//
+//            guard let data = data else {
+//                NSLog("No data returned from request")
+//                completion(.failure(.noData))
+//                return
+//            }
+//
+//            do {
+//                let todoRepresentations = Array(try JSONDecoder().decode([String : TodoRepresentation].self, from: data).values)
+//                try self.updateTodos(with: todoRepresentations)
+//            } catch {
+//                NSLog("Error decoding todos: \(error)")
+//            }
+//        }.resume()
+//    }
+    
     func sendTodosToServer(todo: Todo, completion: @escaping CompletionHandler = { _ in }) {
         guard let uuid = todo.identifier else {
             completion(.failure(.noIdentifier))
@@ -91,39 +89,39 @@ class TodoController {
             completion(.success(true))
         }.resume()
     }
-
-    func updateTodos(with representations: [TodoRepresentation]) throws {
-        guard let activeUser = AuthService.activeUser else { return }
-        let identifiersToFetch = representations.compactMap { UUID(uuidString: $0.identifier)}
-        let representationsByID = Dictionary(uniqueKeysWithValues: zip(identifiersToFetch, representations))
-        var todosToCreate = representationsByID
-        let fetchRequest: NSFetchRequest<Todo> = Todo.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "identifier IN %@", identifiersToFetch)
-
-        let context = CoreDataStack.shared.container.newBackgroundContext()
-        var error: Error?
-
-            context.performAndWait {
-                do {
-                    let existingTodos = try context.fetch(fetchRequest)
-
-                    for todo in existingTodos {
-                        guard let identifier = todo.identifier,
-                            let representation = representationsByID[identifier] else { continue }
-                        self.updateTodoRep(todo: todo, with: representation)
-                        todosToCreate.removeValue(forKey: identifier)
-                    }
-                } catch let fetchError {
-                    error = fetchError
-                }
-                for representation in todosToCreate.values {
-                    Todo(todoRepresentation: representation, context: context, userRep: activeUser)
-                }
-            }
-            if let error = error { throw error }
-            try CoreDataStack.shared.save(context: context)
-        }
-
+    
+//    func updateTodos(with representations: [TodoRepresentation]) throws {
+//
+//        let identifiersToFetch = representations.compactMap { UUID(uuidString: $0.identifier)}
+//        let representationsByID = Dictionary(uniqueKeysWithValues: zip(identifiersToFetch, representations))
+//        var todosToCreate = representationsByID
+//        let fetchRequest:NSFetchRequest<Todo> = Todo.fetchRequest()
+//        fetchRequest.predicate = NSPredicate(format: "identifier IN %@", identifiersToFetch)
+//
+//        let context = CoreDataStack.shared.container.newBackgroundContext()
+//        var error: Error?
+//
+//            context.performAndWait {
+//                do {
+//                    let existingTodos = try context.fetch(fetchRequest)
+//
+//                    for todo in existingTodos {
+//                        guard let id = todo.identifier,
+//                            let representation = representationsByID[id] else { continue }
+//                        self.updateTodoRep(todo: todo, with: representation)
+//                        todosToCreate.removeValue(forKey: id)
+//                    }
+//                } catch let fetchError {
+//                    error = fetchError
+//                }
+//                for representation in todosToCreate.values {
+//                    Todo(todoRepresentation: representation, context: context)
+//                }
+//            }
+//            if let error = error { throw error }
+//            try CoreDataStack.shared.save(context: context)
+//        }
+    
     func deleteTodosFromServer(todo: Todo, completion: @escaping CompletionHandler = { _ in }) {
         guard let uuid = todo.identifier else {
             completion(.failure(.noIdentifier))

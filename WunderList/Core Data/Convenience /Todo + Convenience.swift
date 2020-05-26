@@ -49,6 +49,7 @@ extension Todo {
         self.dueDate = dueDate
         self.recurring = recurring
     }
+    
 // MARK: - WHERE I'M STUCK (relationship issues I beleive)
     @discardableResult convenience init?(
         todoRepresentation: TodoRepresentation,
