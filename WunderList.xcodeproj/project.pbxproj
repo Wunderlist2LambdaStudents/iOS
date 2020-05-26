@@ -27,7 +27,6 @@
 		B95B65902478ED61009C6D16 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B658F2478ED61009C6D16 /* NetworkService.swift */; };
 		B95B65942478EE55009C6D16 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95B65932478EE55009C6D16 /* Auth.storyboard */; };
 		B95B65962478EE6B009C6D16 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95B65952478EE6B009C6D16 /* Onboarding.storyboard */; };
-		B98DB57F247AE71A00EBFB2D /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */; };
 		B98DB581247AF01C00EBFB2D /* GoodUserData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB580247AF01C00EBFB2D /* GoodUserData.json */; };
 		B98DB583247B5B5400EBFB2D /* BadUserData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB582247B5B5400EBFB2D /* BadUserData.json */; };
 		B98DB585247B5B7300EBFB2D /* GoodTodoData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB584247B5B7300EBFB2D /* GoodTodoData.json */; };
@@ -38,6 +37,7 @@
 		B98DB58F247C813200EBFB2D /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58E247C813200EBFB2D /* TodoListViewController.swift */; };
 		B98DB593247D88E700EBFB2D /* WunderList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B98DB591247D88E600EBFB2D /* WunderList.xcdatamodeld */; };
 		B98DB595247D8DD500EBFB2D /* User+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB594247D8DD500EBFB2D /* User+Convenience.swift */; };
+		B98DB596247DA8A500EBFB2D /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,7 +162,7 @@
 		8EB8DF2F247D651700444E97 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8E56EF5D247D724700D53083 /* TodoController.swift */,
+				B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */,
 				B95B658F2478ED61009C6D16 /* NetworkService.swift */,
 				B98DB58A247C202200EBFB2D /* AuthService.swift */,
 			);
@@ -214,7 +214,6 @@
 			children = (
 				B95B656D2478EBE1009C6D16 /* NetworkTests.swift */,
 				B95B656F2478EBE1009C6D16 /* Info.plist */,
-				B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */,
 				B98DB580247AF01C00EBFB2D /* GoodUserData.json */,
 				B98DB582247B5B5400EBFB2D /* BadUserData.json */,
 				B98DB584247B5B7300EBFB2D /* GoodTodoData.json */,
@@ -265,6 +264,7 @@
 		B95B658A2478ECF3009C6D16 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8E56EF5D247D724700D53083 /* TodoController.swift */,
 				8EB8DF2F247D651700444E97 /* Services */,
 			);
 			path = "Model Controllers";
@@ -481,7 +481,7 @@
 				8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */,
 				8E4DE216247A229700EF76E4 /* LoginViewController.swift in Sources */,
 				8E56EF5E247D724700D53083 /* TodoController.swift in Sources */,
-				8EB8DF2E247D645E00444E97 /* Todo.xcdatamodeld in Sources */,
+				B98DB596247DA8A500EBFB2D /* MockDataLoader.swift in Sources */,
 				8E56EF66247DA0D600D53083 /* TodoTableViewCell.swift in Sources */,
 				B95B65592478EBE0009C6D16 /* SceneDelegate.swift in Sources */,
 				8E56EF5A247D697C00D53083 /* Todo + Convenience.swift in Sources */,
@@ -494,7 +494,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B98DB57F247AE71A00EBFB2D /* MockDataLoader.swift in Sources */,
 				B95B656E2478EBE1009C6D16 /* NetworkTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

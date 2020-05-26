@@ -31,9 +31,15 @@ class MockDataLoader: NetworkLoader {
 }
 
 extension Data {
-    static func mockData(with name: String) -> Data {
+    enum FileName: String {
+        case goodUserData = "GoodUserData"
+        case badUserData = "BadUserData"
+        case goodTodoData = "GoodTodoData"
+        case badTodoData = "BadTodoData"
+    }
+    static func mockData(with name: FileName) -> Data {
         let bundle = Bundle(for: MockDataLoader.self)
-        let url = bundle.url(forResource: name, withExtension: "json")!
+        let url = bundle.url(forResource: name.rawValue, withExtension: "json")!
         var data = Data()
         do {
             data = try Data(contentsOf: url)
