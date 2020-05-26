@@ -10,6 +10,16 @@ import XCTest
 @testable import WunderList
 
 class NetworkTests: XCTestCase {
+    // MARK: - Failing Tests (TDD) -
+    func testLoggingInUser() {
+        let expectation = self.expectation(description: "\(#file), \(#function): WaitForLoginResult")
+        let authService = AuthService()
+        authService.loginUser(with: "testiOSUser", password: "123456") {
+            XCTAssertNotNil(AuthService.activeUser)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 2.0)
+    }
 
     func testGettingData() {
         let expectation = self.expectation(description: "\(#file), \(#function): WaitForGenericGetResult")
@@ -28,21 +38,15 @@ class NetworkTests: XCTestCase {
         wait(for: [expectation], timeout: 2.0)
     }
 
-    //test is intentionally failing (TDD)
-    func testLoggingInUser() {
-        let expectation = self.expectation(description: "\(#file), \(#function): WaitForLoginResult")
-        let authService = AuthService()
-        authService.loginUser(with: "testiOSUser", password: "123456") {
-            XCTAssertNotNil(AuthService.activeUser)
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 2.0)
-    }
-
+    //MARK: - Mock Tests -
     func testDecodingMockUserData() {
         let expectation = self.expectation(description: "\(#file), \(#function): WaitForDecodingMockData")
         //create mockDataLoader and create Request
-        let mockDataLoader = MockDataLoader(data: Data.mockData(with: "GoodUserData"), response: nil, error: nil)
+        guard let mockDataLoader = MockDataLoader(
+            data: Data.mockData(with: .goodUserData),
+            response: nil,
+            error: nil
+        ) as? NetworkLoader else { return }
         let networkService = NetworkService(dataLoader: mockDataLoader)
         let request = URLRequest(url: URL(string: "https://google.com")!)
         //load mock data and test
@@ -60,7 +64,11 @@ class NetworkTests: XCTestCase {
     func testDecodingMockTodo() {
         let expectation = self.expectation(description: "\(#file), \(#function): WaitForDecodingMockData")
         //create mockDataLoader and create Request
-        let mockDataLoader = MockDataLoader(data: Data.mockData(with: "GoodTodoData"), response: nil, error: nil)
+         guard let mockDataLoader = MockDataLoader(
+                   data: Data.mockData(with: .goodTodoData),
+                   response: nil,
+                   error: nil
+               ) as? NetworkLoader else { return }
         let networkService = NetworkService(dataLoader: mockDataLoader)
         let request = URLRequest(url: URL(string: "https://google.com")!)
         //load mock data and test

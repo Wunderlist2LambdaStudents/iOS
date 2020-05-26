@@ -37,7 +37,17 @@
 		B98DB58F247C813200EBFB2D /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58E247C813200EBFB2D /* TodoListViewController.swift */; };
 		B98DB593247D88E700EBFB2D /* WunderList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B98DB591247D88E600EBFB2D /* WunderList.xcdatamodeld */; };
 		B98DB595247D8DD500EBFB2D /* User+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB594247D8DD500EBFB2D /* User+Convenience.swift */; };
-		B98DB596247DA8A500EBFB2D /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */; };
+		B98DB597247DAE1A00EBFB2D /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */; };
+		B98DB599247DB10100EBFB2D /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */; };
+		B98DB59A247DB10700EBFB2D /* GoodUserData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB580247AF01C00EBFB2D /* GoodUserData.json */; };
+		B98DB59B247DB10900EBFB2D /* BadUserData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB582247B5B5400EBFB2D /* BadUserData.json */; };
+		B98DB59C247DB10B00EBFB2D /* GoodTodoData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB584247B5B7300EBFB2D /* GoodTodoData.json */; };
+		B98DB59D247DB10E00EBFB2D /* BadTodoData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB586247B5C0800EBFB2D /* BadTodoData.json */; };
+		B98DB59F247DB43B00EBFB2D /* Data+MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB59E247DB43B00EBFB2D /* Data+MockData.swift */; };
+		B98DB5A0247DB52400EBFB2D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B658F2478ED61009C6D16 /* NetworkService.swift */; };
+		B98DB5A1247DB57900EBFB2D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58A247C202200EBFB2D /* AuthService.swift */; };
+		B98DB5A2247DB5A700EBFB2D /* TodoRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB588247B5CA900EBFB2D /* TodoRepresentation.swift */; };
+		B98DB5A3247DB5AB00EBFB2D /* UserRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58C247C210D00EBFB2D /* UserRepresentation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +105,7 @@
 		B98DB58E247C813200EBFB2D /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TodoListViewController.swift; path = WunderList/Model/TodoListViewController.swift; sourceTree = SOURCE_ROOT; };
 		B98DB592247D88E600EBFB2D /* WunderList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WunderList.xcdatamodel; sourceTree = "<group>"; };
 		B98DB594247D8DD500EBFB2D /* User+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Convenience.swift"; sourceTree = "<group>"; };
+		B98DB59E247DB43B00EBFB2D /* Data+MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+MockData.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,7 +173,7 @@
 		8EB8DF2F247D651700444E97 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */,
+				B98DB598247DB0E200EBFB2D /* MockDataLoader */,
 				B95B658F2478ED61009C6D16 /* NetworkService.swift */,
 				B98DB58A247C202200EBFB2D /* AuthService.swift */,
 			);
@@ -214,10 +225,6 @@
 			children = (
 				B95B656D2478EBE1009C6D16 /* NetworkTests.swift */,
 				B95B656F2478EBE1009C6D16 /* Info.plist */,
-				B98DB580247AF01C00EBFB2D /* GoodUserData.json */,
-				B98DB582247B5B5400EBFB2D /* BadUserData.json */,
-				B98DB584247B5B7300EBFB2D /* GoodTodoData.json */,
-				B98DB586247B5C0800EBFB2D /* BadTodoData.json */,
 			);
 			path = WunderListTests;
 			sourceTree = "<group>";
@@ -308,6 +315,19 @@
 				8E56EF65247DA0D600D53083 /* TodoTableViewCell.swift */,
 			);
 			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		B98DB598247DB0E200EBFB2D /* MockDataLoader */ = {
+			isa = PBXGroup;
+			children = (
+				B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */,
+				B98DB580247AF01C00EBFB2D /* GoodUserData.json */,
+				B98DB582247B5B5400EBFB2D /* BadUserData.json */,
+				B98DB584247B5B7300EBFB2D /* GoodTodoData.json */,
+				B98DB586247B5C0800EBFB2D /* BadTodoData.json */,
+				B98DB59E247DB43B00EBFB2D /* Data+MockData.swift */,
+			);
+			path = MockDataLoader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -417,12 +437,16 @@
 			files = (
 				B95B65942478EE55009C6D16 /* Auth.storyboard in Resources */,
 				B95B65962478EE6B009C6D16 /* Onboarding.storyboard in Resources */,
+				B98DB59B247DB10900EBFB2D /* BadUserData.json in Resources */,
+				B98DB59C247DB10B00EBFB2D /* GoodTodoData.json in Resources */,
 				B95B65632478EBE1009C6D16 /* LaunchScreen.storyboard in Resources */,
 				8E4DE214247A20F000EF76E4 /* CustomAssets.xcassets in Resources */,
 				8E0AA4C4247A3869006E09F4 /* sweet purple.ttf in Resources */,
 				8E90DE87247A25EC000916A3 /* Jonah-Regular.ttf in Resources */,
 				B95B65602478EBE1009C6D16 /* Assets.xcassets in Resources */,
+				B98DB59A247DB10700EBFB2D /* GoodUserData.json in Resources */,
 				B95B655E2478EBE0009C6D16 /* Main.storyboard in Resources */,
+				B98DB59D247DB10E00EBFB2D /* BadTodoData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +497,8 @@
 			files = (
 				B98DB593247D88E700EBFB2D /* WunderList.xcdatamodeld in Sources */,
 				8E4DE212247A197500EF76E4 /* CoreDataStack.swift in Sources */,
+				B98DB597247DAE1A00EBFB2D /* MockDataLoader.swift in Sources */,
+				B98DB59F247DB43B00EBFB2D /* Data+MockData.swift in Sources */,
 				B95B65902478ED61009C6D16 /* NetworkService.swift in Sources */,
 				B95B65572478EBE0009C6D16 /* AppDelegate.swift in Sources */,
 				B98DB589247B5CA900EBFB2D /* TodoRepresentation.swift in Sources */,
@@ -481,7 +507,6 @@
 				8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */,
 				8E4DE216247A229700EF76E4 /* LoginViewController.swift in Sources */,
 				8E56EF5E247D724700D53083 /* TodoController.swift in Sources */,
-				B98DB596247DA8A500EBFB2D /* MockDataLoader.swift in Sources */,
 				8E56EF66247DA0D600D53083 /* TodoTableViewCell.swift in Sources */,
 				B95B65592478EBE0009C6D16 /* SceneDelegate.swift in Sources */,
 				8E56EF5A247D697C00D53083 /* Todo + Convenience.swift in Sources */,
@@ -494,7 +519,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B98DB599247DB10100EBFB2D /* MockDataLoader.swift in Sources */,
+				B98DB5A3247DB5AB00EBFB2D /* UserRepresentation.swift in Sources */,
+				B98DB5A2247DB5A700EBFB2D /* TodoRepresentation.swift in Sources */,
+				B98DB5A0247DB52400EBFB2D /* NetworkService.swift in Sources */,
 				B95B656E2478EBE1009C6D16 /* NetworkTests.swift in Sources */,
+				B98DB5A1247DB57900EBFB2D /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

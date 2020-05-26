@@ -22,11 +22,33 @@ class WunderListUITests: XCTestCase {
         case loginPasswordField = "LoginViewController.PWTextField"
         case loginStartButton = "LoginViewController.GetStartedButton"
         case loginTCLabel = "LoginViewController.T&CLabel"
+        case loginEmailTextField = "LoginViewController.EmailTextField"
     }
+
+    private var testUserName = "Test Name"
+    private var testUserEmail = "test@test.com"
+    private var testUserPW = "password"
+
+    private var app: XCUIApplication {
+        return XCUIApplication()
+    }
+
+    private func textField(identifier: Identifier) -> XCUIElement {
+        return app.textFields[identifier.rawValue]
+    }
+
+    private var emailTextField: XCUIElement {
+        return textField(identifier: .loginEmailTextField)
+      }
+
+    private var nameTextField: XCUIElement {
+           return textField(identifier: .loginNameTextField)
+         }
+
+
 
     func testExample() throws {
         // UI tests must launch the application that they test.
-        let app = XCUIApplication()
         app.launch()
 
         // Use recording to get started writing UI tests.
@@ -44,6 +66,34 @@ class WunderListUITests: XCTestCase {
         app.buttons["LoginViewController.GetStartedButton"].tap()
 
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+
+    func testUserSignUp() throws {
+//        let loginScreen = app.tables.matching(identifier: "LoginViewController")
+
+        let signInButton = app.segmentedControls.buttons["Sign Up"]
+        XCTAssert(signInButton.isHittable)
+        signInButton.tap()
+
+//        XCTAssert(nameTextField.isHittable)
+//        nameTextField.tap()
+//        nameTextField.typeText(testUserName)
+//
+//        XCTAssert(emailTextField.isHittable)
+//        emailTextField.tap()
+//        emailTextField.typeText(testUserEmail)
+
+//        let nameField = app.te
+//        nameField.tap()
+//        nameField.typeText("Test Name")
+//
+//        let emailField = app.textFields[Identifier.loginEmailTextField.rawValue]
+//        emailField.tap()
+//        emailField.typeText(testUserEmail)
+//
+//        let pwField = app.textFields[Identifier.loginPasswordField.rawValue]
+//        pwField.tap()
+//        pwField.typeText(testUserPW)
     }
 
     func testLaunchPerformance() throws {
