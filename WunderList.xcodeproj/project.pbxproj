@@ -16,9 +16,6 @@
 		8E56EF5E247D724700D53083 /* TodoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E56EF5D247D724700D53083 /* TodoController.swift */; };
 		8E90DE87247A25EC000916A3 /* Jonah-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E90DE86247A25EC000916A3 /* Jonah-Regular.ttf */; };
 		8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E90DE88247A2767000916A3 /* CustomFonts.swift */; };
-		8EB8DF2E247D645E00444E97 /* Todo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8EB8DF2C247D645E00444E97 /* Todo.xcdatamodeld */; };
-		8EB8DF33247D673800444E97 /* User.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8EB8DF31247D673800444E97 /* User.xcdatamodeld */; };
-		8EB8DF36247D676F00444E97 /* Location.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8EB8DF34247D676F00444E97 /* Location.xcdatamodeld */; };
 		B95B65572478EBE0009C6D16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65562478EBE0009C6D16 /* AppDelegate.swift */; };
 		B95B65592478EBE0009C6D16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65582478EBE0009C6D16 /* SceneDelegate.swift */; };
 		B95B655E2478EBE0009C6D16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95B655C2478EBE0009C6D16 /* Main.storyboard */; };
@@ -38,6 +35,7 @@
 		B98DB58B247C202200EBFB2D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58A247C202200EBFB2D /* AuthService.swift */; };
 		B98DB58D247C210D00EBFB2D /* UserRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58C247C210D00EBFB2D /* UserRepresentation.swift */; };
 		B98DB58F247C813200EBFB2D /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58E247C813200EBFB2D /* TodoListViewController.swift */; };
+		B98DB593247D88E700EBFB2D /* WunderList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B98DB591247D88E600EBFB2D /* WunderList.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,9 +65,6 @@
 		8E56EF5D247D724700D53083 /* TodoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoController.swift; sourceTree = "<group>"; };
 		8E90DE86247A25EC000916A3 /* Jonah-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jonah-Regular.ttf"; sourceTree = "<group>"; };
 		8E90DE88247A2767000916A3 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
-		8EB8DF2D247D645E00444E97 /* Todo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Todo.xcdatamodel; sourceTree = "<group>"; };
-		8EB8DF32247D673800444E97 /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
-		8EB8DF35247D676F00444E97 /* Location.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Location.xcdatamodel; sourceTree = "<group>"; };
 		B95B65532478EBE0009C6D16 /* WunderList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WunderList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95B65562478EBE0009C6D16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B95B65582478EBE0009C6D16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +90,7 @@
 		B98DB58A247C202200EBFB2D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B98DB58C247C210D00EBFB2D /* UserRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepresentation.swift; sourceTree = "<group>"; };
 		B98DB58E247C813200EBFB2D /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TodoListViewController.swift; path = WunderList/Model/TodoListViewController.swift; sourceTree = SOURCE_ROOT; };
+		B98DB592247D88E600EBFB2D /* WunderList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WunderList.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,9 +166,7 @@
 		8EB8DF30247D66BA00444E97 /* CD Models */ = {
 			isa = PBXGroup;
 			children = (
-				8EB8DF2C247D645E00444E97 /* Todo.xcdatamodeld */,
-				8EB8DF31247D673800444E97 /* User.xcdatamodeld */,
-				8EB8DF34247D676F00444E97 /* Location.xcdatamodeld */,
+				B98DB591247D88E600EBFB2D /* WunderList.xcdatamodeld */,
 			);
 			path = "CD Models";
 			sourceTree = "<group>";
@@ -471,7 +465,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EB8DF33247D673800444E97 /* User.xcdatamodeld in Sources */,
+				B98DB593247D88E700EBFB2D /* WunderList.xcdatamodeld in Sources */,
 				8E4DE212247A197500EF76E4 /* CoreDataStack.swift in Sources */,
 				B95B65902478ED61009C6D16 /* NetworkService.swift in Sources */,
 				B95B65572478EBE0009C6D16 /* AppDelegate.swift in Sources */,
@@ -479,9 +473,7 @@
 				B98DB58F247C813200EBFB2D /* TodoListViewController.swift in Sources */,
 				8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */,
 				8E4DE216247A229700EF76E4 /* LoginViewController.swift in Sources */,
-				8EB8DF36247D676F00444E97 /* Location.xcdatamodeld in Sources */,
 				8E56EF5E247D724700D53083 /* TodoController.swift in Sources */,
-				8EB8DF2E247D645E00444E97 /* Todo.xcdatamodeld in Sources */,
 				B95B65592478EBE0009C6D16 /* SceneDelegate.swift in Sources */,
 				8E56EF5A247D697C00D53083 /* Todo + Convenience.swift in Sources */,
 				B98DB58D247C210D00EBFB2D /* UserRepresentation.swift in Sources */,
@@ -820,33 +812,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		8EB8DF2C247D645E00444E97 /* Todo.xcdatamodeld */ = {
+		B98DB591247D88E600EBFB2D /* WunderList.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				8EB8DF2D247D645E00444E97 /* Todo.xcdatamodel */,
+				B98DB592247D88E600EBFB2D /* WunderList.xcdatamodel */,
 			);
-			currentVersion = 8EB8DF2D247D645E00444E97 /* Todo.xcdatamodel */;
-			path = Todo.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		8EB8DF31247D673800444E97 /* User.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				8EB8DF32247D673800444E97 /* User.xcdatamodel */,
-			);
-			currentVersion = 8EB8DF32247D673800444E97 /* User.xcdatamodel */;
-			path = User.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		8EB8DF34247D676F00444E97 /* Location.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				8EB8DF35247D676F00444E97 /* Location.xcdatamodel */,
-			);
-			currentVersion = 8EB8DF35247D676F00444E97 /* Location.xcdatamodel */;
-			path = Location.xcdatamodeld;
+			currentVersion = B98DB592247D88E600EBFB2D /* WunderList.xcdatamodel */;
+			path = WunderList.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

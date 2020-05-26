@@ -31,15 +31,15 @@ extension Todo {
                                         dueDate: Date = Date(),
                                         complete: Bool = false,
                                         recurring: String,
-                                        location: Double,
+                                        user: User,
                                         context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.init(context : context)
+        self.user = user
         self.identifier = identifier
         self.title = title
         self.body = body
         self.dueDate = dueDate
         self.recurring = recurring
-        self.location = location
     }
 // MARK: - WHERE I'M STUCK (relationship issues I beleive)
 //    @discardableResult convenience init?(todoRepresentation: TodoRepresentation, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
