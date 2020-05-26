@@ -1,12 +1,26 @@
-{
-  "identifier": "123456",
-  "title": "Title",
-  "body": "Body",
-  "due_date": "2020-05-25T02:16:55+0000",
-  "complete": false,
-  "recurring": "none",
-  "location": {
-    "x": 0,
-    "y": 0
-  }
-}
+[
+    {
+      "identifier": "123456",
+      "title": "Title",
+      "body": "Body",
+      "due_date": "2020-05-25T02:16:55+0000",
+      "complete": false,
+      "recurring": "none",
+      "location": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "identifier": "1234567",
+      "title": "Title2",
+      "body": "Body2",
+      "due_date": "2020-05-26T02:16:55+0000",
+      "complete": false,
+      "recurring": "none",
+      "location": {
+        "x": 0,
+        "y": 0
+      }
+    }
+]
