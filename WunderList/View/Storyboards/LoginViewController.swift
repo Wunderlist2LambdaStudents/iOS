@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var emailScrollView: UIScrollView!
 
     // MARK: - Properties
     ///Used to give access to TodoListViewController for passing data
@@ -36,8 +37,10 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    var activeField: UITextField?
 
     // MARK: - View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -55,6 +58,7 @@ class LoginViewController: UIViewController {
         signUpSignInSegementedControl.subviews[1].accessibilityIdentifier = "LoginViewController.SignInSegment"
 
         //handling keyboard
+        self.emailScrollView.translatesAutoresizingMaskIntoConstraints = false
         nameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
@@ -62,6 +66,19 @@ class LoginViewController: UIViewController {
         emailTextField.tag = 2
         passwordTextField.tag = 3
 
+        //subscribe to a Notification which will fire before the keyboard will show
+        subscribeToNotification(UIResponder.keyboardWillShowNotification, selector: #selector(keyboardWillShowOrHide))
+
+        //subscribe to a Notification which will fire before the keyboard will hide
+        subscribeToNotification(UIResponder.keyboardWillHideNotification, selector: #selector(keyboardWillShowOrHide))
+
+        //we make a call to our keyboard handling function as soon as the view is loaded.
+        initializeHideKeyboard()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //Unsubscribe from all our notifications
+        unsubscribeFromAllNotifications()
     }
 
     // MARK: - Actions
@@ -79,21 +96,21 @@ class LoginViewController: UIViewController {
 
     @IBAction func signInButtonAction(_ sender: UIButton) {
         // We want this for production, skipping for development
-//        guard let name = nameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
-//            name.isEmpty == false,
-//            let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
-//            password.isEmpty == false,
-//            let email = emailTextField.text,
-//            email.isEmpty == false else {
-//                return }
+        //        guard let name = nameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+        //            name.isEmpty == false,
+        //            let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+        //            password.isEmpty == false,
+        //            let email = emailTextField.text,
+        //            email.isEmpty == false else {
+        //                return }
         delegate?.updateViews()
         self.dismiss(animated: true, completion: nil)
     }
-     // MARK: - Navigation
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // MARK: - Navigation
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-     }
+    }
 }
 
 extension UITextField {
@@ -108,11 +125,62 @@ extension UITextField {
 
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
-    nextField.becomeFirstResponder()
-    } else {
-    textField.resignFirstResponder()
+        if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return false
     }
-    return false
+}
+
+extension LoginViewController {
+    func initializeHideKeyboard() {
+        //Declare a Tap Gesture Recognizer which will trigger our dismissMyKeyboard() function
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(dismissMyKeyboard))
+
+        //Add this tap gesture recognizer to the parent view
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissMyKeyboard() {
+        //endEditing causes the view (or one of its embedded text fields) to resign the first responder status.
+        //In short- Dismiss the active keyboard.
+        view.endEditing(true)
+    }
+    func subscribeToNotification(_ notification: NSNotification.Name, selector: Selector) {
+        NotificationCenter.default.addObserver(self, selector: selector, name: notification, object: nil)
+    }
+
+    func unsubscribeFromAllNotifications() {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    @objc func keyboardWillShowOrHide(notification: NSNotification) {
+        // Get required info out of the notification
+        if let scrollView = emailScrollView,
+            let userInfo = notification.userInfo,
+            let endValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey],
+            let durationValue = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey],
+            let curveValue = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] {
+
+            // Transform the keyboard's frame into our view's coordinate system
+            let endRect = view.convert((endValue as AnyObject).cgRectValue, from: view.window)
+
+            // Find out how much the keyboard overlaps our scroll view
+            let keyboardOverlap = scrollView.frame.maxY - endRect.origin.y
+
+            // Set the scroll view's content inset & scroll indicator to avoid the keyboard
+            scrollView.contentInset.bottom = keyboardOverlap
+            scrollView.scrollIndicatorInsets.bottom = keyboardOverlap
+
+            let duration = (durationValue as AnyObject).doubleValue
+            let options = UIView.AnimationOptions(rawValue: UInt((curveValue as AnyObject).integerValue << 16))
+            UIView.animate(withDuration: duration!, delay: 0, options: options, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
     }
 }

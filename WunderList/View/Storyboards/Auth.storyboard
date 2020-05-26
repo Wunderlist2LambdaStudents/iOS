@@ -42,7 +42,7 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wunderlist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ci5-YN-qCT">
-                                        <rect key="frame" x="138" y="119" width="192" height="76"/>
+                                        <rect key="frame" x="26.5" y="120" width="303.5" height="75"/>
                                         <color key="tintColor" name="Purple"/>
                                         <fontDescription key="fontDescription" name="sweetpurple" family="sweet purple" pointSize="64"/>
                                         <color key="textColor" name="Aqua"/>
@@ -70,7 +70,7 @@
                                     <action selector="signUpSignInSegmentedAction:" destination="Pjm-zE-LXG" eventType="valueChanged" id="RCP-VP-qzV"/>
                                 </connections>
                             </segmentedControl>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYR-lI-RWZ">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYR-lI-RWZ" userLabel="emailScrollView">
                                 <rect key="frame" x="0.0" y="270" width="375" height="276"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="FoK-8Y-Yxa" userLabel="EmailPassword Stack">
@@ -180,6 +180,7 @@
                         <viewLayoutGuide key="safeArea" id="vXK-eD-fh7"/>
                     </view>
                     <connections>
+                        <outlet property="emailScrollView" destination="dYR-lI-RWZ" id="ha9-M6-Yg9"/>
                         <outlet property="emailTextField" destination="aoG-Kv-rmK" id="sNv-zV-in3"/>
                         <outlet property="loginButtonOutlet" destination="DOt-Ka-SpJ" id="C6l-rt-qb7"/>
                         <outlet property="nameTextField" destination="gDe-eO-xAT" id="nXQ-TY-F7Y"/>
