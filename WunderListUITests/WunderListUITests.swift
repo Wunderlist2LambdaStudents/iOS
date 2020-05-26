@@ -33,6 +33,19 @@ class WunderListUITests: XCTestCase {
         return XCUIApplication()
     }
 
+    private func textField(identifier: Identifier) -> XCUIElement {
+        return app.textFields[identifier.rawValue]
+    }
+
+    private var emailTextField: XCUIElement {
+        return textField(identifier: .loginEmailTextField)
+      }
+
+    private var nameTextField: XCUIElement {
+           return textField(identifier: .loginNameTextField)
+         }
+
+
 
     func testExample() throws {
         // UI tests must launch the application that they test.
@@ -56,12 +69,21 @@ class WunderListUITests: XCTestCase {
     }
 
     func testUserSignUp() throws {
-        let loginScreen = app.tables.matching(identifier: "LoginViewController")
+//        let loginScreen = app.tables.matching(identifier: "LoginViewController")
 
         let signInButton = app.segmentedControls.buttons["Sign Up"]
+        XCTAssert(signInButton.isHittable)
         signInButton.tap()
 
-//        let nameField = app.textFields[Identifier.loginNameTextField.rawValue]
+//        XCTAssert(nameTextField.isHittable)
+//        nameTextField.tap()
+//        nameTextField.typeText(testUserName)
+//
+//        XCTAssert(emailTextField.isHittable)
+//        emailTextField.tap()
+//        emailTextField.typeText(testUserEmail)
+
+//        let nameField = app.te
 //        nameField.tap()
 //        nameField.typeText("Test Name")
 //

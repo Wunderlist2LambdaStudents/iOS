@@ -49,8 +49,19 @@ class LoginViewController: UIViewController {
         pinkSquareView.layer.cornerRadius = 10.0
         signUpSignInSegementedControl.backgroundColor = #colorLiteral(red: 0.3939243257, green: 0.3406436443, blue: 0.820184648, alpha: 0.7223886986)
         signUpSignInSegementedControl.selectedSegmentTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+
+        //accessibility identifiers
         signUpSignInSegementedControl.subviews[0].accessibilityIdentifier = "LoginViewController.SignUpSegment"
         signUpSignInSegementedControl.subviews[1].accessibilityIdentifier = "LoginViewController.SignInSegment"
+
+        //handling keyboard
+        nameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        nameTextField.tag = 1
+        emailTextField.tag = 2
+        passwordTextField.tag = 3
+
     }
 
     // MARK: - Actions
@@ -92,5 +103,16 @@ extension UITextField {
         bottomLine.backgroundColor = #colorLiteral(red: 0.03053783625, green: 0.003107197117, blue: 0.01022781059, alpha: 1)
         borderStyle = .none
         layer.addSublayer(bottomLine)
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
+    nextField.becomeFirstResponder()
+    } else {
+    textField.resignFirstResponder()
+    }
+    return false
     }
 }
