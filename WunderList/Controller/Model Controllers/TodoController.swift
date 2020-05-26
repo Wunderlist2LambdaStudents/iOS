@@ -121,7 +121,7 @@ class TodoController {
 //            if let error = error { throw error }
 //            try CoreDataStack.shared.save(context: context)
 //        }
-    
+
     func deleteTodosFromServer(todo: Todo, completion: @escaping CompletionHandler = { _ in }) {
         guard let uuid = todo.identifier else {
             completion(.failure(.noIdentifier))
@@ -167,12 +167,15 @@ class TodoController {
 
     func loadMockTodos(from mockUser: inout UserRepresentation) {
         let networkService = NetworkService()
-        
-        guard let todos = networkService.decode(to: [TodoRepresentation].self, data: Data.mockData(with: .goodTodoData), dateFormatter: NetworkService.dateFormatter) else {
+        guard let todos = networkService.decode(
+            to: [TodoRepresentation].self,
+            data: Data.mockData(with: .goodTodoData),
+            dateFormatter: NetworkService.dateFormatter
+        ) else {
             print("error decoding todos while adding todos to mockUser, check for decode errors.")
             return
         }
         mockUser.todos = todos
-        print(mockUser.todos)
+        print(mockUser.todos as Any) //as Any to silence warning
     }
 }
