@@ -14,6 +14,9 @@
 		8E4DE216247A229700EF76E4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DE215247A229700EF76E4 /* LoginViewController.swift */; };
 		8E90DE87247A25EC000916A3 /* Jonah-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E90DE86247A25EC000916A3 /* Jonah-Regular.ttf */; };
 		8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E90DE88247A2767000916A3 /* CustomFonts.swift */; };
+		8EB8DF2E247D645E00444E97 /* Todo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8EB8DF2C247D645E00444E97 /* Todo.xcdatamodeld */; };
+		8EB8DF33247D673800444E97 /* User.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8EB8DF31247D673800444E97 /* User.xcdatamodeld */; };
+		8EB8DF36247D676F00444E97 /* Location.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8EB8DF34247D676F00444E97 /* Location.xcdatamodeld */; };
 		B95B65572478EBE0009C6D16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65562478EBE0009C6D16 /* AppDelegate.swift */; };
 		B95B65592478EBE0009C6D16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65582478EBE0009C6D16 /* SceneDelegate.swift */; };
 		B95B655E2478EBE0009C6D16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95B655C2478EBE0009C6D16 /* Main.storyboard */; };
@@ -60,6 +63,9 @@
 		8E4DE215247A229700EF76E4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = WunderList/View/Storyboards/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		8E90DE86247A25EC000916A3 /* Jonah-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jonah-Regular.ttf"; sourceTree = "<group>"; };
 		8E90DE88247A2767000916A3 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
+		8EB8DF2D247D645E00444E97 /* Todo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Todo.xcdatamodel; sourceTree = "<group>"; };
+		8EB8DF32247D673800444E97 /* User.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = User.xcdatamodel; sourceTree = "<group>"; };
+		8EB8DF35247D676F00444E97 /* Location.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Location.xcdatamodel; sourceTree = "<group>"; };
 		B95B65532478EBE0009C6D16 /* WunderList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WunderList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95B65562478EBE0009C6D16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B95B65582478EBE0009C6D16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +121,7 @@
 		8E4DE210247A195200EF76E4 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				8EB8DF30247D66BA00444E97 /* CD Models */,
 				8E4DE211247A197500EF76E4 /* CoreDataStack.swift */,
 			);
 			path = "Core Data";
@@ -136,6 +143,25 @@
 			children = (
 			);
 			path = Colors;
+			sourceTree = "<group>";
+		};
+		8EB8DF2F247D651700444E97 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B95B658F2478ED61009C6D16 /* NetworkService.swift */,
+				B98DB58A247C202200EBFB2D /* AuthService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8EB8DF30247D66BA00444E97 /* CD Models */ = {
+			isa = PBXGroup;
+			children = (
+				8EB8DF2C247D645E00444E97 /* Todo.xcdatamodeld */,
+				8EB8DF31247D673800444E97 /* User.xcdatamodeld */,
+				8EB8DF34247D676F00444E97 /* Location.xcdatamodeld */,
+			);
+			path = "CD Models";
 			sourceTree = "<group>";
 		};
 		B95B654A2478EBE0009C6D16 = {
@@ -226,8 +252,7 @@
 		B95B658A2478ECF3009C6D16 /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B95B658F2478ED61009C6D16 /* NetworkService.swift */,
-				B98DB58A247C202200EBFB2D /* AuthService.swift */,
+				8EB8DF2F247D651700444E97 /* Services */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -432,6 +457,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EB8DF33247D673800444E97 /* User.xcdatamodeld in Sources */,
 				8E4DE212247A197500EF76E4 /* CoreDataStack.swift in Sources */,
 				B95B65902478ED61009C6D16 /* NetworkService.swift in Sources */,
 				B95B65572478EBE0009C6D16 /* AppDelegate.swift in Sources */,
@@ -439,6 +465,8 @@
 				B98DB58F247C813200EBFB2D /* TodoListViewController.swift in Sources */,
 				8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */,
 				8E4DE216247A229700EF76E4 /* LoginViewController.swift in Sources */,
+				8EB8DF36247D676F00444E97 /* Location.xcdatamodeld in Sources */,
+				8EB8DF2E247D645E00444E97 /* Todo.xcdatamodeld in Sources */,
 				B95B65592478EBE0009C6D16 /* SceneDelegate.swift in Sources */,
 				B98DB58D247C210D00EBFB2D /* UserRepresentation.swift in Sources */,
 				B98DB58B247C202200EBFB2D /* AuthService.swift in Sources */,
@@ -774,6 +802,39 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8EB8DF2C247D645E00444E97 /* Todo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8EB8DF2D247D645E00444E97 /* Todo.xcdatamodel */,
+			);
+			currentVersion = 8EB8DF2D247D645E00444E97 /* Todo.xcdatamodel */;
+			path = Todo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		8EB8DF31247D673800444E97 /* User.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8EB8DF32247D673800444E97 /* User.xcdatamodel */,
+			);
+			currentVersion = 8EB8DF32247D673800444E97 /* User.xcdatamodel */;
+			path = User.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		8EB8DF34247D676F00444E97 /* Location.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8EB8DF35247D676F00444E97 /* Location.xcdatamodel */,
+			);
+			currentVersion = 8EB8DF35247D676F00444E97 /* Location.xcdatamodel */;
+			path = Location.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B95B654B2478EBE0009C6D16 /* Project object */;
 }
