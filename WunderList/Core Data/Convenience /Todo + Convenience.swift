@@ -10,21 +10,29 @@ import Foundation
 import CoreData
 
 extension Todo {
-    //MARK: -Properties
+    // MARK: - Properties
     var todoRepresentation: TodoRepresentation? {
-        
+
         // Grabbing locationRep property made in 'Location' extension below
         let locationRep = Location()
         guard let representedLocation = locationRep.locationRepresentation else { return  nil }
-        
-        guard let id = identifier,
+
+        guard let identifier = identifier,
         let title = title,
         let body = body,
         let dueDate = dueDate else { return nil }
-        return TodoRepresentation(identifier: id.uuidString, title: title, body: body, dueDate: dueDate, complete: complete, recurring: .none, location: representedLocation)
+        return TodoRepresentation(
+            identifier: identifier.uuidString,
+            title: title,
+            body: body,
+            dueDate: dueDate,
+            complete: complete,
+            recurring: .none,
+            location: representedLocation
+        )
     }
-    
-    //MARK: -Convenience Inits
+
+    // MARK: - Convenience Inits
     @discardableResult convenience init(identifier: UUID = UUID(),
                                         title: String,
                                         body: String,
@@ -33,7 +41,7 @@ extension Todo {
                                         recurring: String,
                                         user: User,
                                         context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
-        self.init(context : context)
+        self.init(context: context)
         self.user = user
         self.identifier = identifier
         self.title = title
@@ -42,22 +50,33 @@ extension Todo {
         self.recurring = recurring
     }
 // MARK: - WHERE I'M STUCK (relationship issues I beleive)
-//    @discardableResult convenience init?(todoRepresentation: TodoRepresentation, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
-//       guard let identifier = UUID(uuidString: todoRepresentation.identifier),
-//           let recurring = Recurring(rawValue: todoRepresentation.recurring.rawValue)
-//        else { return nil }
-//
-//       self.init(identifier: )
-//
-//    }
+    @discardableResult convenience init?(
+        todoRepresentation: TodoRepresentation,
+        context: NSManagedObjectContext = CoreDataStack.shared.mainContext,
+        userRep: UserRepresentation
+    ) {
+        guard let identifier = UUID(uuidString: todoRepresentation.identifier),
+        let user = User(userRep: userRep)
+        else { return nil }
+
+        self.init(
+            identifier: identifier,
+            title: todoRepresentation.title,
+            body: todoRepresentation.body,
+            dueDate: todoRepresentation.dueDate,
+            recurring: todoRepresentation.recurring.rawValue,
+            user: user,
+            context: context
+        )
+
+    }
 }
 extension Location {
-    
+
     var locationRepresentation: LocationRepresentation? {
         let xCoord = xLocation
         let yCoord = yLocation
-        
+
         return LocationRepresentation(xLocation: xCoord, yLocation: yCoord)
     }
 }
-

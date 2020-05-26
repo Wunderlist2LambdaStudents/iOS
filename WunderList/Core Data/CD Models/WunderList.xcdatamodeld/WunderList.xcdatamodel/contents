@@ -13,7 +13,7 @@
         <attribute name="recurring" optional="YES" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="todo" inverseEntity="Location"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="User" inverseName="todo" inverseEntity="User"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="todo" inverseEntity="User"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
         <attribute name="identifier" attributeType="UUID" usesScalarValueType="NO"/>
@@ -21,8 +21,8 @@
         <relationship name="todo" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Todo" inverseName="user" inverseEntity="Todo"/>
     </entity>
     <elements>
+        <element name="Location" positionX="25.45703125" positionY="114.5390625" width="128" height="88"/>
         <element name="Todo" positionX="-237.50390625" positionY="54.48828125" width="128" height="163"/>
         <element name="User" positionX="-241.43359375" positionY="-121.765625" width="128" height="88"/>
-        <element name="Location" positionX="25.45703125" positionY="114.5390625" width="128" height="88"/>
     </elements>
 </model>

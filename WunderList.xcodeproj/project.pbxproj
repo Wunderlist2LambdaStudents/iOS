@@ -36,6 +36,7 @@
 		B98DB58D247C210D00EBFB2D /* UserRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58C247C210D00EBFB2D /* UserRepresentation.swift */; };
 		B98DB58F247C813200EBFB2D /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58E247C813200EBFB2D /* TodoListViewController.swift */; };
 		B98DB593247D88E700EBFB2D /* WunderList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B98DB591247D88E600EBFB2D /* WunderList.xcdatamodeld */; };
+		B98DB595247D8DD500EBFB2D /* User+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB594247D8DD500EBFB2D /* User+Convenience.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		B98DB58C247C210D00EBFB2D /* UserRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepresentation.swift; sourceTree = "<group>"; };
 		B98DB58E247C813200EBFB2D /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TodoListViewController.swift; path = WunderList/Model/TodoListViewController.swift; sourceTree = SOURCE_ROOT; };
 		B98DB592247D88E600EBFB2D /* WunderList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WunderList.xcdatamodel; sourceTree = "<group>"; };
+		B98DB594247D8DD500EBFB2D /* User+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Convenience.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 			children = (
 				8E4DE211247A197500EF76E4 /* CoreDataStack.swift */,
 				8E56EF59247D697C00D53083 /* Todo + Convenience.swift */,
+				B98DB594247D8DD500EBFB2D /* User+Convenience.swift */,
 			);
 			path = "Convenience ";
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				B95B65572478EBE0009C6D16 /* AppDelegate.swift in Sources */,
 				B98DB589247B5CA900EBFB2D /* TodoRepresentation.swift in Sources */,
 				B98DB58F247C813200EBFB2D /* TodoListViewController.swift in Sources */,
+				B98DB595247D8DD500EBFB2D /* User+Convenience.swift in Sources */,
 				8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */,
 				8E4DE216247A229700EF76E4 /* LoginViewController.swift in Sources */,
 				8E56EF5E247D724700D53083 /* TodoController.swift in Sources */,
