@@ -12,15 +12,20 @@ import CoreData
 class TodoListViewController: UIViewController {
 
     // MARK: - Properties
-    
+
     let todoController = TodoController()
-    
+
     lazy var fetchedResultsController: NSFetchedResultsController<Todo> = {
          let fetchRequest: NSFetchRequest<Todo> = Todo.fetchRequest()
          fetchRequest.sortDescriptors = [NSSortDescriptor(key: "complete", ascending: true),
                                          NSSortDescriptor(key: "title", ascending: true)]
          let context = CoreDataStack.shared.mainContext
-         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        let frc = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: context,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
          frc.delegate = self
          do {
              try frc.performFetch()
@@ -29,7 +34,7 @@ class TodoListViewController: UIViewController {
          }
          return frc
      }()
-    
+
     // Quick Dummy data
     var dailyTodo = ["Walk The Dog", "walk the Dog again"]
     var weeklyTodo = ["Pick Up Dog", "Feed Dog"]
@@ -58,9 +63,10 @@ class TodoListViewController: UIViewController {
             let todoController = TodoController()
             guard var user = todoController.loadMockUser() else { return }
             todoController.loadMockTodos(from: &user)
+            AuthService.activeUser = user
         }
     }
-    
+
     @IBAction func switchTableViewSegmentedControlAction(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             currentSelectedSegment = 1
@@ -76,8 +82,7 @@ class TodoListViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
     }
-    
-    
+
 }
 extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,7 +107,7 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         cell1.todoTitleLabel.text = dailyTodo[indexPath.row]
         cell2.todoTitleLabel.text = weeklyTodo[indexPath.row]
         cell3.todoTitleLabel.text = monthlyTodo[indexPath.row]
-        
+
         if currentSelectedSegment == 1 {
             return cell1
         } else if currentSelectedSegment == 2 {
@@ -110,10 +115,14 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             return cell3
         }
-        
+
     }
-    
-     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
+     func tableView(
+        _ tableView: UITableView,
+        commit editingStyle: UITableViewCell.EditingStyle,
+        forRowAt indexPath: IndexPath
+     ) {
               if editingStyle == .delete {
                   // Delete the row from the data source
                   let todo = fetchedResultsController.object(at: indexPath)
@@ -121,10 +130,10 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
                       guard let _ = try? result.get() else {
                           return
                       }
-                      
+
                       DispatchQueue.main.async {
                           let context = CoreDataStack.shared.mainContext
-                          
+
                           context.delete(todo)
                           do {
                               try context.save()
@@ -142,11 +151,11 @@ extension TodoListViewController: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
-    
+
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }
-    
+
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
                     didChange sectionInfo: NSFetchedResultsSectionInfo,
                     atSectionIndex sectionIndex: Int,
@@ -160,7 +169,7 @@ extension TodoListViewController: NSFetchedResultsControllerDelegate {
             break
         }
     }
-    
+
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
                     didChange anObject: Any,
                     at indexPath: IndexPath?,
