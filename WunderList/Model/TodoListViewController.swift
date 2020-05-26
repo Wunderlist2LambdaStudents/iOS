@@ -35,7 +35,9 @@ class TodoListViewController: UIViewController {
             //do work
         } else {
             print("no active user, mocking user:")
-            TodoController().loadMockUser()
+            let todoController = TodoController()
+            guard var user = todoController.loadMockUser() else { return }
+            todoController.loadMockTodos(from: &user)
         }
     }
 

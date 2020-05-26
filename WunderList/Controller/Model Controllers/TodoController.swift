@@ -149,7 +149,7 @@ class TodoController {
         todo.dueDate = representation.dueDate
     }
 
-    func loadMockUser() {
+    func loadMockUser() -> UserRepresentation? {
         let data = Data.mockData(with: .goodUserData)
         let response = HTTPURLResponse(
             url: URL(string: "https://www.google.com")!,
@@ -158,6 +158,21 @@ class TodoController {
         )
         let mockDataLoader = MockDataLoader(data: data, response: response, error: nil)
         let networkService = NetworkService(dataLoader: mockDataLoader)
-        print(networkService.decode(to: UserRepresentation.self, data: data) as Any)
+        guard let user = networkService.decode(to: UserRepresentation.self, data: data) else {
+            print("Couldn't Mock user, check for decode errors")
+            return nil
+        }
+        return user
+    }
+
+    func loadMockTodos(from mockUser: inout UserRepresentation) {
+        let networkService = NetworkService()
+        
+        guard let todos = networkService.decode(to: [TodoRepresentation].self, data: Data.mockData(with: .goodTodoData), dateFormatter: NetworkService.dateFormatter) else {
+            print("error decoding todos while adding todos to mockUser, check for decode errors.")
+            return
+        }
+        mockUser.todos = todos
+        print(mockUser.todos)
     }
 }
