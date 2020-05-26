@@ -24,7 +24,11 @@ let baseURL = URL(string: "https://google.com/")!
 
 class TodoController {
 
+    // MARK: - Properties
+    
     var networkService: NetworkService?
+    
+    
 //    
 //    init() {
 //        fetchTodosFromServer()
@@ -149,3 +153,5 @@ class TodoController {
         todo.dueDate = representation.dueDate
     }
 }
+
+
