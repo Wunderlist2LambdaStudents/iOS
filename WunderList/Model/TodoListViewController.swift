@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class TodoListViewController: UIViewController {
-<<<<<<< HEAD
+
     // MARK: - Properties
     
     let todoController = TodoController()
@@ -30,9 +30,6 @@ class TodoListViewController: UIViewController {
          return frc
      }()
     
-=======
-
->>>>>>> develop
     // Quick Dummy data
     var dailyTodo = ["Walk The Dog", "walk the Dog again"]
     var weeklyTodo = ["Pick Up Dog", "Feed Dog"]
