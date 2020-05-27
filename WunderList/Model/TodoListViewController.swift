@@ -68,6 +68,7 @@ class TodoListViewController: UIViewController {
             //CoreData works with relationships
 //            guard let coreDataUser = User(userRep: user) else { return }
 //            let todo = Todo(identifier: UUID(), title: "title", body: "body", dueDate: Date(), complete: true, recurring: "none", user: coreDataUser, context: CoreDataStack.shared.mainContext)
+//            Location(identifier: UUID(), xLocation: 20.0, yLocation: 25.2, todo: todo, context: CoreDataStack.shared.mainContext)
 //            print(coreDataUser.todo)
         }
     }

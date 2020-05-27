@@ -70,7 +70,20 @@ extension Todo {
 
     }
 }
+
 extension Location {
+    @discardableResult convenience init(
+        identifier: UUID = UUID(),
+        xLocation: Double,
+        yLocation: Double,
+        todo: Todo,
+        context: NSManagedObjectContext = CoreDataStack.shared.mainContext
+    ) {
+        self.init(context: context)
+        self.xLocation = xLocation
+        self.yLocation = yLocation
+        self.todo = todo
+    }
 
     var locationRepresentation: LocationRepresentation? {
         let xCoord = xLocation

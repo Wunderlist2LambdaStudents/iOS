@@ -183,5 +183,3 @@ class TodoController {
         print(mockUser.todos as Any) //as Any to silence warning
     }
 }
-
-
