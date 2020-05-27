@@ -64,10 +64,10 @@ class WunderListUITests: XCTestCase {
         XCTAssert(signUpButton.isHittable)
         signUpButton.tap()
 
-        nameTextField.tap()
-        XCTAssert(nameTextField.isHittable)
-        nameTextField.typeText(testUserName)
-        XCTAssertTrue(nameTextField.value as? String == testUserName)
+//        nameTextField.tap()
+//        XCTAssert(nameTextField.isHittable)
+//        nameTextField.typeText(testUserName)
+//        XCTAssertTrue(nameTextField.value as? String == testUserName)
 
         emailTextField.tap()
         XCTAssert(emailTextField.isHittable)
@@ -92,10 +92,10 @@ class WunderListUITests: XCTestCase {
         XCTAssert(signInButton.isHittable)
         signInButton.tap()
 
-        nameTextField.tap()
-        XCTAssert(nameTextField.isHittable)
-        nameTextField.typeText(testUserName)
-        XCTAssertTrue(nameTextField.value as? String == testUserName)
+//        nameTextField.tap()
+//        XCTAssert(nameTextField.isHittable)
+//        nameTextField.typeText(testUserName)
+//        XCTAssertTrue(nameTextField.value as? String == testUserName)
 
         emailTextField.tap()
         XCTAssert(emailTextField.isHittable)

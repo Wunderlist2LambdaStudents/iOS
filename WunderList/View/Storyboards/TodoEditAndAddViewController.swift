@@ -11,6 +11,7 @@ import UIKit
 class TodoEditAndAddViewController: UIViewController {
     // MARK: - Properties
     
+    var user = User()
     var todoController: TodoController?
 
     // MARK: - IBOutlets
@@ -37,7 +38,7 @@ class TodoEditAndAddViewController: UIViewController {
         let recurringIndex = recurringSegmentedControl.selectedSegmentIndex
         let recurring = Recurring.allCases[recurringIndex]
         
-        let todo = Todo(title: title, body: bodyText, recurring: recurring.rawValue, user: <#T##User#>)
+        let todo = Todo(title: title, body: bodyText, recurring: recurring.rawValue, user: user)
         
         todoController?.sendTodosToServer(todo: todo) 
         

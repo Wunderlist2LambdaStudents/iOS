@@ -13,7 +13,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Item-->
+        <!--Settings-->
         <scene sceneID="4Iq-ag-QHX">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="r0a-pS-5qF" customClass="TodoListViewController" customModule="WunderList" customModuleProvider="target" sceneMemberID="viewController">
@@ -133,10 +133,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NeR-MT-irl"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Cey-in-mhv">
-                        <color key="badgeColor" name="Purple"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Settings" selectedImage="gear" catalog="system" id="xpy-Da-vnM"/>
                     <navigationItem key="navigationItem" id="DJV-Mw-T4y"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="switchTableViewSegmentedControlAction" destination="eel-nH-uhT" id="hdL-Rk-VAc"/>
                         <outlet property="tableView" destination="ehE-4A-mkA" id="4Vf-P1-WGl"/>
@@ -147,6 +146,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fK6-Xp-ZJ5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1596" y="-555"/>
+        </scene>
+        <!--HomePage-->
+        <scene sceneID="MUM-cB-KMs">
+            <objects>
+                <viewController id="pVr-NN-QgB" customClass="SettingsViewController" customModule="WunderList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GG0-qd-4ga">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w3a-gR-DnA">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Settings" id="nbz-T1-6z6">
+                                        <barButtonItem key="leftBarButtonItem" title="Sign out" id="7bR-ob-oER">
+                                            <connections>
+                                                <action selector="signOutButton:" destination="pVr-NN-QgB" id="Arw-rI-2e6"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="w3a-gR-DnA" firstAttribute="leading" secondItem="SNg-SQ-2DO" secondAttribute="leading" id="23M-Ya-mqG"/>
+                            <constraint firstItem="w3a-gR-DnA" firstAttribute="trailing" secondItem="SNg-SQ-2DO" secondAttribute="trailing" id="77G-M0-sf5"/>
+                            <constraint firstItem="w3a-gR-DnA" firstAttribute="top" secondItem="SNg-SQ-2DO" secondAttribute="top" id="VXp-Vl-a0h"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="SNg-SQ-2DO"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="HomePage" selectedImage="list.bullet" catalog="system" id="oTj-Zu-DmX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dgm-la-oZr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1596" y="141"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="KZ5-uZ-nES">
@@ -160,11 +194,12 @@
                     </tabBar>
                     <connections>
                         <segue destination="r0a-pS-5qF" kind="relationship" relationship="viewControllers" id="RuN-nc-qAC"/>
+                        <segue destination="pVr-NN-QgB" kind="relationship" relationship="viewControllers" id="WC1-GJ-RkQ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5N4-iE-hfe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="890" y="-555"/>
+            <point key="canvasLocation" x="462" y="-289"/>
         </scene>
         <!--Edit/AddTodoVC-->
         <scene sceneID="U4j-fk-0u2">
@@ -294,11 +329,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JrY-g0-eRy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2312" y="-555"/>
+            <point key="canvasLocation" x="2311.594202898551" y="-555.13392857142856"/>
         </scene>
     </scenes>
     <resources>
         <image name="circle" catalog="system" width="128" height="121"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="list.bullet" catalog="system" width="128" height="88"/>
         <namedColor name="Aqua">
             <color red="0.37299999594688416" green="0.77999997138977051" blue="0.76499998569488525" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

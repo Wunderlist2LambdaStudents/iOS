@@ -20,7 +20,7 @@ enum NetworkError: Error {
 }
 
 typealias CompletionHandler = (Result<Bool, NetworkError>) -> Void
-let baseURL = URL(string: "https://google.com/")!
+private let baseURL = URL(string: "https://bw-wunderlist.herokuapp.com/")!
 
 class TodoController {
 
@@ -30,8 +30,8 @@ class TodoController {
     init() {
         fetchTodosFromServer()
     }
-    // MARK: - Methods
 
+    // MARK: - Methods
     func fetchTodosFromServer(completion: @escaping CompletionHandler = { _ in }) {
         let requestURL = baseURL.appendingPathComponent("json")
         guard let request = networkService?.createRequest(url: requestURL, method: .get) else { return }
@@ -83,7 +83,7 @@ class TodoController {
 
     func updateTodos(with representations: [TodoRepresentation]) throws {
 
-        let identifiersToFetch = representations.compactMap { $0.identifier }
+        let identifiersToFetch = representations.compactMap {$0.identifier}
         let representationsByID = Dictionary(uniqueKeysWithValues: zip(identifiersToFetch, representations))
         var todosToCreate = representationsByID
         let fetchRequest: NSFetchRequest<Todo> = Todo.fetchRequest()
