@@ -13,7 +13,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Settings-->
+        <!--Home Page-->
         <scene sceneID="4Iq-ag-QHX">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="r0a-pS-5qF" customClass="TodoListViewController" customModule="WunderList" customModuleProvider="target" sceneMemberID="viewController">
@@ -132,7 +132,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NeR-MT-irl"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" selectedImage="gear" catalog="system" id="xpy-Da-vnM"/>
+                    <tabBarItem key="tabBarItem" title="Home Page" selectedImage="list.bullet" catalog="system" id="xpy-Da-vnM"/>
                     <navigationItem key="navigationItem" id="DJV-Mw-T4y"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -146,7 +146,7 @@
             </objects>
             <point key="canvasLocation" x="1596" y="-555"/>
         </scene>
-        <!--HomePage-->
+        <!--Settings-->
         <scene sceneID="MUM-cB-KMs">
             <objects>
                 <viewController id="pVr-NN-QgB" customClass="SettingsViewController" customModule="WunderList" customModuleProvider="target" sceneMemberID="viewController">
@@ -175,7 +175,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SNg-SQ-2DO"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="HomePage" selectedImage="list.bullet" catalog="system" id="oTj-Zu-DmX"/>
+                    <tabBarItem key="tabBarItem" title="Settings" selectedImage="gear" catalog="system" id="oTj-Zu-DmX"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dgm-la-oZr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
