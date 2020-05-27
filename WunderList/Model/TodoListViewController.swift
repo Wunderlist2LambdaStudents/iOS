@@ -64,6 +64,11 @@ class TodoListViewController: UIViewController {
             guard var user = todoController.loadMockUser() else { return }
             todoController.loadMockTodos(from: &user)
             AuthService.activeUser = user
+
+            //CoreData works with relationships
+//            guard let coreDataUser = User(userRep: user) else { return }
+//            let todo = Todo(identifier: UUID(), title: "title", body: "body", dueDate: Date(), complete: true, recurring: "none", user: coreDataUser, context: CoreDataStack.shared.mainContext)
+//            print(coreDataUser.todo)
         }
     }
 
