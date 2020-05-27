@@ -20,24 +20,21 @@ enum NetworkError: Error {
 }
 
 typealias CompletionHandler = (Result<Bool, NetworkError>) -> Void
-let baseURL = URL(string: "https://google.com/")!
+private let baseURL = URL(string: "https://bw-wunderlist.herokuapp.com/")!
 
 class TodoController {
 
     // MARK: - Properties
     var networkService: NetworkService?
-    
+
     init() {
         fetchTodosFromServer()
     }
-    
-    //MARK: - Methods
 
+    // MARK: - Methods
     func fetchTodosFromServer(completion: @escaping CompletionHandler = { _ in }) {
         let requestURL = baseURL.appendingPathComponent("json")
         guard let request = networkService?.createRequest(url: requestURL, method: .get) else { return }
-        
-    
         networkService?.dataLoader.loadData(using: request) { data, _, error in
             if let error = error {
                 NSLog("Error fetching tasks: \(error)")
