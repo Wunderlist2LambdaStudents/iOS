@@ -109,7 +109,7 @@
                                     <color key="titleShadowColor" name="Purple"/>
                                 </state>
                                 <connections>
-                                    <segue destination="dJ8-Z6-aEe" kind="presentation" id="22x-Fg-9l9"/>
+                                    <segue destination="dJ8-Z6-aEe" kind="presentation" identifier="AddTaskSegue" id="22x-Fg-9l9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -202,8 +202,16 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="43"/>
                                 <items>
                                     <navigationItem title="Create a Todo!" id="rXb-vf-elZ">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Av3-IK-mmg"/>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="1wj-2p-M17"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Av3-IK-mmg">
+                                            <connections>
+                                                <action selector="cancelButtonTapped:" destination="dJ8-Z6-aEe" id="lPp-br-3lI"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="1wj-2p-M17">
+                                            <connections>
+                                                <action selector="saveButtonTapped:" destination="dJ8-Z6-aEe" id="HRo-6w-8Ay"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -278,6 +286,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="0xV-zd-EEw"/>
                     <connections>
+                        <outlet property="bodyTextView" destination="76u-ZZ-hSV" id="Q5y-oe-9yf"/>
+                        <outlet property="recurringSegmentedControl" destination="3NV-Y2-9nd" id="naa-ym-rbF"/>
                         <outlet property="titleTextField" destination="lhi-ht-jcQ" id="b2h-Wc-c3v"/>
                     </connections>
                 </viewController>
