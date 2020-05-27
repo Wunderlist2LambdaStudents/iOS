@@ -100,7 +100,7 @@ class NetworkService {
      - parameter request: the URLRequest used to transmit the encoded result to the remote server
      - parameter dateFormatter: optional for use with JSONEncoder.dateEncodingStrategy
      */
-    func encode<EncodableData: Encodable>(
+    @discardableResult func encode<EncodableData: Encodable>(
         from type: EncodableData,
         request: inout URLRequest,
         dateFormatter: DateFormatter? = nil
