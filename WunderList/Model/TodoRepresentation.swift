@@ -33,7 +33,7 @@ struct TodoRepresentation: Codable {
     var complete: Bool
     var recurring: Recurring
     var location: LocationRepresentation
-    
+
     enum CodingKeys: String, CodingKey {
         case identifier
         case title
