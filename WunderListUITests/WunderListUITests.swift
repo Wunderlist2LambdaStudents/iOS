@@ -50,20 +50,43 @@ class WunderListUITests: XCTestCase {
     }
 
     func testUserSignUp() throws {
-        let signInButton = app.segmentedControls.buttons["Sign Up"]
+        let signUpButton = app.segmentedControls.buttons["Sign Up"]
+        XCTAssert(signUpButton.isHittable)
+        signUpButton.tap()
+
+        nameTextField.tap()
+        XCTAssert(nameTextField.isHittable)
+        nameTextField.typeText(testUserName)
+        XCTAssertTrue(nameTextField.value as? String == testUserName)
+
+        emailTextField.tap()
+        XCTAssert(emailTextField.isHittable)
+        emailTextField.typeText(testUserEmail)
+        XCTAssertTrue(emailTextField.value as? String == testUserEmail)
+
+        pwTextField.tap()
+        pwTextField.typeText(testUserPW)
+        XCTAssertTrue(pwTextField.value as? String == testUserPW)
+    }
+
+    func testUserSignIn() throws {
+        let signInButton = app.segmentedControls.buttons["Sign In"]
         XCTAssert(signInButton.isHittable)
         signInButton.tap()
 
-        XCTAssert(nameTextField.isHittable)
         nameTextField.tap()
+        XCTAssert(nameTextField.isHittable)
         nameTextField.typeText(testUserName)
+        XCTAssertTrue(nameTextField.value as? String == testUserName)
 
-        XCTAssert(emailTextField.isHittable)
         emailTextField.tap()
+        XCTAssert(emailTextField.isHittable)
         emailTextField.typeText(testUserEmail)
+        XCTAssertTrue(emailTextField.value as? String == testUserEmail)
 
         pwTextField.tap()
-        pwTextField.typeText(testUserEmail)
+        pwTextField.typeText(testUserPW)
+        XCTAssertTrue(pwTextField.value as? String == testUserPW)
     }
 
     func testLaunchPerformance() throws {
