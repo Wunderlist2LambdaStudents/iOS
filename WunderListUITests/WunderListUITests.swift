@@ -146,4 +146,3 @@ extension XCUIApplication {
         coordinate.tap()
     }
 }
-
