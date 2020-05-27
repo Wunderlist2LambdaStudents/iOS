@@ -22,7 +22,7 @@ extension Todo {
         let body = body,
         let dueDate = dueDate else { return nil }
         return TodoRepresentation(
-            identifier: identifier.uuidString,
+            identifier: identifier,
             title: title,
             body: body,
             dueDate: dueDate,
@@ -56,12 +56,10 @@ extension Todo {
         context: NSManagedObjectContext = CoreDataStack.shared.mainContext,
         userRep: UserRepresentation
     ) {
-        guard let identifier = UUID(uuidString: todoRepresentation.identifier),
-        let user = User(userRep: userRep)
-        else { return nil }
+       guard let user = User(userRep: userRep) else { return nil }
 
         self.init(
-            identifier: identifier,
+            identifier: todoRepresentation.identifier,
             title: todoRepresentation.title,
             body: todoRepresentation.body,
             dueDate: todoRepresentation.dueDate,
@@ -72,7 +70,20 @@ extension Todo {
 
     }
 }
+
 extension Location {
+    @discardableResult convenience init(
+        identifier: UUID = UUID(),
+        xLocation: Double,
+        yLocation: Double,
+        todo: Todo,
+        context: NSManagedObjectContext = CoreDataStack.shared.mainContext
+    ) {
+        self.init(context: context)
+        self.xLocation = xLocation
+        self.yLocation = yLocation
+        self.todo = todo
+    }
 
     var locationRepresentation: LocationRepresentation? {
         let xCoord = xLocation

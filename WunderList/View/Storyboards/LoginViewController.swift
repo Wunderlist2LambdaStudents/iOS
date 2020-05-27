@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         //customizing views
-        self.nameTextField.addBottomBorder()
+//        self.nameTextField.addBottomBorder()
         self.passwordTextField.addBottomBorder()
         self.emailTextField.addBottomBorder()
         loginButtonOutlet.layer.cornerRadius = 12.0
@@ -59,12 +59,12 @@ class LoginViewController: UIViewController {
 
         //handling keyboard
         self.emailScrollView.translatesAutoresizingMaskIntoConstraints = false
-        nameTextField.delegate = self
+//        nameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        nameTextField.tag = 1
-        emailTextField.tag = 2
-        passwordTextField.tag = 3
+//        nameTextField.tag = 1
+        emailTextField.tag = 1
+        passwordTextField.tag = 2
 
         //subscribe to a Notification which will fire before the keyboard will show
         subscribeToNotification(UIResponder.keyboardWillShowNotification, selector: #selector(keyboardWillShowOrHide))

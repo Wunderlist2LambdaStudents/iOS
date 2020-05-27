@@ -25,7 +25,7 @@ extension User {
         userRep: UserRepresentation,
         context: NSManagedObjectContext = CoreDataStack.shared.mainContext
     ) {
-        guard let identifier = UUID(uuidString: userRep.identifier ?? "") else { return nil }
+        guard let identifier = userRep.identifier else { return nil }
         self.init(
             username: userRep.username,
             identifier: identifier,
