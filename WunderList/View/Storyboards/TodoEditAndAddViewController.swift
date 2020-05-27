@@ -18,8 +18,6 @@ class TodoEditAndAddViewController: UIViewController {
         self.titleTextField.addBottomBorder()
 
     }
-    
-
     /*
     // MARK: - Navigation
 
