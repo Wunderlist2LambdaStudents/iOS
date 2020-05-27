@@ -65,6 +65,19 @@ class TodoListViewController: UIViewController {
             let todoController = TodoController()
             guard var user = todoController.loadMockUser() else { return }
             todoController.loadMockTodos(from: &user)
+            let todoRepresentation = TodoRepresentation(
+                identifier: UUID(),
+                title: "Test Append",
+                body: "Testing",
+                dueDate: Date(),
+                complete: true,
+                recurring: .none,
+                location: LocationRepresentation(xLocation: 0, yLocation: 0)
+            )
+            let jsonEncoder = JSONEncoder()
+            let todo = try? jsonEncoder.encode(todoRepresentation)
+            Data.writeToFile(with: .goodTodoData, encodableData: todo)
+            print("Json: \(String(data: Data.mockData(with: .goodTodoData), encoding: .utf8))")
             AuthService.activeUser = user
 
             //CoreData works with relationships
