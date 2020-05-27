@@ -23,6 +23,8 @@ class WunderListUITests: XCTestCase {
         case loginStartButton = "LoginViewController.GetStartedButton"
         case loginTCLabel = "LoginViewController.T&CLabel"
         case loginEmailTextField = "LoginViewController.EmailTextField"
+        case signInButtonLabel = "Welcome Back!"
+        case signUpButtonLabel = "Get Started"
     }
 
     private var testUserName = "Test Name"
@@ -110,6 +112,20 @@ class WunderListUITests: XCTestCase {
         let startButton = app.buttons.element(boundBy: 2)
         XCTAssertTrue(startButton.isHittable)
         startButton.tap()
+    }
+
+    func testStartButtonTextChanges() {
+        let signInButton = app.segmentedControls.buttons["Sign In"]
+        XCTAssert(signInButton.isHittable)
+        signInButton.tap()
+
+        XCTAssertTrue(loginStartButton.label == Identifier.signInButtonLabel.rawValue)
+
+        let signUpButton = app.segmentedControls.buttons["Sign Up"]
+        XCTAssert(signUpButton.isHittable)
+        signUpButton.tap()
+
+        XCTAssertTrue(loginStartButton.label == Identifier.signUpButtonLabel.rawValue)
     }
 
     func testLaunchPerformance() throws {
