@@ -26,6 +26,7 @@ class TodoEditAndAddViewController: UIViewController {
         self.titleTextField.addBottomBorder()
 
     }
+
     
 // MARK: - Actions
     
@@ -50,5 +51,5 @@ class TodoEditAndAddViewController: UIViewController {
     
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
-    }
+
 }

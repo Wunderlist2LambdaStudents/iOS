@@ -26,18 +26,16 @@ class TodoController {
 
     // MARK: - Properties
     var networkService: NetworkService?
-    
+
     init() {
         fetchTodosFromServer()
     }
-    
-    //MARK: - Methods
+    // MARK: - Methods
 
     func fetchTodosFromServer(completion: @escaping CompletionHandler = { _ in }) {
         let requestURL = baseURL.appendingPathComponent("json")
         guard let request = networkService?.createRequest(url: requestURL, method: .get) else { return }
-        
-    
+
         networkService?.dataLoader.loadData(using: request) { data, _, error in
             if let error = error {
                 NSLog("Error fetching tasks: \(error)")
@@ -52,14 +50,15 @@ class TodoController {
             }
 
             do {
-                let todoRepresentations = Array(try JSONDecoder().decode([String : TodoRepresentation].self, from: data).values)
+                let todoRepresentations = Array(
+                    try JSONDecoder().decode([String: TodoRepresentation].self,
+                                             from: data).values)
                 try self.updateTodos(with: todoRepresentations)
             } catch {
                 NSLog("Error decoding todos: \(error)")
             }
         }
     }
-    
     func sendTodosToServer(todo: Todo, completion: @escaping CompletionHandler = { _ in }) {
         guard let uuid = todo.identifier else {
             completion(.failure(.noIdentifier))
@@ -73,7 +72,6 @@ class TodoController {
         }
         networkService?.encode(from: representation, request: &request)
         networkService?.dataLoader.loadData(using: request) { _, _, error in
-    
             if let error = error {
                 NSLog("Error sending task to server \(todo): \(error)")
                 completion(.failure(.otherError))
@@ -82,13 +80,13 @@ class TodoController {
             completion(.success(true))
         }
     }
-    
+
     func updateTodos(with representations: [TodoRepresentation]) throws {
 
         let identifiersToFetch = representations.compactMap { $0.identifier }
         let representationsByID = Dictionary(uniqueKeysWithValues: zip(identifiersToFetch, representations))
         var todosToCreate = representationsByID
-        let fetchRequest:NSFetchRequest<Todo> = Todo.fetchRequest()
+        let fetchRequest: NSFetchRequest<Todo> = Todo.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "identifier IN %@", identifiersToFetch)
 
         let context = CoreDataStack.shared.container.newBackgroundContext()
@@ -99,19 +97,16 @@ class TodoController {
                     let existingTodos = try context.fetch(fetchRequest)
 
                     for todo in existingTodos {
-                        guard let id = todo.identifier,
-                            let representation = representationsByID[id] else { continue }
+                        guard let identifier = todo.identifier,
+                            let representation = representationsByID[identifier] else { continue }
                         self.updateTodoRep(todo: todo, with: representation)
-                        todosToCreate.removeValue(forKey: id)
+                        todosToCreate.removeValue(forKey: identifier)
                     }
                 } catch let fetchError {
                     error = fetchError
                 }
-                
-                
-                
+
                 for representation in todosToCreate.values {
-                    
                     guard let userRep = AuthService.activeUser else { return }
                     Todo(todoRepresentation: representation, context: context, userRep: userRep )
                 }

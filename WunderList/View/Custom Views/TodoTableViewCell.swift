@@ -13,9 +13,5 @@ class TodoTableViewCell: UITableViewCell {
     @IBOutlet weak var todoTitleLabel: UILabel!
     @IBOutlet weak var completeButton: UIButton!
 
-    var todo: Todo?
-    
-
-
-    
+    var todo: Todo? 
 }

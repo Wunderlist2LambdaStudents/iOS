@@ -54,7 +54,6 @@ class TodoListViewController: UIViewController {
         switchTableViewSegmentedControlAction.selectedSegmentTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         todoTitle.textColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 0.8080318921)
     }
-    
 
     func updateViews() {
         //update the view after the user is logged in
@@ -69,7 +68,8 @@ class TodoListViewController: UIViewController {
 
             //CoreData works with relationships
 //            guard let coreDataUser = User(userRep: user) else { return }
-//            let todo = Todo(identifier: UUID(), title: "title", body: "body", dueDate: Date(), complete: true, recurring: "none", user: coreDataUser, context: CoreDataStack.shared.mainContext)
+//            let todo = Todo(identifier: UUID(),
+//            title: "title", body: "body", dueDate: Date(), complete: true, recurring: "none", user: coreDataUser, context: CoreDataStack.shared.mainContext)
 //            Location(identifier: UUID(), xLocation: 20.0, yLocation: 25.2, todo: todo, context: CoreDataStack.shared.mainContext)
 //            print(coreDataUser.todo)
         }
@@ -88,7 +88,6 @@ class TodoListViewController: UIViewController {
     }
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
     }
 
 }
