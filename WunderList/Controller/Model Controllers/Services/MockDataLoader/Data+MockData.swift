@@ -27,4 +27,20 @@ extension Data {
         }
         return data
     }
+
+    static func writeToFile<EncodableData: Encodable>(with name: FileName, encodableData: EncodableData) {
+        do {
+            let bundle = Bundle(for: MockDataLoader.self)
+            guard let url = bundle.url(forResource: name.rawValue, withExtension: "json") else {
+                print("invalid URL for \(name.rawValue)")
+                return
+            }
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            let jsonData = try encoder.encode(encodableData)
+            try jsonData.write(to: url)
+        } catch let encodeError {
+            print("Error encoding data to \(name.rawValue): \(encodeError)")
+        }
+    }
 }
