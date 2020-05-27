@@ -310,9 +310,9 @@
 		B95B658E2478ED38009C6D16 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				8E56EF65247DA0D600D53083 /* TodoTableViewCell.swift */,
 				8E90DE8A247A277C000916A3 /* Colors */,
 				8E90DE85247A25C7000916A3 /* Fonts */,
-				8E56EF65247DA0D600D53083 /* TodoTableViewCell.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";

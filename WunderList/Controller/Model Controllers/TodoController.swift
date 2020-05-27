@@ -60,7 +60,7 @@ class TodoController {
 //            }
 //        }.resume()
 //    }
-    
+//    
     func sendTodosToServer(todo: Todo, completion: @escaping CompletionHandler = { _ in }) {
         guard let uuid = todo.identifier else {
             completion(.failure(.noIdentifier))
@@ -119,7 +119,7 @@ class TodoController {
 //                    error = fetchError
 //                }
 //                for representation in todosToCreate.values {
-//                    Todo(todoRepresentation: representation, context: context)
+//                    Todo(todoRepresentation: representation, context: context, userRep: 
 //                }
 //            }
 //            if let error = error { throw error }

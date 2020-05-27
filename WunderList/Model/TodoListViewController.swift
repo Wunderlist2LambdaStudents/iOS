@@ -52,7 +52,9 @@ class TodoListViewController: UIViewController {
         super.viewDidLoad()
         switchTableViewSegmentedControlAction.backgroundColor = #colorLiteral(red: 0.3939243257, green: 0.3406436443, blue: 0.820184648, alpha: 0.7223886986)
         switchTableViewSegmentedControlAction.selectedSegmentTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        todoTitle.textColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 0.8080318921)
     }
+    
 
     func updateViews() {
         //update the view after the user is logged in
@@ -86,7 +88,7 @@ class TodoListViewController: UIViewController {
     }
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        
     }
 
 }
