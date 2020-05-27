@@ -93,6 +93,7 @@ class AuthService {
                 //assign the static activeUser
                 AuthService.activeUser = loginUser
                 completion()
+                return
             }
             completion()
         }
