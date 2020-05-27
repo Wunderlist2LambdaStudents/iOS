@@ -16,24 +16,24 @@ class TodoListViewController: UIViewController {
     let todoController = TodoController()
 
     lazy var fetchedResultsController: NSFetchedResultsController<Todo> = {
-         let fetchRequest: NSFetchRequest<Todo> = Todo.fetchRequest()
-         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "complete", ascending: true),
-                                         NSSortDescriptor(key: "title", ascending: true)]
-         let context = CoreDataStack.shared.mainContext
+        let fetchRequest: NSFetchRequest<Todo> = Todo.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "complete", ascending: true),
+                                        NSSortDescriptor(key: "title", ascending: true)]
+        let context = CoreDataStack.shared.mainContext
         let frc = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: context,
             sectionNameKeyPath: nil,
             cacheName: nil
         )
-         frc.delegate = self
-         do {
-             try frc.performFetch()
-         } catch {
-             NSLog("Error performing initial fetch inside fetchedResultsController: \(error)")
-         }
-         return frc
-     }()
+        frc.delegate = self
+        do {
+            try frc.performFetch()
+        } catch {
+            NSLog("Error performing initial fetch inside fetchedResultsController: \(error)")
+        }
+        return frc
+    }()
 
     // Quick Dummy data
     var dailyTodo = ["Walk The Dog", "walk the Dog again"]
@@ -54,7 +54,6 @@ class TodoListViewController: UIViewController {
         switchTableViewSegmentedControlAction.selectedSegmentTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         todoTitle.textColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 0.8080318921)
     }
-    
 
     func updateViews() {
         //update the view after the user is logged in
@@ -77,14 +76,20 @@ class TodoListViewController: UIViewController {
             let jsonEncoder = JSONEncoder()
             let todo = try? jsonEncoder.encode(todoRepresentation)
             Data.writeToFile(with: .goodTodoData, encodableData: todo)
-            print("Json: \(String(data: Data.mockData(with: .goodTodoData), encoding: .utf8))")
+            //as Any to silence warning
+            print(
+                "Json: \(String(data: Data.mockData(with: .goodTodoData), encoding: .utf8) as Any)"
+            )
             AuthService.activeUser = user
 
             //CoreData works with relationships
-//            guard let coreDataUser = User(userRep: user) else { return }
-//            let todo = Todo(identifier: UUID(), title: "title", body: "body", dueDate: Date(), complete: true, recurring: "none", user: coreDataUser, context: CoreDataStack.shared.mainContext)
-//            Location(identifier: UUID(), xLocation: 20.0, yLocation: 25.2, todo: todo, context: CoreDataStack.shared.mainContext)
-//            print(coreDataUser.todo)
+            //            guard let coreDataUser = User(userRep: user) else { return }
+            //            let todo = Todo(identifier: UUID(), title: "title",
+            //            body: "body", dueDate: Date(), complete: true, recurring: "none",
+            //            user: coreDataUser, context: CoreDataStack.shared.mainContext)
+            //            Location(identifier: UUID(), xLocation: 20.0, yLocation: 25.2, todo: todo,
+            //            context: CoreDataStack.shared.mainContext)
+            //            print(coreDataUser.todo)
         }
     }
 
@@ -120,10 +125,10 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell1 = tableView.dequeueReusableCell(
             withIdentifier: "TodoCell",
             for: indexPath
-        ) as? TodoTableViewCell,
+            ) as? TodoTableViewCell,
             let cell2 = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as? TodoTableViewCell,
             let cell3 = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as? TodoTableViewCell
-        else { return UITableViewCell() }
+            else { return UITableViewCell() }
 
         cell1.todoTitleLabel.text = dailyTodo[indexPath.row]
         cell2.todoTitleLabel.text = weeklyTodo[indexPath.row]
@@ -139,33 +144,34 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
 
     }
 
-     func tableView(
+    func tableView(
         _ tableView: UITableView,
         commit editingStyle: UITableViewCell.EditingStyle,
         forRowAt indexPath: IndexPath
-     ) {
-              if editingStyle == .delete {
-                  // Delete the row from the data source
-                  let todo = fetchedResultsController.object(at: indexPath)
-               todoController.deleteTodosFromServer(todo: todo) { result in
-                      guard let _ = try? result.get() else {
-                          return
-                      }
+    ) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            let todo = fetchedResultsController.object(at: indexPath)
+            todoController.deleteTodosFromServer(todo: todo) { result in
+                let result = try? result.get()
+                if result == nil {
+                    return
+                }
 
-                      DispatchQueue.main.async {
-                          let context = CoreDataStack.shared.mainContext
+                DispatchQueue.main.async {
+                    let context = CoreDataStack.shared.mainContext
 
-                          context.delete(todo)
-                          do {
-                              try context.save()
-                          } catch {
-                              context.reset()
-                              NSLog("Error saving managed object context (delete task): \(error)")
-                          }
-                      }
-                  }
-              }
-          }
+                    context.delete(todo)
+                    do {
+                        try context.save()
+                    } catch {
+                        context.reset()
+                        NSLog("Error saving managed object context (delete task): \(error)")
+                    }
+                }
+            }
+        }
+    }
 }
 
 extension TodoListViewController: NSFetchedResultsControllerDelegate {
