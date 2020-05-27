@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -71,44 +71,32 @@
                                 </connections>
                             </segmentedControl>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYR-lI-RWZ" userLabel="emailScrollView">
-                                <rect key="frame" x="0.0" y="270" width="375" height="276"/>
+                                <rect key="frame" x="0.0" y="277" width="375" height="233.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="FoK-8Y-Yxa" userLabel="EmailPassword Stack">
                                         <rect key="frame" x="20" y="20" width="335" height="236"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mg1-Cm-k0a">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="31"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="23"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="  Enter Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gDe-eO-xAT">
-                                                <rect key="frame" x="0.0" y="41" width="335" height="31"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="LoginViewController.NameTextField"/>
-                                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="19"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bta-De-ZIM">
-                                                <rect key="frame" x="0.0" y="82" width="335" height="31"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="51.5"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="  you@yourdomain.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aoG-Kv-rmK">
-                                                <rect key="frame" x="0.0" y="123" width="335" height="31"/>
+                                                <rect key="frame" x="0.0" y="61.5" width="335" height="51.5"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="LoginViewController.EmailTextField"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="19"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2cr-Xb-KgB" userLabel="Password">
-                                                <rect key="frame" x="0.0" y="164" width="335" height="31"/>
+                                                <rect key="frame" x="0.0" y="123" width="335" height="51.5"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="  Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bVz-P3-6t4">
-                                                <rect key="frame" x="0.0" y="205" width="335" height="31"/>
+                                                <rect key="frame" x="0.0" y="184.5" width="335" height="51.5"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="LoginViewController.PWTextField"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="19"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -162,11 +150,11 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="dYR-lI-RWZ" firstAttribute="top" secondItem="sal-3O-IYU" secondAttribute="bottom" constant="40" id="1Nu-uK-lAq"/>
+                            <constraint firstItem="dYR-lI-RWZ" firstAttribute="top" secondItem="ieb-Lu-3vD" secondAttribute="bottom" constant="2" id="1Nu-uK-lAq"/>
                             <constraint firstItem="vXK-eD-fh7" firstAttribute="trailing" secondItem="ieb-Lu-3vD" secondAttribute="trailing" constant="120" id="9da-XZ-OSF"/>
                             <constraint firstItem="ieb-Lu-3vD" firstAttribute="top" secondItem="sal-3O-IYU" secondAttribute="bottom" constant="15" id="AEK-Nw-0RB"/>
                             <constraint firstItem="vXK-eD-fh7" firstAttribute="trailing" secondItem="sr1-dQ-Wb6" secondAttribute="trailing" constant="50" id="AQL-Cu-NUB"/>
-                            <constraint firstItem="vXK-eD-fh7" firstAttribute="bottom" secondItem="dYR-lI-RWZ" secondAttribute="bottom" constant="121" id="CHm-as-8Jc"/>
+                            <constraint firstItem="sr1-dQ-Wb6" firstAttribute="top" secondItem="dYR-lI-RWZ" secondAttribute="bottom" constant="14" id="CHm-as-8Jc"/>
                             <constraint firstItem="ieb-Lu-3vD" firstAttribute="leading" secondItem="vXK-eD-fh7" secondAttribute="leading" constant="120" id="KZM-UX-EW5"/>
                             <constraint firstItem="sr1-dQ-Wb6" firstAttribute="bottom" secondItem="vXK-eD-fh7" secondAttribute="bottom" id="X9P-eU-K7n"/>
                             <constraint firstItem="vXK-eD-fh7" firstAttribute="trailing" secondItem="sal-3O-IYU" secondAttribute="trailing" constant="10" id="f8m-bD-hkG"/>
@@ -183,7 +171,6 @@
                         <outlet property="emailScrollView" destination="dYR-lI-RWZ" id="ha9-M6-Yg9"/>
                         <outlet property="emailTextField" destination="aoG-Kv-rmK" id="sNv-zV-in3"/>
                         <outlet property="loginButtonOutlet" destination="DOt-Ka-SpJ" id="C6l-rt-qb7"/>
-                        <outlet property="nameTextField" destination="gDe-eO-xAT" id="nXQ-TY-F7Y"/>
                         <outlet property="passwordTextField" destination="bVz-P3-6t4" id="gzj-6j-wF7"/>
                         <outlet property="pinkSquareView" destination="sal-3O-IYU" id="Xl4-aq-JaD"/>
                         <outlet property="signUpSignInSegementedControl" destination="ieb-Lu-3vD" id="gxH-GU-6jY"/>

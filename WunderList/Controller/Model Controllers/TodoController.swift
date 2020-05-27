@@ -83,7 +83,7 @@ class TodoController {
 
     func updateTodos(with representations: [TodoRepresentation]) throws {
 
-        let identifiersToFetch = representations.compactMap { $0.identifier }
+        let identifiersToFetch = representations.compactMap {$0.identifier}
         let representationsByID = Dictionary(uniqueKeysWithValues: zip(identifiersToFetch, representations))
         var todosToCreate = representationsByID
         let fetchRequest: NSFetchRequest<Todo> = Todo.fetchRequest()
