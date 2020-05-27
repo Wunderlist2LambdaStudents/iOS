@@ -35,8 +35,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HVo-zc-JUf">
                                 <rect key="frame" x="20" y="552" width="374" height="266"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Pick Up Some Darn Milk " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpf-wu-ioy">
-                                        <rect key="frame" x="22" y="8" width="334" height="27.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick Up Some Darn Milk " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpf-wu-ioy">
+                                        <rect key="frame" x="20" y="8" width="334" height="27.5"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
                                         <color key="textColor" name="Brown"/>
                                         <nil key="highlightedColor"/>
@@ -85,6 +85,7 @@
                                             <constraints>
                                                 <constraint firstItem="JkO-Xj-ab6" firstAttribute="top" secondItem="vhz-ak-iOg" secondAttribute="top" constant="10" id="6YQ-QA-bnW"/>
                                                 <constraint firstItem="quk-RH-HkS" firstAttribute="top" secondItem="vhz-ak-iOg" secondAttribute="top" constant="10" id="SVN-QP-La4"/>
+                                                <constraint firstItem="quk-RH-HkS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JkO-Xj-ab6" secondAttribute="trailing" constant="8" symbolic="YES" id="dfF-Qn-hEn"/>
                                                 <constraint firstItem="JkO-Xj-ab6" firstAttribute="leading" secondItem="vhz-ak-iOg" secondAttribute="leading" constant="20" id="pOI-Kd-ynf"/>
                                                 <constraint firstAttribute="trailing" secondItem="quk-RH-HkS" secondAttribute="trailing" constant="20" id="rdZ-Km-iaj"/>
                                             </constraints>
