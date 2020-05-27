@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Recurring: String, Codable {
+enum Recurring: String, Codable, CaseIterable {
     case none
     case daily
     case weekly

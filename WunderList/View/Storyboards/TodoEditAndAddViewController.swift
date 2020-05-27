@@ -9,23 +9,47 @@
 import UIKit
 
 class TodoEditAndAddViewController: UIViewController {
+    // MARK: - Properties
+    
+    var todoController: TodoController?
 
-    @IBOutlet weak var bodyTextField: UITextField!
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var bodyTextView: UITextView!
+    @IBOutlet weak var recurringSegmentedControl: UISegmentedControl!
+    
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.bodyTextField.addBottomBorder()
         self.titleTextField.addBottomBorder()
 
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+// MARK: - Actions
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        guard let title = titleTextField.text, !title.isEmpty else { return }
+        
+        let bodyText = bodyTextView.text!
+        let recurringIndex = recurringSegmentedControl.selectedSegmentIndex
+        let recurring = Recurring.allCases[recurringIndex]
+        
+        let todo = Todo(title: title, body: bodyText, recurring: recurring.rawValue, user: <#T##User#>)
+        
+        todoController?.sendTodosToServer(todo: todo) 
+        
+        do {
+            try CoreDataStack.shared.mainContext.save()
+            dismiss(animated: true, completion: nil)
+        } catch {
+            NSLog("Error saving managed object context: \(error)")
+        }
     }
-    */
+    
+    @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
 
 }
