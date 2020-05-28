@@ -22,7 +22,7 @@ class SettingsViewController: UIViewController {
 
     private func presentSignInView() {
         let loginStoryboard = UIStoryboard(name: "Auth", bundle: Bundle(identifier: "com.hazystudios.WunderList"))
-        let loginViewController = loginStoryboard.instantiateViewController(withIdentifier: "LoginView")
+        let loginViewController = loginStoryboard.instantiateViewController(withIdentifier: "AuthVC")
         loginViewController.modalPresentationStyle = .fullScreen
         present(loginViewController, animated: true)
     }
