@@ -37,7 +37,14 @@ class TodoEditAndAddViewController: UIViewController {
         let recurringIndex = recurringSegmentedControl.selectedSegmentIndex
         let recurring = Recurring.allCases[recurringIndex]
         let location = LocationRepresentation(xLocation: -8.783195, yLocation: -124.508523)
-        let todoRep = TodoRepresentation(title: title, body: bodyText, dueDate: Date(), complete: true, recurring: recurring, location: location)
+        let todoRep = TodoRepresentation(
+            title: title,
+            body: bodyText,
+            dueDate: Date(),
+            complete: true,
+            recurring: recurring,
+            location: location
+        )
         guard let user = user else { return }
         let todo = Todo(todoRepresentation: todoRep, userRep: user)
         #warning("This should be taken care of in the init, but it's nil")
@@ -55,4 +62,3 @@ class TodoEditAndAddViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 }
-

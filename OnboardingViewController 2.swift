@@ -10,20 +10,20 @@ import UIKit
 import SpriteKit
 
 @IBDesignable class OnboardingViewController: UIViewController {
- 
+
     var wunderlistLabel = UILabel()
     var welcomeToLabel = UILabel()
-    
+
     private func configureWunderlistLabel() {
         wunderlistLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
         wunderlistLabel.text = "Wunderlist"
         wunderlistLabel.font = UIFont(name: "sweet purple", size: 96)
         view.addSubview(wunderlistLabel)
     }
-    
+
     @objc private func springButtonTapped() {
            wunderlistLabel.center = view.center
-           
+
            wunderlistLabel.transform = CGAffineTransform(scaleX: 0.0001, y: 0.0001)
            UIView.animate(withDuration: 3,
                           delay: 2,
@@ -35,8 +35,6 @@ import SpriteKit
            },
                           completion: nil)
        }
-       
-    
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -45,7 +43,6 @@ import SpriteKit
         super.viewDidLoad()
         configureWunderlistLabel()
     }
-    
 
     /*
     // MARK: - Navigation
