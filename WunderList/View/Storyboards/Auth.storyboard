@@ -167,6 +167,7 @@
                         <outlet property="passwordTextField" destination="bVz-P3-6t4" id="gzj-6j-wF7"/>
                         <outlet property="pinkSquareView" destination="sal-3O-IYU" id="Xl4-aq-JaD"/>
                         <outlet property="signUpSignInSegementedControl" destination="ieb-Lu-3vD" id="gxH-GU-6jY"/>
+                        <outlet property="welcomLabel" destination="FRS-Dq-TN9" id="pBV-la-sYY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LLr-wf-UtA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

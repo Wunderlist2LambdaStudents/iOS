@@ -22,6 +22,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailScrollView: UIScrollView!
+    @IBOutlet weak var welcomLabel: UILabel!
 
     // MARK: - Properties
     ///Used to give access to TodoListViewController for passing data
@@ -32,8 +33,10 @@ class LoginViewController: UIViewController {
             switch selectedLoginType {
             case .signUp:
                 loginButtonOutlet.setTitle("Welcome Back!", for: .normal)
+                welcomLabel.text = "Welcome back!"
             case .signIn:
                 loginButtonOutlet.setTitle("Get Started", for: .normal)
+                welcomLabel.text = "Let's create your account"
             }
         }
     }
