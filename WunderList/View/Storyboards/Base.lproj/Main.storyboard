@@ -213,7 +213,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wunderlist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0go-UM-cjp">
-                                <rect key="frame" x="20" y="755" width="374" height="70"/>
+                                <rect key="frame" x="20" y="708.5" width="374" height="70"/>
                                 <color key="tintColor" name="Purple"/>
                                 <fontDescription key="fontDescription" name="sweetpurple" family="sweet purple" pointSize="60"/>
                                 <color key="textColor" name="Aqua"/>
@@ -307,7 +307,7 @@
                             <constraint firstItem="wR5-b6-64M" firstAttribute="top" secondItem="4GJ-zS-IX3" secondAttribute="bottom" constant="20" id="8iW-G9-ZfS"/>
                             <constraint firstItem="vhz-Cb-1cH" firstAttribute="top" secondItem="McE-bs-stQ" secondAttribute="top" id="8tP-FF-fAf"/>
                             <constraint firstItem="vhz-Cb-1cH" firstAttribute="trailing" secondItem="McE-bs-stQ" secondAttribute="trailing" id="AJe-Uv-Rg3"/>
-                            <constraint firstItem="0go-UM-cjp" firstAttribute="top" secondItem="wR5-b6-64M" secondAttribute="bottom" constant="226.5" id="ET5-7h-uYz"/>
+                            <constraint firstItem="0go-UM-cjp" firstAttribute="top" secondItem="wR5-b6-64M" secondAttribute="bottom" constant="180" id="ET5-7h-uYz"/>
                             <constraint firstItem="McE-bs-stQ" firstAttribute="trailing" secondItem="4GJ-zS-IX3" secondAttribute="trailing" constant="20" id="LD9-tV-6m8"/>
                             <constraint firstItem="McE-bs-stQ" firstAttribute="trailing" secondItem="0go-UM-cjp" secondAttribute="trailing" constant="20" id="RRt-qc-Pb3"/>
                             <constraint firstItem="0go-UM-cjp" firstAttribute="leading" secondItem="McE-bs-stQ" secondAttribute="leading" constant="20" id="UG4-rt-Pou"/>
