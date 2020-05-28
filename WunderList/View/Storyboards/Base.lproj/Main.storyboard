@@ -216,7 +216,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wunderlist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0go-UM-cjp">
-                                <rect key="frame" x="20" y="674.66666666666663" width="335" height="71.333333333333371"/>
+                                <rect key="frame" x="20" y="674.66666666666663" width="335" height="70"/>
                                 <color key="tintColor" name="Purple"/>
                                 <fontDescription key="fontDescription" name="sweetpurple" family="sweet purple" pointSize="60"/>
                                 <color key="textColor" name="Aqua"/>
@@ -271,7 +271,7 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="76u-ZZ-hSV">
                                                 <rect key="frame" x="0.0" y="42.333333333333371" width="335" height="50"/>
                                                 <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="TodoEditAndAddViewController.addDetailText"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="TodoEditAndAddViewController.addDetailTextView"/>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
