@@ -18,6 +18,13 @@ class TodoListViewController: UIViewController {
 
     lazy var fetchedResultsController: NSFetchedResultsController<Todo> = {
         let fetchRequest: NSFetchRequest<Todo> = Todo.fetchRequest()
+        if AuthService.activeUser != nil {
+        guard let userId = AuthService.activeUser?.identifier?.uuidString else {
+            fatalError("Identifier error")
+        }
+            let predicate = NSPredicate(format: "user.identifier == %@", userId)
+            fetchRequest.predicate = predicate
+        }
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "complete", ascending: true),
                                         NSSortDescriptor(key: "title", ascending: true)]
         let context = CoreDataStack.shared.mainContext
@@ -37,9 +44,10 @@ class TodoListViewController: UIViewController {
     }()
 
     // Quick Dummy data
-    var dailyTodo = AuthService.activeUser?.todos?.filter { $0.recurring == .daily }
-    var weeklyTodo = ["Pick Up Dog", "Feed Dog"]
-    var monthlyTodo = ["Eat dog", "walk the dog again"]
+    var nonRecurringTodos = AuthService.activeUser?.todos?.filter { $0.recurring == .none }
+    var dailyTodos = AuthService.activeUser?.todos?.filter { $0.recurring == .daily }
+    var weeklyTodos = AuthService.activeUser?.todos?.filter { $0.recurring == .weekly }
+    var monthlyTodos = AuthService.activeUser?.todos?.filter { $0.recurring == .monthly }
 
     // MARK: - Outlets -
     @IBOutlet weak var tableView: UITableView!
@@ -59,9 +67,17 @@ class TodoListViewController: UIViewController {
     func updateViews() {
         //update the view after the user is logged in or create mock user
         if AuthService.activeUser != nil {
-            todoController.fetchTodosFromServer { (result) in
-                print(try? result.get())
-            }
+            let todoRep = TodoRepresentation(identifier: UUID(),
+                                             title: "testTodo",
+                                             body: "testbody",
+                                             dueDate: Date(),
+                                             complete: false,
+                                             recurring: .none
+            )
+            try? todoController.updateTodos(with: [todoRep])
+//            todoController.fetchTodosFromServer { (result) in
+//                print(try? result.get())
+//            }
         } else {
             print("no active user, mocking user:")
             let todoController = TodoController()
@@ -132,34 +148,27 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if currentSelectedSegment == 1 {
-            return dailyTodo?.count ?? 0
+            return fetchedResultsController.sections?[0].numberOfObjects ?? 0
         } else if currentSelectedSegment == 2 {
-            return weeklyTodo.count
+            return fetchedResultsController.sections?[1].numberOfObjects ?? 0
         } else {
-            return monthlyTodo.count
+            return fetchedResultsController.sections?[2].numberOfObjects ?? 0
         }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell1 = tableView.dequeueReusableCell(
+        guard let cell = tableView.dequeueReusableCell(
             withIdentifier: "TodoCell",
             for: indexPath
-            ) as? TodoTableViewCell,
-            let cell2 = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as? TodoTableViewCell,
-            let cell3 = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as? TodoTableViewCell
+            ) as? TodoTableViewCell
             else { return UITableViewCell() }
 
-        cell1.todoTitleLabel.text = dailyTodo?[indexPath.row].title
-        cell2.todoTitleLabel.text = weeklyTodo[indexPath.row]
-        cell3.todoTitleLabel.text = monthlyTodo[indexPath.row]
+        guard let todo = fetchedResultsController
+            .sections?[indexPath.section]
+            .objects?[indexPath.row] as? Todo else { return UITableViewCell() }
+        cell.todoTitleLabel.text = todo.title
 
-        if currentSelectedSegment == 1 {
-            return cell1
-        } else if currentSelectedSegment == 2 {
-            return cell2
-        } else {
-            return cell3
-        }
+        return cell
 
     }
 
