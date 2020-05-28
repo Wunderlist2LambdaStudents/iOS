@@ -11,7 +11,7 @@ import UIKit
 class TodoEditAndAddViewController: UIViewController {
     // MARK: - Properties
 
-    var user = User()
+    var user = AuthService.activeUser
     var todoController: TodoController?
 
     // MARK: - IBOutlets
@@ -36,13 +36,15 @@ class TodoEditAndAddViewController: UIViewController {
         let bodyText = bodyTextView.text!
         let recurringIndex = recurringSegmentedControl.selectedSegmentIndex
         let recurring = Recurring.allCases[recurringIndex]
-
-        let todo = Todo(title: title, body: bodyText, recurring: recurring.rawValue, user: user)
-        guard let todoRep = todo.todoRepresentation else { return }
+        let location = LocationRepresentation(xLocation: -8.783195, yLocation: -124.508523)
+        let todoRep = TodoRepresentation(title: title, body: bodyText, dueDate: Date(), complete: true, recurring: recurring, location: location)
+        guard let user = user else { return }
+        let todo = Todo(todoRepresentation: todoRep, userRep: user)
+        #warning("This should be taken care of in the init, but it's nil")
+        todo?.complete = todoRep.complete
         todoController?.sendTodosToServer(todo: todoRep)
-
         do {
-            try CoreDataStack.shared.mainContext.save()
+            try CoreDataStack.shared.save()
             dismiss(animated: true, completion: nil)
         } catch {
             NSLog("Error saving managed object context: \(error)")
@@ -51,6 +53,5 @@ class TodoEditAndAddViewController: UIViewController {
 
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
-
-}
+    }
 }

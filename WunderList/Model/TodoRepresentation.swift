@@ -26,7 +26,7 @@ struct LocationRepresentation: Codable {
 }
 //everything in the backend is "not-nullable" (not optional)
 struct TodoRepresentation: Codable {
-    let identifier: UUID
+    var identifier: UUID = UUID()
     var title: String
     var body: String
     var dueDate: Date
