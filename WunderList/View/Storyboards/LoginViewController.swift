@@ -103,7 +103,8 @@ class LoginViewController: UIViewController {
             email.isEmpty == false,
             email != "testiOSUser" else {
                 // login live test user
-                // mock user will be loaded in mainVC if backend fails
+                // mock user will be loaded in mainVC if backend fails to login user
+                // will remove this if backend isn't up soon so Mock user is always loaded
                 authService.loginUser(with: "testiOSUser", password: "123456") {
                     DispatchQueue.main.async {
                         self.delegate?.updateViews()
