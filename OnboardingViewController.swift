@@ -19,19 +19,6 @@ import SpriteKit
         view.addSubview(wunderlistLabel)
     }
 
-    @objc private func springButtonTapped() {
-        wunderlistLabel.transform = CGAffineTransform(scaleX: 0.0001, y: 0.0001)
-        UIView.animate(withDuration: 3,
-                       delay: 2,
-                       usingSpringWithDamping: 0.2,
-                       initialSpringVelocity: 1,
-                       options: [],
-                       animations: {
-                        self.wunderlistLabel.transform = .identity
-        },
-                       completion: nil)
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }

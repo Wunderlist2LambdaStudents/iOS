@@ -20,11 +20,16 @@ class TodoEditAndAddViewController: UIViewController {
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var recurringSegmentedControl: UISegmentedControl!
 
+    @IBOutlet weak var addLocationButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.titleTextField.addBottomBorder()
+        saveButton.layer.cornerRadius = 12.0
+        addLocationButton.layer.cornerRadius = 12.0
+     
 
     }
 
