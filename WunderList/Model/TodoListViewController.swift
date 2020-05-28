@@ -37,7 +37,7 @@ class TodoListViewController: UIViewController {
     }()
     
     // Quick Dummy data
-    var dailyTodo = ["Walk The Dog", "walk the Dog again"]
+    var dailyTodo = AuthService.activeUser?.todos?.filter { $0.recurring == .daily }
     var weeklyTodo = ["Pick Up Dog", "Feed Dog"]
     var monthlyTodo = ["Eat dog", "walk the dog again"]
     
@@ -133,7 +133,7 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if currentSelectedSegment == 1 {
-            return dailyTodo.count
+            return dailyTodo?.count ?? 0
         } else if currentSelectedSegment == 2 {
             return weeklyTodo.count
         } else {
@@ -149,8 +149,8 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
             let cell2 = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as? TodoTableViewCell,
             let cell3 = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as? TodoTableViewCell
             else { return UITableViewCell() }
-        
-        cell1.todoTitleLabel.text = dailyTodo[indexPath.row]
+
+        cell1.todoTitleLabel.text = dailyTodo?[indexPath.row].title
         cell2.todoTitleLabel.text = weeklyTodo[indexPath.row]
         cell3.todoTitleLabel.text = monthlyTodo[indexPath.row]
         
