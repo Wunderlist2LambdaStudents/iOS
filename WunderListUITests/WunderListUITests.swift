@@ -55,7 +55,7 @@ class WunderListUITests: XCTestCase {
         return app.buttons[identifier.rawValue]
     }
 
-    private func testSignIn() {
+    private func signInHelper() {
               let signInButton = app.segmentedControls.buttons["Sign In"]
                 XCTAssert(signInButton.isHittable)
                 signInButton.tap()
@@ -166,7 +166,7 @@ class WunderListUITests: XCTestCase {
     }
 
     func testDetailView() {
-        testSignIn()
+        signInHelper()
         XCTAssert(addToDoButton.isHittable)
         addToDoButton.tap()
 

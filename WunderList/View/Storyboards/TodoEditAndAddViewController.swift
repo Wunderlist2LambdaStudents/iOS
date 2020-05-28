@@ -29,8 +29,6 @@ class TodoEditAndAddViewController: UIViewController {
         self.titleTextField.addBottomBorder()
         saveButton.layer.cornerRadius = 12.0
         addLocationButton.layer.cornerRadius = 12.0
-     
-
     }
 
 // MARK: - Actions

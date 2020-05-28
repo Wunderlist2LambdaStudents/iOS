@@ -109,7 +109,9 @@ class TodoListViewController: UIViewController {
     @IBAction func completeButton(_ sender: UIButton) {
         complete.toggle()
 
-        sender.setImage(complete ? UIImage(systemName: "checkmark.circle.fill") : UIImage(systemName: "circle"), for: .normal)
+        sender.setImage(complete ?
+            UIImage(systemName: "checkmark.circle.fill") :
+            UIImage(systemName: "circle"), for: .normal)
     }
 
     @IBAction func switchTableViewSegmentedControlAction(_ sender: UISegmentedControl) {
@@ -196,7 +198,7 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
 //                }
             }
         }
-    }	
+    }
 }
 
 extension TodoListViewController: NSFetchedResultsControllerDelegate {
