@@ -17,8 +17,10 @@ class AuthService {
     private let networkService = NetworkService()
     private let dataLoader: NetworkLoader
     private let baseURL = URL(string: "https://bw-wunderlist.herokuapp.com/auth")!
-    //static so it's always accessible and always the same user (until another user is logged in)
+    //
     ///The currently logged in user
+    ///
+    /// Static so it's always accessible and always the same user (until another user is logged in)
     static var activeUser: UserRepresentation?
 
     // MARK: - Init -
@@ -27,7 +29,15 @@ class AuthService {
     }
 
     // MARK: - Methods -
-    func registerUser(with username: String, and password: String, completion: @escaping () -> Void) {
+
+    /// Register a User on the Heroku API
+    /// - Parameters:
+    ///   - username: Minimum 4 characters
+    ///   - password: Minimum 6 characters
+    ///   - completion: Signals when the method is complete (returns nothing)
+    func registerUser(with username: String,
+                      and password: String,
+                      completion: @escaping () -> Void) {
         let requestURL = baseURL.appendingPathComponent("/register")
         guard var request = networkService.createRequest(
             url: requestURL,
@@ -65,7 +75,15 @@ class AuthService {
         })
     }
 
-    func loginUser(with username: String, password: String, completion: @escaping () -> Void) {
+    /// Login to the heroku API
+    /// - Parameters:
+    ///   - username: The registered user's username
+    ///   - password: The registered user's
+    ///   - completion: Signals when the method is complete (returns nothing)
+    func loginUser(with username: String,
+                   password: String,
+                   completion: @escaping () -> Void) {
+
         let loginURL = baseURL.appendingPathComponent("login")
         guard var request = networkService.createRequest(
             url: loginURL,
@@ -77,8 +95,8 @@ class AuthService {
                 completion()
                 return
         }
-        //token is nil in UserRepresentation by default, so not required in the initializer
-        var loginUser = UserRepresentation(username: username, password: password)
+        //create a user to be encoded and sent to the server for login
+        let loginUser = UserRepresentation(username: username, password: password)
         let encodedUser = networkService.encode(from: loginUser, request: &request)
         guard let requestWithUser = encodedUser.request else {
             print("requestWithUser failed, error encoding user?")
@@ -98,8 +116,13 @@ class AuthService {
             }
             print(response?.statusCode as Any) //as Any to silence warning
             if response?.statusCode == 200 {
-                //once the user is logged in, assign the active user for use in methods external to this class
-                loginUser.token = self.networkService.decode(to: Bearer.self, data: data)?.token
+                //this assigns all of the user's attributes from the server since the server is
+                //returning username, token, and identifier, but password is nil which is perfect
+                //for security purposes (and we dont need password after this)
+                guard let loginUser = self.networkService.decode(
+                    to: UserRepresentation.self,
+                    data: data
+                ) else { return }
                 //assign the static activeUser
                 AuthService.activeUser = loginUser
                 completion()
@@ -112,6 +135,8 @@ class AuthService {
         }
     }
 
+
+    /// Log out the active user
     func logoutUser() {
         AuthService.activeUser = nil
         //global function to return user to login screen? local method here?

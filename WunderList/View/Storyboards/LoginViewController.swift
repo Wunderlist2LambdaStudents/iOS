@@ -103,8 +103,14 @@ class LoginViewController: UIViewController {
         //            let email = emailTextField.text,
         //            email.isEmpty == false else {
         //                return }
-        delegate?.updateViews()
-        self.dismiss(animated: true, completion: nil)
+        let authService = AuthService()
+        authService.loginUser(with: "testiOSUser", password: "123456") {
+            DispatchQueue.main.async {
+                self.delegate?.updateViews()
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+
     }
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation

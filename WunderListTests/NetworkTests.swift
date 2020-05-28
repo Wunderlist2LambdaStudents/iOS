@@ -8,8 +8,36 @@
 
 import XCTest
 @testable import WunderList
-
+/// Test Live and Mock network calls
+///
+///All live calls mutating a user should be balanced
+///(i.e. if testing createTodo, delete the todo at the end of the test
+///and make testing that it was deleted part of the test)
 class NetworkTests: XCTestCase {
+
+    // MARK: - API Up and Speed -
+
+    ///Is the API working? Do our network methods work?
+    func testGettingData() {
+        let expectation = self.expectation(description: "\(#file), \(#function): WaitForGenericGetResult")
+        let networkService = NetworkService()
+        //test creating request
+        let request = networkService.createRequest(
+            url: URL(string: "https://bw-wunderlist.herokuapp.com/"),
+            method: .get
+        )
+        XCTAssertNotNil(request)
+        //test loading data from request
+        networkService.dataLoader.loadData(using: request!) { (data, response, error) in
+            XCTAssertNil(error)
+            XCTAssertNotNil(data)
+            XCTAssertNotNil(response)
+            XCTAssertEqual(response?.statusCode, 200)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 2.0)
+    }
+    ///How fast is the average login?
     func testSpeedOfTypicalLoginRequest() {
         measureMetrics([.wallClockTime], automaticallyStartMeasuring: false) {
             let expectation = self.expectation(description: "\(#file), \(#function): WaitForLoginSpeedResult")
@@ -23,6 +51,9 @@ class NetworkTests: XCTestCase {
         }
     }
 
+    // MARK: - API Functionality -
+
+    ///Can the user login?
     func testLoggingInUser() {
         let expectation = self.expectation(description: "\(#file), \(#function): WaitForLoginResult")
         let authService = AuthService()
@@ -32,25 +63,35 @@ class NetworkTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 2.0)
     }
+    ///can we get todos from the server?
+    func testGettingTodosFromServer() {
+        /*
+         loginUser {
+            fetchTodos {
 
-    func testGettingData() {
-        let expectation = self.expectation(description: "\(#file), \(#function): WaitForGenericGetResult")
-        let networkService = NetworkService()
-        //test creating request
-        let request = networkService.createRequest(url: URL(string: "https://bw-wunderlist.herokuapp.com/"), method: .get)
-        XCTAssertNotNil(request)
-        //test loading data from request
-        networkService.dataLoader.loadData(using: request!) { (data, response, error) in
-            XCTAssertNil(error)
-            XCTAssertNotNil(data)
-            XCTAssertNotNil(response)
-            XCTAssertEqual(response?.statusCode, 200)
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 2.0)
+            }
+         }
+        */
+
+    }
+    ///Can we create a todo and delete it?
+    ///
+    ///Making this 2 seperate tests could create unbalanced create/delete calls for our mock user,
+    ///causing other tests to fail
+    func testCreatingAndDeletingLiveTodo() {
+        /*
+         loginUser {
+            createTodo {
+                deleteTodo {
+
+                }
+            }
+         }
+         */
     }
 
     // MARK: - Mock Tests -
+    ///Can we decode Mock a Mock User using our MockDataLoader?
     func testDecodingMockUserData() {
         let expectation = self.expectation(description: "\(#file), \(#function): WaitForDecodingMockUserData")
         //create mockDataLoader and create Request
@@ -73,6 +114,7 @@ class NetworkTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
 
+    ///Can we decode a Mock Todo using our MockDataLoader?
     func testDecodingMockTodo() {
         let expectation = self.expectation(description: "\(#file), \(#function): WaitForDecodingMockTodoData")
         //create mockDataLoader and create Request
@@ -101,8 +143,15 @@ class NetworkTests: XCTestCase {
         wait(for: [expectation], timeout: 2.0)
     }
 
+    ///Can we add Mock Todos to a Mock User?
     func testAddingMockTodosToMockUser() {
-        var mockUser = UserRepresentation(username: "TestUser", password: "123456", identifier: UUID(), token: "123456", todos: [])
+        var mockUser = UserRepresentation(
+            username: "TestUser",
+            password: "123456",
+            identifier: UUID(),
+            token: "123456",
+            todos: []
+        )
         //decode mock todos
         let expectation = self.expectation(description: "\(#file), \(#function): WaitForDecodingMockTodoData")
         //create mockDataLoader and create Request
