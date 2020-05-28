@@ -45,9 +45,8 @@ class AuthService {
             headerType: .contentType,
             headerValue: .json
         ) else { return }
-        var loginUser = UserRepresentation(username: username, password: password)
-        let encodedUser = networkService.encode(from: loginUser, request: &request)
-        dump(String(data: request.httpBody ?? Data(), encoding: .utf8))
+        var registerUser = UserRepresentation(username: username, password: password)
+        let encodedUser = networkService.encode(from: registerUser, request: &request)
         guard let requestWithUser = encodedUser.request else {
             print("requestWithUser failed, error encoding user?")
             completion()
@@ -68,8 +67,8 @@ class AuthService {
                     to: UserRepresentation.self,
                     data: data
                     ) else { return }
-                loginUser = returnedUser
-                AuthService.activeUser = loginUser
+                registerUser = returnedUser
+                AuthService.activeUser = registerUser
             }
             completion()
         })
@@ -96,8 +95,8 @@ class AuthService {
                 return
         }
         //create a user to be encoded and sent to the server for login
-        let loginUser = UserRepresentation(username: username, password: password)
-        let encodedUser = networkService.encode(from: loginUser, request: &request)
+        let preLoginUser = UserRepresentation(username: username, password: password)
+        let encodedUser = networkService.encode(from: preLoginUser, request: &request)
         guard let requestWithUser = encodedUser.request else {
             print("requestWithUser failed, error encoding user?")
             completion()
@@ -123,8 +122,11 @@ class AuthService {
                     to: UserRepresentation.self,
                     data: data
                 ) else { return }
+                print(loginUser.identifier)
                 //assign the static activeUser
+                #warning("Identifier isn't being assigned here. loginUser has it, activeUser doesn't")
                 AuthService.activeUser = loginUser
+                print(AuthService.activeUser?.identifier)
                 completion()
                 return
             } else {

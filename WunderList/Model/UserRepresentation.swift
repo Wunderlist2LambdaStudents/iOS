@@ -18,4 +18,12 @@ struct UserRepresentation: Codable {
     //sent to the server for methods requiring an authenticated user
     var token: String?
     var todos: [TodoRepresentation]?
+
+    enum CodingKeys: String, CodingKey {
+        case identifier = "uuid"
+        case username
+        case password
+        case token
+        case todos
+    }
 }

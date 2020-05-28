@@ -28,7 +28,9 @@ class TodoController {
     private let networkService = NetworkService()
     //As soon as class is initialized, get Todos
     init() {
-        fetchTodosFromServer()
+        if AuthService.activeUser != nil {
+            fetchTodosFromServer()
+        }
     }
 
     // MARK: - Get -
@@ -51,7 +53,7 @@ class TodoController {
             }
 
             //decode representations
-            let reps = self.networkService.decode(to: [String: TodoRepresentation].self, data: data)?.map { $1 }
+            let reps = self.networkService.decode(to: [TodoRepresentation].self, data: data)
             guard let unwrappedReps = reps else {
                 print("Error decoding Todos")
                 completion(.failure(.noDecode))
