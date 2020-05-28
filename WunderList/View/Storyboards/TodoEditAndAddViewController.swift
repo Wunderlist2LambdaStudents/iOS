@@ -37,10 +37,13 @@ class TodoEditAndAddViewController: UIViewController {
         let recurringIndex = recurringSegmentedControl.selectedSegmentIndex
         let recurring = Recurring.allCases[recurringIndex]
 
-        let todo = Todo(title: title, body: bodyText, recurring: recurring.rawValue, user: user)
-
-        todoController?.sendTodosToServer(todo: todo)
-
+        guard let todoRep = Todo(
+            title: title,
+            body: bodyText,
+            recurring: recurring.rawValue,
+            user: user
+        ).todoRepresentation else { return }
+        todoController?.sendTodosToServer(todo: todoRep)
         do {
             try CoreDataStack.shared.mainContext.save()
             dismiss(animated: true, completion: nil)

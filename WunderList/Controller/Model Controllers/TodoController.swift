@@ -66,21 +66,14 @@ class TodoController {
                 completion(.failure(.otherError))
                 NSLog("Error updating todos: \(error)")
             }
+
         }
     }
 
-    func sendTodosToServer(todo: Todo, completion: @escaping CompletionHandler = { _ in }) {
-        guard let uuid = todo.identifier else {
-            completion(.failure(.noIdentifier))
-            return
-        }
-        let requestURL = baseURL.appendingPathComponent(uuid.uuidString).appendingPathComponent("json")
+    func sendTodosToServer(todo: TodoRepresentation, completion: @escaping CompletionHandler = { _ in }) {
+        let requestURL = baseURL.appendingPathComponent(todo.identifier.uuidString).appendingPathComponent("json")
         guard var request = networkService.createRequest(url: requestURL, method: .put) else { return }
-        guard let representation = todo.todoRepresentation else {
-                      completion(.failure(.noEncode))
-                      return
-        }
-        networkService.encode(from: representation, request: &request)
+        networkService.encode(from: todo, request: &request)
         networkService.dataLoader.loadData(using: request) { _, _, error in
             if let error = error {
                 NSLog("Error sending task to server \(todo): \(error)")
