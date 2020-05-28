@@ -37,7 +37,11 @@ class TodoController {
     func fetchTodosFromServer(completion: @escaping CompletionHandler = { _ in }) {
         //#error("Need to provide authentication information (token)")
         let requestURL = baseURL.appendingPathComponent(AuthService.activeUser?.identifier?.uuidString ?? "")
-        guard var request = networkService.createRequest(url: requestURL, method: .get) else { return }
+        guard var request = networkService.createRequest(url: requestURL, method: .get) else {
+            print("bad request")
+            completion(.failure(.otherError))
+            return
+        }
         request.addValue(AuthService.activeUser?.token ?? "", forHTTPHeaderField: "Authorization")
         networkService.dataLoader.loadData(using: request) { data, _, error in
             if let error = error {
@@ -94,12 +98,12 @@ class TodoController {
 
         let context = CoreDataStack.shared.container.newBackgroundContext()
         var error: Error?
-
+        guard let activeUser = AuthService.activeUser else { return }
             context.performAndWait {
                 do {
                     let existingTodos = try context.fetch(fetchRequest)
 
-                    for todo in existingTodos {
+                    for todo in existingTodos {                        
                         guard let identifier = todo.identifier,
                             let representation = representationsByID[identifier] else { continue }
                         self.updateTodoRep(todo: todo, with: representation)
