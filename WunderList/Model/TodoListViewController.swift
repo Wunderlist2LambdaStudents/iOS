@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 
 class TodoListViewController: UIViewController {
-
     // MARK: - Properties
 
     var complete = false
