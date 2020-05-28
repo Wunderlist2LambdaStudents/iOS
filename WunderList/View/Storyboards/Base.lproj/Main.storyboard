@@ -80,6 +80,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="quk-RH-HkS">
                                                     <rect key="frame" x="334" y="10" width="20" height="22"/>
                                                     <state key="normal" image="circle" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="completeButton:" destination="r0a-pS-5qF" eventType="touchUpInside" id="BZs-8Q-Mhe"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

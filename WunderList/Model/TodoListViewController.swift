@@ -12,7 +12,8 @@ import CoreData
 class TodoListViewController: UIViewController {
 
     // MARK: - Properties
-
+    
+    var complete = false
     let todoController = TodoController()
 
     lazy var fetchedResultsController: NSFetchedResultsController<Todo> = {
@@ -90,6 +91,13 @@ class TodoListViewController: UIViewController {
             //            print(coreDataUser.todo)
         }
     }
+    
+    @IBAction func completeButton(_ sender: UIButton) {
+        complete.toggle()
+        
+        sender.setImage(complete ? UIImage(systemName: "checkmark.circle.fill") : UIImage(systemName: "circle"), for: .normal)
+    }
+    
 
     @IBAction func switchTableViewSegmentedControlAction(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
@@ -104,8 +112,17 @@ class TodoListViewController: UIViewController {
     }
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "AddTaskSegue" {
+            if let todoEditVC = segue.destination as?
+            TodoEditAndAddViewController,
+                let indexPath = tableView.indexPathForSelectedRow {
+                // line 121 is not working because we have to insert a todo data model object into the todoEditVC..
+                // todoEditVC.todo = fetchedResultsController.object(at: indexPath)
+                todoEditVC.todoController = todoController
+            }
+        }
     }
-
 }
 extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
