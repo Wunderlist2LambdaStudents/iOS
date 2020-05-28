@@ -10,13 +10,20 @@ import UIKit
 import CoreData
 
 class TodoListViewController: UIViewController {
-
     // MARK: - Properties
 
+    var complete = false
     let todoController = TodoController()
 
     lazy var fetchedResultsController: NSFetchedResultsController<Todo> = {
         let fetchRequest: NSFetchRequest<Todo> = Todo.fetchRequest()
+        if AuthService.activeUser != nil {
+        guard let userId = AuthService.activeUser?.identifier?.uuidString else {
+            fatalError("Identifier error")
+        }
+            let predicate = NSPredicate(format: "user.identifier == %@", userId)
+            fetchRequest.predicate = predicate
+        }
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "complete", ascending: true),
                                         NSSortDescriptor(key: "title", ascending: true)]
         let context = CoreDataStack.shared.mainContext
@@ -36,9 +43,10 @@ class TodoListViewController: UIViewController {
     }()
 
     // Quick Dummy data
-    var dailyTodo = ["Walk The Dog", "walk the Dog again"]
-    var weeklyTodo = ["Pick Up Dog", "Feed Dog"]
-    var monthlyTodo = ["Eat dog", "walk the dog again"]
+    var nonRecurringTodos = AuthService.activeUser?.todos?.filter { $0.recurring == .none }
+    var dailyTodos = AuthService.activeUser?.todos?.filter { $0.recurring == .daily }
+    var weeklyTodos = AuthService.activeUser?.todos?.filter { $0.recurring == .weekly }
+    var monthlyTodos = AuthService.activeUser?.todos?.filter { $0.recurring == .monthly }
 
     // MARK: - Outlets -
     @IBOutlet weak var tableView: UITableView!
@@ -52,37 +60,42 @@ class TodoListViewController: UIViewController {
         super.viewDidLoad()
         switchTableViewSegmentedControlAction.backgroundColor = #colorLiteral(red: 0.3939243257, green: 0.3406436443, blue: 0.820184648, alpha: 0.7223886986)
         switchTableViewSegmentedControlAction.selectedSegmentTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        todoTitle.textColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 0.8080318921)
     }
 
     func updateViews() {
-        //update the view after the user is logged in
+        //update the view after the user is logged in or create mock user
         if AuthService.activeUser != nil {
-            //do work
+            let todoRep = TodoRepresentation(identifier: UUID(),
+                                             title: "testTodo",
+                                             body: "testbody",
+                                             dueDate: Date(),
+                                             complete: false,
+                                             recurring: .none
+            )
+            try? todoController.updateTodos(with: [todoRep])
+//            todoController.fetchTodosFromServer { (result) in
+//                print(try? result.get())
+//            }
         } else {
             print("no active user, mocking user:")
             let todoController = TodoController()
             guard var user = todoController.loadMockUser() else { return }
             todoController.loadMockTodos(from: &user)
-            let todoRepresentation = TodoRepresentation(
-                identifier: UUID(),
-                title: "Test Append",
-                body: "Testing",
-                dueDate: Date(),
-                complete: true,
-                recurring: .none,
-                location: LocationRepresentation(xLocation: 0, yLocation: 0)
-            )
-            let jsonEncoder = JSONEncoder()
-            let todo = try? jsonEncoder.encode(todoRepresentation)
-            Data.writeToFile(with: .goodTodoData, encodableData: todo)
-            //as Any to silence warning
-            print(
-                "Json: \(String(data: Data.mockData(with: .goodTodoData), encoding: .utf8) as Any)"
-            )
             AuthService.activeUser = user
+            todoController.loadMockTodos(from: &user)
+            print(user.todos)
 
             //CoreData works with relationships
+
+            //            let todoRepresentation = TodoRepresentation(
+            //                identifier: UUID(),
+            //                title: "Test Append",
+            //                body: "Testing",
+            //                dueDate: Date(),
+            //                complete: true,
+            //                recurring: .none,
+            //                location: LocationRepresentation(xLocation: 0, yLocation: 0)
+            //            )
             //            guard let coreDataUser = User(userRep: user) else { return }
             //            let todo = Todo(identifier: UUID(), title: "title",
             //            body: "body", dueDate: Date(), complete: true, recurring: "none",
@@ -91,6 +104,14 @@ class TodoListViewController: UIViewController {
             //            context: CoreDataStack.shared.mainContext)
             //            print(coreDataUser.todo)
         }
+    }
+
+    @IBAction func completeButton(_ sender: UIButton) {
+        complete.toggle()
+
+        sender.setImage(complete ?
+            UIImage(systemName: "checkmark.circle.fill") :
+            UIImage(systemName: "circle"), for: .normal)
     }
 
     @IBAction func switchTableViewSegmentedControlAction(_ sender: UISegmentedControl) {
@@ -104,43 +125,50 @@ class TodoListViewController: UIViewController {
         self.tableView.reloadData()
 
     }
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    }
 
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "AddTaskSegue" {
+            if let todoEditVC = segue.destination as?
+                TodoEditAndAddViewController,
+                let indexPath = tableView.indexPathForSelectedRow {
+                // line 121 is not working because we have to insert a todo data model object into the todoEditVC..
+                // todoEditVC.todo = fetchedResultsController.object(at: indexPath)
+                todoEditVC.todoController = todoController
+            }
+        }
+    }
 }
+
+// MARK: - TableView Methods
+
 extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if currentSelectedSegment == 1 {
-            return dailyTodo.count
+            return fetchedResultsController.sections?[0].numberOfObjects ?? 0
         } else if currentSelectedSegment == 2 {
-            return weeklyTodo.count
+            return fetchedResultsController.sections?[1].numberOfObjects ?? 0
         } else {
-            return monthlyTodo.count
+            return fetchedResultsController.sections?[2].numberOfObjects ?? 0
         }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell1 = tableView.dequeueReusableCell(
+        guard let cell = tableView.dequeueReusableCell(
             withIdentifier: "TodoCell",
             for: indexPath
-            ) as? TodoTableViewCell,
-            let cell2 = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as? TodoTableViewCell,
-            let cell3 = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as? TodoTableViewCell
+            ) as? TodoTableViewCell
             else { return UITableViewCell() }
 
-        cell1.todoTitleLabel.text = dailyTodo[indexPath.row]
-        cell2.todoTitleLabel.text = weeklyTodo[indexPath.row]
-        cell3.todoTitleLabel.text = monthlyTodo[indexPath.row]
+        guard let todo = fetchedResultsController
+            .sections?[indexPath.section]
+            .objects?[indexPath.row] as? Todo else { return UITableViewCell() }
+        cell.todoTitleLabel.text = todo.title
 
-        if currentSelectedSegment == 1 {
-            return cell1
-        } else if currentSelectedSegment == 2 {
-            return cell2
-        } else {
-            return cell3
-        }
-
+        return cell
     }
 
     func tableView(
@@ -156,18 +184,18 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
                 if result == nil {
                     return
                 }
-
-                DispatchQueue.main.async {
-                    let context = CoreDataStack.shared.mainContext
-
-                    context.delete(todo)
-                    do {
-                        try context.save()
-                    } catch {
-                        context.reset()
-                        NSLog("Error saving managed object context (delete task): \(error)")
-                    }
-                }
+//
+//                DispatchQueue.main.async {
+//                    let context = CoreDataStack.shared.mainContext
+//
+//                    context.delete(todo)
+//                    do {
+//                        try context.save()
+//                    } catch {
+//                        context.reset()
+//                        NSLog("Error saving managed object context (delete task): \(error)")
+//                    }
+//                }
             }
         }
     }

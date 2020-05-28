@@ -18,9 +18,9 @@ extension Todo {
         guard let representedLocation = locationRep.locationRepresentation else { return  nil }
 
         guard let identifier = identifier,
-        let title = title,
-        let body = body,
-        let dueDate = dueDate else { return nil }
+            let title = title,
+            let body = body,
+            let dueDate = dueDate else { return nil }
         return TodoRepresentation(
             identifier: identifier,
             title: title,
@@ -37,7 +37,7 @@ extension Todo {
                                         title: String,
                                         body: String,
                                         dueDate: Date = Date(),
-                                        complete: Bool = false,
+                                        complete: Bool,
                                         recurring: String,
                                         user: User,
                                         context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
@@ -50,19 +50,20 @@ extension Todo {
         self.recurring = recurring
     }
 
-// MARK: - WHERE I'M STUCK (relationship issues I beleive)
     @discardableResult convenience init?(
         todoRepresentation: TodoRepresentation,
         context: NSManagedObjectContext = CoreDataStack.shared.mainContext,
         userRep: UserRepresentation
     ) {
-       guard let user = User(userRep: userRep) else { return nil }
+        //used to establish relationship
+        guard let user = User(userRep: userRep, context: context) else { return nil }
 
         self.init(
             identifier: todoRepresentation.identifier,
             title: todoRepresentation.title,
             body: todoRepresentation.body,
             dueDate: todoRepresentation.dueDate,
+            complete: todoRepresentation.complete,
             recurring: todoRepresentation.recurring.rawValue,
             user: user,
             context: context

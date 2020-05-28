@@ -16,7 +16,6 @@
 		8E56EF5E247D724700D53083 /* TodoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E56EF5D247D724700D53083 /* TodoController.swift */; };
 		8E56EF66247DA0D600D53083 /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E56EF65247DA0D600D53083 /* TodoTableViewCell.swift */; };
 		8E83634B247EE9D5002DAA62 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E83634A247EE9D5002DAA62 /* OnboardingViewController.swift */; };
-		8E83634D247EF164002DAA62 /* SpringAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E83634C247EF164002DAA62 /* SpringAnimation.swift */; };
 		8E83634F247F05F2002DAA62 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E83634E247F05F2002DAA62 /* ViewExtension.swift */; };
 		8E90DE87247A25EC000916A3 /* Jonah-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E90DE86247A25EC000916A3 /* Jonah-Regular.ttf */; };
 		8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E90DE88247A2767000916A3 /* CustomFonts.swift */; };
@@ -82,7 +81,6 @@
 		8E56EF5D247D724700D53083 /* TodoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoController.swift; sourceTree = "<group>"; };
 		8E56EF65247DA0D600D53083 /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
 		8E83634A247EE9D5002DAA62 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = SOURCE_ROOT; };
-		8E83634C247EF164002DAA62 /* SpringAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpringAnimation.swift; sourceTree = "<group>"; };
 		8E83634E247F05F2002DAA62 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		8E90DE86247A25EC000916A3 /* Jonah-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jonah-Regular.ttf"; sourceTree = "<group>"; };
 		8E90DE88247A2767000916A3 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
@@ -264,7 +262,6 @@
 			isa = PBXGroup;
 			children = (
 				8E83634A247EE9D5002DAA62 /* OnboardingViewController.swift */,
-				8E83634C247EF164002DAA62 /* SpringAnimation.swift */,
 				8EF2C098247ECD5C0077B280 /* TodoEditAndAddViewController.swift */,
 				8E4DE215247A229700EF76E4 /* LoginViewController.swift */,
 				B98DB58E247C813200EBFB2D /* TodoListViewController.swift */,
@@ -518,7 +515,6 @@
 				8E83634B247EE9D5002DAA62 /* OnboardingViewController.swift in Sources */,
 				8EF2C099247ECD5C0077B280 /* TodoEditAndAddViewController.swift in Sources */,
 				B95B65902478ED61009C6D16 /* NetworkService.swift in Sources */,
-				8E83634D247EF164002DAA62 /* SpringAnimation.swift in Sources */,
 				B95B65572478EBE0009C6D16 /* AppDelegate.swift in Sources */,
 				B98DB589247B5CA900EBFB2D /* TodoRepresentation.swift in Sources */,
 				B98DB58F247C813200EBFB2D /* TodoListViewController.swift in Sources */,

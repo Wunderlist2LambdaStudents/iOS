@@ -26,13 +26,13 @@ struct LocationRepresentation: Codable {
 }
 //everything in the backend is "not-nullable" (not optional)
 struct TodoRepresentation: Codable {
-    let identifier: UUID
+    var identifier: UUID = UUID()
     var title: String
     var body: String
     var dueDate: Date
     var complete: Bool
     var recurring: Recurring
-    var location: LocationRepresentation
+    var location: LocationRepresentation?
 
     enum CodingKeys: String, CodingKey {
         case identifier

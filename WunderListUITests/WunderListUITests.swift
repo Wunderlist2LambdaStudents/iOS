@@ -25,11 +25,19 @@ class WunderListUITests: XCTestCase {
         case loginEmailTextField = "LoginViewController.EmailTextField"
         case signInButtonLabel = "Welcome Back!"
         case signUpButtonLabel = "Get Started"
+        case addToDoButton = "ToDoListViewController.addToDo"
+        case addLocationButton = "TodoEditAndAddViewController.addLocationButton"
+        case addDetailTextView = "TodoEditAndAddViewController.addDetailTextView"
+        case addTitleTextField = "TodoEditAndAddViewController.titleText"
+        case completeButton = "TodoListViewController.completeToggleButton"
+        case toDoListItem = "TodoListViewController.todoItem"
     }
 
     private var testUserName = "Test Name"
     private var testUserEmail = "test@test.com"
     private var testUserPW = "password"
+    private var detailTextEntry = "Test detail entry for UI Testing."
+    private var titleTextEntry = "Test title entry for UI Testing."
 
     private var app: XCUIApplication {
         return XCUIApplication()
@@ -39,9 +47,35 @@ class WunderListUITests: XCTestCase {
         return app.textFields[identifier.rawValue]
     }
 
+    private func textView(identifier: Identifier) -> XCUIElement {
+           return app.textViews[identifier.rawValue]
+       }
+
     private func buttons(identifier: Identifier) -> XCUIElement {
         return app.buttons[identifier.rawValue]
     }
+
+    private func signInHelper() {
+              let signInButton = app.segmentedControls.buttons["Sign In"]
+                XCTAssert(signInButton.isHittable)
+                signInButton.tap()
+
+                emailTextField.tap()
+                XCTAssert(emailTextField.isHittable)
+                emailTextField.typeText(testUserEmail)
+                XCTAssertTrue(emailTextField.value as? String == testUserEmail)
+
+                pwTextField.tap()
+                pwTextField.typeText(testUserPW)
+                XCTAssertTrue(pwTextField.value as? String == testUserPW)
+
+                let point = CGPoint(x: 100, y: 100)
+                app.tapCoordinate(at: point)
+
+                let startButton = app.buttons.element(boundBy: 2)
+                XCTAssertTrue(startButton.isHittable)
+                startButton.tap()
+            }
 
     private var emailTextField: XCUIElement {
         return textField(identifier: .loginEmailTextField)
@@ -59,15 +93,22 @@ class WunderListUITests: XCTestCase {
         return buttons(identifier: .loginStartButton)
     }
 
+    private var addToDoButton: XCUIElement {
+        return buttons(identifier: .addToDoButton)
+    }
+
+    private var addTitleTextField: XCUIElement {
+        return textField(identifier: .addTitleTextField)
+    }
+
+    private var addDetailTextView: XCUIElement {
+        return textView(identifier: .addDetailTextView)
+    }
+
     func testUserSignUp() throws {
         let signUpButton = app.segmentedControls.buttons["Sign Up"]
         XCTAssert(signUpButton.isHittable)
         signUpButton.tap()
-
-//        nameTextField.tap()
-//        XCTAssert(nameTextField.isHittable)
-//        nameTextField.typeText(testUserName)
-//        XCTAssertTrue(nameTextField.value as? String == testUserName)
 
         emailTextField.tap()
         XCTAssert(emailTextField.isHittable)
@@ -91,11 +132,6 @@ class WunderListUITests: XCTestCase {
         let signInButton = app.segmentedControls.buttons["Sign In"]
         XCTAssert(signInButton.isHittable)
         signInButton.tap()
-
-//        nameTextField.tap()
-//        XCTAssert(nameTextField.isHittable)
-//        nameTextField.typeText(testUserName)
-//        XCTAssertTrue(nameTextField.value as? String == testUserName)
 
         emailTextField.tap()
         XCTAssert(emailTextField.isHittable)
@@ -126,6 +162,23 @@ class WunderListUITests: XCTestCase {
         signUpButton.tap()
 
         XCTAssertTrue(loginStartButton.label == Identifier.signUpButtonLabel.rawValue)
+
+    }
+
+    func testDetailView() {
+        signInHelper()
+        XCTAssert(addToDoButton.isHittable)
+        addToDoButton.tap()
+
+        XCTAssert(addTitleTextField.isHittable)
+        addTitleTextField.tap()
+        addTitleTextField.typeText(titleTextEntry)
+        XCTAssertTrue(addTitleTextField.value as? String == titleTextEntry)
+
+        XCTAssert(addDetailTextView.isHittable)
+        addDetailTextView.tap()
+        addDetailTextView.typeText(detailTextEntry)
+        XCTAssertTrue(addDetailTextView.value as? String == detailTextEntry)
     }
 
     func testLaunchPerformance() throws {

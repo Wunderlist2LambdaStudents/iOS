@@ -13,7 +13,7 @@ class CoreDataStack {
 
     // MARK: - Properties
     static let shared = CoreDataStack()
-
+    ///the container used to work with the app's CoreData Objects
     lazy var container: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "WunderList")
         container.loadPersistentStores { _, error in
@@ -27,7 +27,7 @@ class CoreDataStack {
     var mainContext: NSManagedObjectContext {
         return container.viewContext
     }
-
+    ///save any object, relationship change, etc... on the main context
     func save(context: NSManagedObjectContext = CoreDataStack.shared.mainContext) throws {
         var error: Error?
         context.performAndWait {

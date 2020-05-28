@@ -22,6 +22,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailScrollView: UIScrollView!
+    @IBOutlet weak var welcomLabel: UILabel!
 
     // MARK: - Properties
     ///Used to give access to TodoListViewController for passing data
@@ -32,8 +33,10 @@ class LoginViewController: UIViewController {
             switch selectedLoginType {
             case .signUp:
                 loginButtonOutlet.setTitle("Welcome Back!", for: .normal)
+                welcomLabel.text = "Welcome back!"
             case .signIn:
                 loginButtonOutlet.setTitle("Get Started", for: .normal)
+                welcomLabel.text = "Let's create your account"
             }
         }
     }
@@ -45,7 +48,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         //customizing views
-//        self.nameTextField.addBottomBorder()
+        //        self.nameTextField.addBottomBorder()
         self.passwordTextField.addBottomBorder()
         self.emailTextField.addBottomBorder()
         loginButtonOutlet.layer.cornerRadius = 12.0
@@ -59,10 +62,10 @@ class LoginViewController: UIViewController {
 
         //handling keyboard
         self.emailScrollView.translatesAutoresizingMaskIntoConstraints = false
-//        nameTextField.delegate = self
+        //        nameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
-//        nameTextField.tag = 1
+        //        nameTextField.tag = 1
         emailTextField.tag = 1
         passwordTextField.tag = 2
 
@@ -95,16 +98,34 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func signInButtonAction(_ sender: UIButton) {
-        // We want this for production, skipping for development
-        //        guard let name = nameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
-        //            name.isEmpty == false,
-        //            let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
-        //            password.isEmpty == false,
-        //            let email = emailTextField.text,
-        //            email.isEmpty == false else {
-        //                return }
-        delegate?.updateViews()
-        self.dismiss(animated: true, completion: nil)
+        let authService = AuthService()
+        guard let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+            password.isEmpty == false,
+            let email = emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+            email.isEmpty == false,
+            email != "testiOSUser" else {
+                // login live test user
+                // mock user will be loaded in mainVC if backend fails to login user
+                // will remove this if backend isn't up soon so Mock user is always loaded
+                authService.loginUser(with: "testiOSUser", password: "123456") {
+                    DispatchQueue.main.async {
+                        self.delegate?.updateViews()
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+                return
+        }
+        //login actual user
+        authService.loginUser(with: email, password: password) {
+            DispatchQueue.main.async {
+                self.delegate?.updateViews()
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+//                    DispatchQueue.main.async {
+//                        self.delegate?.updateViews()
+//                        self.dismiss(animated: true, completion: nil)
+//                    }
     }
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation

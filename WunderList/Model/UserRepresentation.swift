@@ -17,5 +17,14 @@ struct UserRepresentation: Codable {
     //token will always be assigned by the login method and only
     //sent to the server for methods requiring an authenticated user
     var token: String?
+    //For Testing
     var todos: [TodoRepresentation]?
+
+    enum CodingKeys: String, CodingKey {
+        case identifier = "uuid"
+        case username
+        case password
+        case token
+        case todos
+    }
 }
