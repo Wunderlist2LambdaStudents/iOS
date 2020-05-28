@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         //customizing views
-//        self.nameTextField.addBottomBorder()
+        //        self.nameTextField.addBottomBorder()
         self.passwordTextField.addBottomBorder()
         self.emailTextField.addBottomBorder()
         loginButtonOutlet.layer.cornerRadius = 12.0
@@ -59,10 +59,10 @@ class LoginViewController: UIViewController {
 
         //handling keyboard
         self.emailScrollView.translatesAutoresizingMaskIntoConstraints = false
-//        nameTextField.delegate = self
+        //        nameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
-//        nameTextField.tag = 1
+        //        nameTextField.tag = 1
         emailTextField.tag = 1
         passwordTextField.tag = 2
 
@@ -96,15 +96,31 @@ class LoginViewController: UIViewController {
 
     @IBAction func signInButtonAction(_ sender: UIButton) {
         // We want this for production, skipping for development
-        //        guard let name = nameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
-        //            name.isEmpty == false,
-        //            let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
-        //            password.isEmpty == false,
-        //            let email = emailTextField.text,
-        //            email.isEmpty == false else {
-        //                return }
-        delegate?.updateViews()
-        self.dismiss(animated: true, completion: nil)
+        let authService = AuthService()
+        guard let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+            password.isEmpty == false,
+            let email = emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+            email.isEmpty == false,
+            email != "testiOSUser" else {
+                // login live test user
+                // mock user will be loaded in mainVC if backend fails to login user
+                // will remove this if backend isn't up soon so Mock user is always loaded
+                authService.loginUser(with: "testiOSUser", password: "123456") {
+                    DispatchQueue.main.async {
+                        self.delegate?.updateViews()
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+                return
+        }
+        //login actual user
+        authService.loginUser(with: email, password: password) {
+            DispatchQueue.main.async {
+                self.delegate?.updateViews()
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+
     }
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation

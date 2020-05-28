@@ -20,23 +20,26 @@ enum NetworkError: Error {
 }
 
 typealias CompletionHandler = (Result<Bool, NetworkError>) -> Void
-private let baseURL = URL(string: "https://bw-wunderlist.herokuapp.com/")!
+private let baseURL = URL(string: "https://bw-wunderlist.herokuapp.com/todo")!
 
 class TodoController {
 
-    // MARK: - Properties
-    var networkService: NetworkService?
-
+    // MARK: - Properties -
+    private let networkService = NetworkService()
+    //As soon as class is initialized, get Todos
     init() {
-        fetchTodosFromServer()
+        if AuthService.activeUser != nil {
+            fetchTodosFromServer()
+        }
     }
 
-    // MARK: - Methods
+    // MARK: - Get -
     func fetchTodosFromServer(completion: @escaping CompletionHandler = { _ in }) {
-        let requestURL = baseURL.appendingPathComponent("json")
-        guard let request = networkService?.createRequest(url: requestURL, method: .get) else { return }
-
-        networkService?.dataLoader.loadData(using: request) { data, _, error in
+        //#error("Need to provide authentication information (token)")
+        let requestURL = baseURL.appendingPathComponent(AuthService.activeUser?.identifier?.uuidString ?? "")
+        guard var request = networkService.createRequest(url: requestURL, method: .get) else { return }
+        request.addValue(AuthService.activeUser?.token ?? "", forHTTPHeaderField: "Authorization")
+        networkService.dataLoader.loadData(using: request) { data, _, error in
             if let error = error {
                 NSLog("Error fetching tasks: \(error)")
                 completion(.failure(.otherError))
@@ -49,29 +52,29 @@ class TodoController {
                 return
             }
 
-            do {
-                let todoRepresentations = Array(
-                    try JSONDecoder().decode([String: TodoRepresentation].self,
-                                             from: data).values)
-                try self.updateTodos(with: todoRepresentations)
-            } catch {
-                NSLog("Error decoding todos: \(error)")
+            //decode representations
+            let reps = self.networkService.decode(to: [TodoRepresentation].self, data: data)
+            guard let unwrappedReps = reps else {
+                print("Error decoding Todos")
+                completion(.failure(.noDecode))
+                return
             }
+            //update Todos
+            do {
+                try self.updateTodos(with: unwrappedReps)
+            } catch {
+                completion(.failure(.otherError))
+                NSLog("Error updating todos: \(error)")
+            }
+
         }
     }
-    func sendTodosToServer(todo: Todo, completion: @escaping CompletionHandler = { _ in }) {
-        guard let uuid = todo.identifier else {
-            completion(.failure(.noIdentifier))
-            return
-        }
-        let requestURL = baseURL.appendingPathComponent(uuid.uuidString).appendingPathComponent("json")
-        guard var request = networkService?.createRequest(url: requestURL, method: .put) else { return }
-        guard let representation = todo.todoRepresentation else {
-                      completion(.failure(.noEncode))
-                      return
-        }
-        networkService?.encode(from: representation, request: &request)
-        networkService?.dataLoader.loadData(using: request) { _, _, error in
+
+    func sendTodosToServer(todo: TodoRepresentation, completion: @escaping CompletionHandler = { _ in }) {
+        let requestURL = baseURL.appendingPathComponent(todo.identifier.uuidString).appendingPathComponent("json")
+        guard var request = networkService.createRequest(url: requestURL, method: .put) else { return }
+        networkService.encode(from: todo, request: &request)
+        networkService.dataLoader.loadData(using: request) { _, _, error in
             if let error = error {
                 NSLog("Error sending task to server \(todo): \(error)")
                 completion(.failure(.otherError))
@@ -121,8 +124,8 @@ class TodoController {
             return
         }
         let requestURL = baseURL.appendingPathComponent(uuid.uuidString).appendingPathExtension("json")
-        guard let request = networkService?.createRequest(url: requestURL, method: .delete) else { return }
-        networkService?.dataLoader.loadData(using: request) { _, _, error in
+        guard let request = networkService.createRequest(url: requestURL, method: .delete) else { return }
+        networkService.dataLoader.loadData(using: request) { _, _, error in
             if let error = error {
                 NSLog("Error deleting entry from server \(todo): \(error)")
                 completion(.failure(.otherError))
@@ -167,6 +170,5 @@ class TodoController {
             return
         }
         mockUser.todos = todos
-        print(mockUser.todos as Any) //as Any to silence warning
     }
 }

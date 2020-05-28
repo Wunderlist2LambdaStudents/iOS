@@ -56,33 +56,31 @@ class TodoListViewController: UIViewController {
     }
 
     func updateViews() {
-        //update the view after the user is logged in
+        //update the view after the user is logged in or create mock user
         if AuthService.activeUser != nil {
-            //do work
+            todoController.fetchTodosFromServer { (result) in
+                print(try? result.get())
+            }
         } else {
             print("no active user, mocking user:")
             let todoController = TodoController()
             guard var user = todoController.loadMockUser() else { return }
             todoController.loadMockTodos(from: &user)
-            let todoRepresentation = TodoRepresentation(
-                identifier: UUID(),
-                title: "Test Append",
-                body: "Testing",
-                dueDate: Date(),
-                complete: true,
-                recurring: .none,
-                location: LocationRepresentation(xLocation: 0, yLocation: 0)
-            )
-            let jsonEncoder = JSONEncoder()
-            let todo = try? jsonEncoder.encode(todoRepresentation)
-            Data.writeToFile(with: .goodTodoData, encodableData: todo)
-            //as Any to silence warning
-            print(
-                "Json: \(String(data: Data.mockData(with: .goodTodoData), encoding: .utf8) as Any)"
-            )
             AuthService.activeUser = user
+            todoController.loadMockTodos(from: &user)
+            print(user.todos)
 
             //CoreData works with relationships
+
+//            let todoRepresentation = TodoRepresentation(
+//                identifier: UUID(),
+//                title: "Test Append",
+//                body: "Testing",
+//                dueDate: Date(),
+//                complete: true,
+//                recurring: .none,
+//                location: LocationRepresentation(xLocation: 0, yLocation: 0)
+//            )
             //            guard let coreDataUser = User(userRep: user) else { return }
             //            let todo = Todo(identifier: UUID(), title: "title",
             //            body: "body", dueDate: Date(), complete: true, recurring: "none",

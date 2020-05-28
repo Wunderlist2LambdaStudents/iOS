@@ -15,13 +15,11 @@ class SettingsViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
 
     @IBAction func signOutButton(_ sender: Any) {
         self.presentSignInView()
     }
-  
-    
+
     private func presentSignInView() {
         let loginStoryboard = UIStoryboard(name: "Auth", bundle: Bundle(identifier: "com.hazystudios.WunderList"))
         let loginViewController = loginStoryboard.instantiateViewController(withIdentifier: "LoginView")
