@@ -56,7 +56,7 @@ class TodoListViewController: UIViewController {
     }
 
     func updateViews() {
-        //update the view after the user is logged in
+        //update the view after the user is logged in or create mock user
         if AuthService.activeUser != nil {
             todoController.fetchTodosFromServer { (result) in
                 print(try? result.get())
@@ -66,25 +66,21 @@ class TodoListViewController: UIViewController {
             let todoController = TodoController()
             guard var user = todoController.loadMockUser() else { return }
             todoController.loadMockTodos(from: &user)
-            let todoRepresentation = TodoRepresentation(
-                identifier: UUID(),
-                title: "Test Append",
-                body: "Testing",
-                dueDate: Date(),
-                complete: true,
-                recurring: .none,
-                location: LocationRepresentation(xLocation: 0, yLocation: 0)
-            )
-            let authService = AuthService()
-            todoController.fetchTodosFromServer { (result) in
-                print(try? result.get())
-            }
-
-            //AuthService.activeUser = user
-            //todoController.loadMockTodos(from: &user)
-            //print(user.todos)
+            AuthService.activeUser = user
+            todoController.loadMockTodos(from: &user)
+            print(user.todos)
 
             //CoreData works with relationships
+
+//            let todoRepresentation = TodoRepresentation(
+//                identifier: UUID(),
+//                title: "Test Append",
+//                body: "Testing",
+//                dueDate: Date(),
+//                complete: true,
+//                recurring: .none,
+//                location: LocationRepresentation(xLocation: 0, yLocation: 0)
+//            )
             //            guard let coreDataUser = User(userRep: user) else { return }
             //            let todo = Todo(identifier: UUID(), title: "title",
             //            body: "body", dueDate: Date(), complete: true, recurring: "none",
