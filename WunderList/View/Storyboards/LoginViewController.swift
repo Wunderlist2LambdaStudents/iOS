@@ -95,7 +95,6 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func signInButtonAction(_ sender: UIButton) {
-        // We want this for production, skipping for development
         let authService = AuthService()
         guard let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
             password.isEmpty == false,
