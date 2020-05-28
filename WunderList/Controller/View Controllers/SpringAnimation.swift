@@ -95,7 +95,10 @@ import UIKit
         )
     }
 
-    public class func springWithCompletion(duration: TimeInterval, animations: (() -> Void)!, completion: ((Bool) -> Void)!) {
+    public class func springWithCompletion(
+        duration: TimeInterval,
+        animations: (() -> Void)!,
+        completion: ((Bool) -> Void)!) {
         UIView.animate(
             withDuration: duration,
             delay: 0,

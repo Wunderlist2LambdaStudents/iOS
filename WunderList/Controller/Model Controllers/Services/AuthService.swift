@@ -135,7 +135,6 @@ class AuthService {
         }
     }
 
-
     /// Log out the active user
     func logoutUser() {
         AuthService.activeUser = nil
