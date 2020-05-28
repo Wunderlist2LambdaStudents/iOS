@@ -10,9 +10,9 @@ import UIKit
 import CoreData
 
 class TodoListViewController: UIViewController {
-
     // MARK: - Properties
 
+    var complete = false
     let todoController = TodoController()
 
     lazy var fetchedResultsController: NSFetchedResultsController<Todo> = {
@@ -90,15 +90,15 @@ class TodoListViewController: UIViewController {
 
             //CoreData works with relationships
 
-//            let todoRepresentation = TodoRepresentation(
-//                identifier: UUID(),
-//                title: "Test Append",
-//                body: "Testing",
-//                dueDate: Date(),
-//                complete: true,
-//                recurring: .none,
-//                location: LocationRepresentation(xLocation: 0, yLocation: 0)
-//            )
+            //            let todoRepresentation = TodoRepresentation(
+            //                identifier: UUID(),
+            //                title: "Test Append",
+            //                body: "Testing",
+            //                dueDate: Date(),
+            //                complete: true,
+            //                recurring: .none,
+            //                location: LocationRepresentation(xLocation: 0, yLocation: 0)
+            //            )
             //            guard let coreDataUser = User(userRep: user) else { return }
             //            let todo = Todo(identifier: UUID(), title: "title",
             //            body: "body", dueDate: Date(), complete: true, recurring: "none",
@@ -107,6 +107,12 @@ class TodoListViewController: UIViewController {
             //            context: CoreDataStack.shared.mainContext)
             //            print(coreDataUser.todo)
         }
+    }
+
+    @IBAction func completeButton(_ sender: UIButton) {
+        complete.toggle()
+
+        sender.setImage(complete ? UIImage(systemName: "checkmark.circle.fill") : UIImage(systemName: "circle"), for: .normal)
     }
 
     @IBAction func switchTableViewSegmentedControlAction(_ sender: UISegmentedControl) {
@@ -120,12 +126,27 @@ class TodoListViewController: UIViewController {
         self.tableView.reloadData()
 
     }
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    }
 
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "AddTaskSegue" {
+            if let todoEditVC = segue.destination as?
+                TodoEditAndAddViewController,
+                let indexPath = tableView.indexPathForSelectedRow {
+                // line 121 is not working because we have to insert a todo data model object into the todoEditVC..
+                // todoEditVC.todo = fetchedResultsController.object(at: indexPath)
+                todoEditVC.todoController = todoController
+            }
+        }
+    }
 }
+
+// MARK: - TableView Methods
+
 extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if currentSelectedSegment == 1 {
             return fetchedResultsController.sections?[0].numberOfObjects ?? 0

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -167,6 +167,7 @@
                         <outlet property="passwordTextField" destination="bVz-P3-6t4" id="gzj-6j-wF7"/>
                         <outlet property="pinkSquareView" destination="sal-3O-IYU" id="Xl4-aq-JaD"/>
                         <outlet property="signUpSignInSegementedControl" destination="ieb-Lu-3vD" id="gxH-GU-6jY"/>
+                        <outlet property="welcomLabel" destination="FRS-Dq-TN9" id="pBV-la-sYY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LLr-wf-UtA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
