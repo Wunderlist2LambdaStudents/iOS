@@ -102,7 +102,6 @@ class TodoController {
             context.performAndWait {
                 do {
                     let existingTodos = try context.fetch(fetchRequest)
-
                     for todo in existingTodos {                        
                         guard let identifier = todo.identifier,
                             let representation = representationsByID[identifier] else { continue }
