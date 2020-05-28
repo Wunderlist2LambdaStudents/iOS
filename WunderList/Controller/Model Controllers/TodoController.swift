@@ -54,12 +54,14 @@ class TodoController {
             let reps = self.networkService.decode(to: [String: TodoRepresentation].self, data: data)?.map { $1 }
             guard let unwrappedReps = reps else {
                 print("Error decoding Todos")
+                completion(.failure(.noDecode))
                 return
             }
             //update Todos
             do {
                 try self.updateTodos(with: unwrappedReps)
             } catch {
+                completion(.failure(.otherError))
                 NSLog("Error updating todos: \(error)")
             }
         }
