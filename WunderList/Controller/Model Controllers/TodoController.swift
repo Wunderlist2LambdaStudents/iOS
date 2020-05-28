@@ -20,7 +20,7 @@ enum NetworkError: Error {
 }
 
 typealias CompletionHandler = (Result<Bool, NetworkError>) -> Void
-private let baseURL = URL(string: "https://bw-wunderlist.herokuapp.com/todo")!
+private let baseURL = URL(string: "https://bw-wunderlist2.firebaseio.com/")!
 
 class TodoController {
 
@@ -75,15 +75,19 @@ class TodoController {
     }
 
     func sendTodosToServer(todo: TodoRepresentation, completion: @escaping CompletionHandler = { _ in }) {
-        let requestURL = baseURL.appendingPathComponent(todo.identifier.uuidString).appendingPathComponent("json")
+        let requestURL = baseURL.appendingPathComponent(
+            AuthService.activeUser?.identifier?.uuidString ?? "c4e718c2-9fce-11ea-bb37-0242ac130002"
+        ).appendingPathExtension("json")
         guard var request = networkService.createRequest(url: requestURL, method: .put) else { return }
-        networkService.encode(from: todo, request: &request)
-        networkService.dataLoader.loadData(using: request) { _, _, error in
+        let identity = todo.identifier.uuidString ?? "c4e718c2-9fce-11ea-bb37-0242ac130002"
+        networkService.encode(from: [identity: todo], request: &request)
+        networkService.dataLoader.loadData(using: request) { _, response, error in
             if let error = error {
                 NSLog("Error sending task to server \(todo): \(error)")
                 completion(.failure(.otherError))
                 return
             }
+            print(response?.statusCode)
             completion(.success(true))
         }
     }

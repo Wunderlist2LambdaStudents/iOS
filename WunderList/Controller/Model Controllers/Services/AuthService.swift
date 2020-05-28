@@ -16,7 +16,7 @@ class AuthService {
     // MARK: - Properties -
     private let networkService = NetworkService()
     private let dataLoader: NetworkLoader
-    private let baseURL = URL(string: "https://bw-wunderlist.herokuapp.com/auth")!
+    private let baseURL = URL(string: "https://bw-wunderlist2.firebaseio.com/")!
     //
     ///The currently logged in user
     ///

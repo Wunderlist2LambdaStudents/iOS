@@ -18,10 +18,10 @@ class TodoListViewController: UIViewController {
     lazy var fetchedResultsController: NSFetchedResultsController<Todo> = {
         let fetchRequest: NSFetchRequest<Todo> = Todo.fetchRequest()
         if AuthService.activeUser != nil {
-        guard let userId = AuthService.activeUser?.identifier?.uuidString else {
-            fatalError("Identifier error")
-        }
-            let predicate = NSPredicate(format: "user.identifier == %@", userId)
+            guard let userId = AuthService.activeUser?.identifier?.uuidString else {
+                fatalError("Identifier error")
+            }
+            let predicate = NSPredicate(format: "userId == %@", userId)
             fetchRequest.predicate = predicate
         }
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "complete", ascending: true),
@@ -81,10 +81,12 @@ class TodoListViewController: UIViewController {
             print("no active user, mocking user:")
             let todoController = TodoController()
             guard var user = todoController.loadMockUser() else { return }
-            todoController.loadMockTodos(from: &user)
             AuthService.activeUser = user
-            todoController.loadMockTodos(from: &user)
-            print(user.todos)
+//            todoController.loadMockTodos(from: &user)
+//            guard let todos = user.todos else { return }
+//            for todo in todos {
+//                try? todoController.sendTodosToServer(todo: todo)
+//            }
 
             //CoreData works with relationships
 
