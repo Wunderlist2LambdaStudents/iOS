@@ -277,13 +277,13 @@
                                         <rect key="frame" x="0.0" y="327.5" width="374" height="31"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recurring: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWn-MD-Ao1">
-                                                <rect key="frame" x="0.0" y="0.0" width="115.5" height="31"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="23"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="100.5" height="31"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3NV-Y2-9nd">
-                                                <rect key="frame" x="163.5" y="0.0" width="210.5" height="32"/>
+                                                <rect key="frame" x="148.5" y="0.0" width="225.5" height="32"/>
                                                 <segments>
                                                     <segment title="Daily"/>
                                                     <segment title="Weekly"/>
