@@ -97,14 +97,14 @@ class TodoListViewController: UIViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // You also need a separate segue to make edit work properly
+        // You needed a separate segue to make edit work properly
         // (a new segue from the cell to the vc with it's own identifier).
         // The add segue wasnt working for adding because indexPath was nil
-        // line 121 is not working because we have to insert a todo data model object into the todoEditVC..
-        // todoEditVC.todo = fetchedResultsController.object(at: indexPath)
-        if segue.identifier == "AddTaskSegue" {
-            if let todoEditVC = segue.destination as?
-                TodoEditAndAddViewController {
+        if let todoEditVC = segue.destination as? TodoEditAndAddViewController {
+            if segue.identifier == "EditTaskSegue" {
+                guard let indexPath = tableView.indexPathForSelectedRow else { return }
+                todoEditVC.todo = fetchedResultsController.object(at: indexPath)
+            } else if segue.identifier == "AddTaskSegue" {
                 todoEditVC.todoController = todoController
             }
         }

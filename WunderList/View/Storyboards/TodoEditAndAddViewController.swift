@@ -13,6 +13,7 @@ class TodoEditAndAddViewController: UIViewController {
 
     var user = AuthService.activeUser
     var todoController: TodoController?
+    var todo: Todo?
 
     // MARK: - IBOutlets
 
