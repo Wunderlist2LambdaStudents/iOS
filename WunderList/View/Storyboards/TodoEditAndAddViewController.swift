@@ -10,7 +10,7 @@ import UIKit
 
 class TodoEditAndAddViewController: UIViewController {
     // MARK: - Properties
-
+    var notificationCenter = NotificationController.shared
     var user = AuthService.activeUser
     var todoController: TodoController?
     var todo: Todo?

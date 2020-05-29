@@ -11,8 +11,6 @@ import CoreData
 
 class TodoListViewController: UIViewController {
     // MARK: - Properties
-
-    var complete = false
     let todoController = TodoController()
 
     lazy var fetchedResultsController: NSFetchedResultsController<Todo> = {
@@ -73,14 +71,6 @@ class TodoListViewController: UIViewController {
          guard let todos = user.todos else { return }
          todoController.sendTodosToServer(todo: todos[1])
          */
-    }
-
-    @IBAction func completeButton(_ sender: UIButton) {
-        complete.toggle()
-
-        sender.setImage(complete ?
-            UIImage(systemName: "checkmark.circle.fill") :
-            UIImage(systemName: "circle"), for: .normal)
     }
 
     // MARK: - Navigation

@@ -30,6 +30,7 @@
 		B95B65902478ED61009C6D16 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B658F2478ED61009C6D16 /* NetworkService.swift */; };
 		B95B65942478EE55009C6D16 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95B65932478EE55009C6D16 /* Auth.storyboard */; };
 		B95B65962478EE6B009C6D16 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95B65952478EE6B009C6D16 /* Onboarding.storyboard */; };
+		B95BE23724816D1400D2744B /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95BE23624816D1400D2744B /* NotificationHelper.swift */; };
 		B98DB581247AF01C00EBFB2D /* GoodUserData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB580247AF01C00EBFB2D /* GoodUserData.json */; };
 		B98DB583247B5B5400EBFB2D /* BadUserData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB582247B5B5400EBFB2D /* BadUserData.json */; };
 		B98DB585247B5B7300EBFB2D /* GoodTodoData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB584247B5B7300EBFB2D /* GoodTodoData.json */; };
@@ -101,6 +102,7 @@
 		B95B658F2478ED61009C6D16 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		B95B65932478EE55009C6D16 /* Auth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		B95B65952478EE6B009C6D16 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		B95BE23624816D1400D2744B /* NotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
 		B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataLoader.swift; sourceTree = "<group>"; };
 		B98DB580247AF01C00EBFB2D /* GoodUserData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GoodUserData.json; sourceTree = "<group>"; };
 		B98DB582247B5B5400EBFB2D /* BadUserData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BadUserData.json; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 		B95B658B2478ED00009C6D16 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B95BE23524816CFB00D2744B /* Helpers */,
 				B98DB588247B5CA900EBFB2D /* TodoRepresentation.swift */,
 				B98DB58C247C210D00EBFB2D /* UserRepresentation.swift */,
 			);
@@ -327,6 +330,14 @@
 				8E83634E247F05F2002DAA62 /* ViewExtension.swift */,
 			);
 			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		B95BE23524816CFB00D2744B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B95BE23624816D1400D2744B /* NotificationHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		B98DB598247DB0E200EBFB2D /* MockDataLoader */ = {
@@ -517,6 +528,7 @@
 				B95B65902478ED61009C6D16 /* NetworkService.swift in Sources */,
 				B95B65572478EBE0009C6D16 /* AppDelegate.swift in Sources */,
 				B98DB589247B5CA900EBFB2D /* TodoRepresentation.swift in Sources */,
+				B95BE23724816D1400D2744B /* NotificationHelper.swift in Sources */,
 				B98DB58F247C813200EBFB2D /* TodoListViewController.swift in Sources */,
 				B98DB595247D8DD500EBFB2D /* User+Convenience.swift in Sources */,
 				FEE1D4BC247F23C4006C9852 /* SettingsViewController.swift in Sources */,
