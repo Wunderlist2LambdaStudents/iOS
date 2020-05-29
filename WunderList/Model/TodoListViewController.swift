@@ -30,7 +30,7 @@ class TodoListViewController: UIViewController {
         let frc = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: context,
-            sectionNameKeyPath: nil,
+            sectionNameKeyPath: "recurring",
             cacheName: nil
         )
         frc.delegate = self
@@ -85,10 +85,12 @@ class TodoListViewController: UIViewController {
 
     @IBAction func switchTableViewSegmentedControlAction(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            currentSelectedSegment = 1
+            currentSelectedSegment = 0
         } else if sender.selectedSegmentIndex == 1 {
-            currentSelectedSegment = 2
+            currentSelectedSegment = 1
         } else if sender.selectedSegmentIndex == 2 {
+            currentSelectedSegment = 2
+        } else if sender.selectedSegmentIndex == 3 {
             currentSelectedSegment = 3
         }
         self.tableView.reloadData()
@@ -115,14 +117,20 @@ class TodoListViewController: UIViewController {
 // MARK: - TableView Methods
 
 extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return fetchedResultsController.sections?.count ?? 1
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if currentSelectedSegment == 1 {
+        if currentSelectedSegment == 0 {
             return fetchedResultsController.sections?[0].numberOfObjects ?? 0
-        } else if currentSelectedSegment == 2 {
+        } else if currentSelectedSegment == 1 {
             return fetchedResultsController.sections?[1].numberOfObjects ?? 0
-        } else {
+        } else if currentSelectedSegment == 2  {
             return fetchedResultsController.sections?[2].numberOfObjects ?? 0
+        } else {
+            return fetchedResultsController.sections?[3].numberOfObjects ?? 0
         }
     }
 
@@ -139,6 +147,13 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.todoTitleLabel.text = todo.title
 
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let sectionInfo = fetchedResultsController.sections?[section] else {
+            return nil
+        }
+         return sectionInfo.name.capitalized
     }
 
     func tableView(
