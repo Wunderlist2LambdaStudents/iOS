@@ -94,7 +94,6 @@ class TodoListViewController: UIViewController {
             currentSelectedSegment = 3
         }
         self.tableView.reloadData()
-
     }
 
     // MARK: - Navigation
@@ -123,15 +122,19 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if currentSelectedSegment == 0 {
-            return fetchedResultsController.sections?[0].numberOfObjects ?? 0
-        } else if currentSelectedSegment == 1 {
-            return fetchedResultsController.sections?[1].numberOfObjects ?? 0
-        } else if currentSelectedSegment == 2  {
-            return fetchedResultsController.sections?[2].numberOfObjects ?? 0
-        } else {
-            return fetchedResultsController.sections?[3].numberOfObjects ?? 0
+        let numSections = fetchedResultsController.sections?.count ?? 0
+        if numSections >= currentSelectedSegment {
+            if currentSelectedSegment == 0 {
+                return fetchedResultsController.sections?[0].numberOfObjects ?? 0
+            } else if currentSelectedSegment == 1 {
+                return fetchedResultsController.sections?[1].numberOfObjects ?? 0
+            } else if currentSelectedSegment == 2 {
+                return fetchedResultsController.sections?[2].numberOfObjects ?? 0
+            } else {
+                return fetchedResultsController.sections?[3].numberOfObjects ?? 0
+            }
         }
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -25,7 +25,7 @@ class TodoTableViewCell: UITableViewCell {
         guard let todo = todo else { return }
         
         todoTitleLabel.text = todo.title
-        completeButton.set
+        
 
     }
     
