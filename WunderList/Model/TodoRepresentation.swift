@@ -33,14 +33,16 @@ struct TodoRepresentation: Codable {
     var complete: Bool
     var recurring: Recurring
     var location: LocationRepresentation?
+    var creatorId: UUID
 
     enum CodingKeys: String, CodingKey {
         case identifier
         case title
         case body
-        case dueDate = "due_date"
+        case dueDate
         case complete
         case recurring
         case location
+        case creatorId
     }
 }

@@ -8,6 +8,7 @@
     <entity name="Todo" representedClassName="Todo" syncable="YES" codeGenerationType="class">
         <attribute name="body" attributeType="String"/>
         <attribute name="complete" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="creatorId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="dueDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="identifier" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="recurring" attributeType="String"/>
@@ -22,7 +23,7 @@
     </entity>
     <elements>
         <element name="Location" positionX="25.45703125" positionY="114.5390625" width="128" height="88"/>
-        <element name="Todo" positionX="-237.50390625" positionY="54.48828125" width="128" height="163"/>
+        <element name="Todo" positionX="-237.50390625" positionY="54.48828125" width="128" height="178"/>
         <element name="User" positionX="-241.43359375" positionY="-121.765625" width="128" height="88"/>
     </elements>
 </model>

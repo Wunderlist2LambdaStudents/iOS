@@ -28,7 +28,8 @@ extension Todo {
             dueDate: dueDate,
             complete: complete,
             recurring: .none,
-            location: representedLocation
+            location: representedLocation,
+            creatorId: user?.identifier ?? UUID()
         )
     }
 
@@ -47,6 +48,7 @@ extension Todo {
         self.title = title
         self.body = body
         self.dueDate = dueDate
+        self.complete = complete
         self.recurring = recurring
     }
 

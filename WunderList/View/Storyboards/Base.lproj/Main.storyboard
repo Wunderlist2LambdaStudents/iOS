@@ -74,6 +74,7 @@
                                         <connections>
                                             <outlet property="completeButton" destination="quk-RH-HkS" id="lJT-E0-5sG"/>
                                             <outlet property="todoTitleLabel" destination="JkO-Xj-ab6" id="oQA-Wc-MGf"/>
+                                            <segue destination="dJ8-Z6-aEe" kind="presentation" identifier="EditTaskSegue" id="Fk2-30-xty"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -314,6 +315,9 @@
             <point key="canvasLocation" x="2492.753623188406" y="-555.13392857142856"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Fk2-30-xty"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="circle" catalog="system" width="128" height="121"/>
         <image name="gear" catalog="system" width="128" height="119"/>
