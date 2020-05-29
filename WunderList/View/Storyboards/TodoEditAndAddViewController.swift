@@ -40,25 +40,31 @@ class TodoEditAndAddViewController: UIViewController {
 
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let title = titleTextField.text, !title.isEmpty else { return }
-        
         let bodyText = bodyTextView.text!
         let recurringIndex = recurringSegmentedControl.selectedSegmentIndex
         let recurring = Recurring.allCases[recurringIndex]
-        let location = LocationRepresentation(xLocation: -8.783195, yLocation: -124.508523)
         let todoRep = TodoRepresentation(
             title: title,
             body: bodyText,
             dueDate: Date(),
             complete: true,
             recurring: recurring,
-            location: location,
             creatorId: AuthService.activeUser?.identifier ?? UUID()
         )
 
 guard let user = user else { return }
-        let todo = Todo(todoRepresentation: todoRep, userRep: user)
-        #warning("This should be taken care of in the init, but it's nil")
-        todo?.complete = todoRep.complete
+        var todo = self.todo
+        if todo == nil {
+            todo = Todo(todoRepresentation: todoRep, userRep: user)
+            #warning("This should be taken care of in the init, but it's nil")
+            todo?.complete = todoRep.complete
+        } else {
+            guard let todo = todo else { return }
+            todo.body = bodyText
+            todo.title = title
+            todo.recurring = recurring.rawValue
+        }
+
         todoController?.sendTodosToServer(todo: todoRep)
         do {
             try CoreDataStack.shared.save()
@@ -83,7 +89,7 @@ guard let user = user else { return }
         } else {
             recurring = .none
         }
-        
+
         recurringSegmentedControl.selectedSegmentIndex = Recurring.allCases.firstIndex(of: recurring) ?? 0
     }
 }
