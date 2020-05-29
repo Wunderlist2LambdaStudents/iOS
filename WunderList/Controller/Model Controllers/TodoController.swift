@@ -64,6 +64,7 @@ class TodoController {
             //update Todos
             do {
                 try self.updateTodos(with: unwrappedReps ?? [])
+                completion(.success(true))
             } catch {
                 completion(.failure(.otherError))
                 NSLog("Error updating todos: \(error)")

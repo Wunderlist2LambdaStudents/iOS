@@ -66,7 +66,12 @@ class TodoListViewController: UIViewController {
         let todoController = TodoController()
         guard let user = todoController.loadMockUser() else { return }
         AuthService.activeUser = user
-        todoController.fetchTodosFromServer()
+        todoController.fetchTodosFromServer { _ in
+            try? self.fetchedResultsController.performFetch()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
         /*
          To load mock Todos:
          todoController.loadMockTodos(from: &user)
