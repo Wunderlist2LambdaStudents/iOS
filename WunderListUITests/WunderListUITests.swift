@@ -186,7 +186,7 @@ class WunderListUITests: XCTestCase {
         addDetailTextView.typeText(detailTextEntry)
         XCTAssertTrue(addDetailTextView.value as? String == detailTextEntry)
 
-        let point = CGPoint(x: 100, y: 100)
+        let point = CGPoint(x: 100, y: 30)
         app.tapCoordinate(at: point)
 
         XCTAssert(saveToDoButton.isHittable)
