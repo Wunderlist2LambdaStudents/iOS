@@ -119,9 +119,8 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
             ) as? TodoTableViewCell
             else { return UITableViewCell() }
 
-        guard let todo = fetchedResultsController
-            .sections?[indexPath.section]
-            .objects?[indexPath.row] as? Todo else { return UITableViewCell() }
+        guard let todo = fetchedResultsController.fetchedObjects?[indexPath.row] else { return UITableViewCell() }
+
         cell.todo = todo
 
         return cell

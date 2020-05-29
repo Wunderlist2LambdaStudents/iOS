@@ -15,6 +15,9 @@ class TodoTableViewCell: UITableViewCell {
     @IBOutlet weak var completeButton: UIButton!
 
     // MARK: - Properties
+
+    var todoController = TodoController()
+    
     var todo: Todo? {
         didSet {
             updateViews()
@@ -43,14 +46,12 @@ class TodoTableViewCell: UITableViewCell {
             UIImage(systemName: "checkmark.circle.fill") :
             UIImage(systemName: "circle"), for: .normal)
 
+        guard let todoRep = todo.todoRepresentation else { return }
+
+        todoController.sendTodosToServer(todo: todoRep)
+
         DispatchQueue.main.async {
-            let context = CoreDataStack.shared.mainContext
-            do {
-                try context.save()
-            } catch {
-                context.reset()
-                NSLog("Error saving managed object context (\(error)")
-            }
+         try? CoreDataStack.shared.save()
 
         }
     }
