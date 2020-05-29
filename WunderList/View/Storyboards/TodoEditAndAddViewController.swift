@@ -31,10 +31,11 @@ class TodoEditAndAddViewController: UIViewController {
         self.titleTextField.addBottomBorder()
         saveButton.layer.cornerRadius = 12.0
         addLocationButton.layer.cornerRadius = 12.0
+        updateViews()
         hideKeyboardOnTap()
     }
 
-// MARK: - Actions
+    // MARK: - Actions
 
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let title = titleTextField.text, !title.isEmpty else { return }
@@ -68,6 +69,20 @@ class TodoEditAndAddViewController: UIViewController {
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         //should probably reset context here since this view controller has a live coredata object
         dismiss(animated: true, completion: nil)
+    }
+
+    private func updateViews() {
+        titleTextField.text = todo?.title
+        bodyTextView.text = todo?.body
+        let recurring: Recurring
+
+        if let todoRecurring = todo?.recurring {
+            recurring = Recurring(rawValue: todoRecurring)!
+        } else {
+            recurring = .none
+        }
+        
+        recurringSegmentedControl.selectedSegmentIndex = Recurring.allCases.firstIndex(of: recurring) ?? 0
     }
 }
 
