@@ -25,7 +25,7 @@ class TodoListViewController: UIViewController {
             fetchRequest.predicate = predicate
         }
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "complete", ascending: true),
-                                        NSSortDescriptor(key: "title", ascending: true)]
+                                        NSSortDescriptor(key: "dueDate", ascending: true)]
         let context = CoreDataStack.shared.mainContext
         let frc = NSFetchedResultsController(
             fetchRequest: fetchRequest,
@@ -64,55 +64,22 @@ class TodoListViewController: UIViewController {
     }
 
     func updateViews() {
-        //update the view after the user is logged in or create mock user
-        if AuthService.activeUser != nil {
-            let todoRep = TodoRepresentation(identifier: UUID(),
-                                             title: "testTodo",
-                                             body: "testbody",
-                                             dueDate: Date(),
-                                             complete: false,
-                                             recurring: .none
-            )
-            try? todoController.updateTodos(with: [todoRep])
-//            todoController.fetchTodosFromServer { (result) in
-//                print(try? result.get())
-//            }
-        } else {
-            print("no active user, mocking user:")
-            let todoController = TodoController()
-            guard var user = todoController.loadMockUser() else { return }
-            AuthService.activeUser = user
-//            todoController.loadMockTodos(from: &user)
-//            guard let todos = user.todos else { return }
-//            for todo in todos {
-//                try? todoController.sendTodosToServer(todo: todo)
-//            }
-
-            //CoreData works with relationships
-
-            //            let todoRepresentation = TodoRepresentation(
-            //                identifier: UUID(),
-            //                title: "Test Append",
-            //                body: "Testing",
-            //                dueDate: Date(),
-            //                complete: true,
-            //                recurring: .none,
-            //                location: LocationRepresentation(xLocation: 0, yLocation: 0)
-            //            )
-            //            guard let coreDataUser = User(userRep: user) else { return }
-            //            let todo = Todo(identifier: UUID(), title: "title",
-            //            body: "body", dueDate: Date(), complete: true, recurring: "none",
-            //            user: coreDataUser, context: CoreDataStack.shared.mainContext)
-            //            Location(identifier: UUID(), xLocation: 20.0, yLocation: 25.2, todo: todo,
-            //            context: CoreDataStack.shared.mainContext)
-            //            print(coreDataUser.todo)
-        }
+        let todoController = TodoController()
+        guard let user = todoController.loadMockUser() else { return }
+        AuthService.activeUser = user
+        todoController.fetchTodosFromServer()
+        /*
+         To load mock Todos:
+         todoController.loadMockTodos(from: &user)
+         guard let todos = user.todos else { return }
+         todoController.sendTodosToServer(todo: todos[1])
+         */
     }
 
     @IBAction func completeButton(_ sender: UIButton) {
         complete.toggle()
-
-        sender.setImage(complete ? UIImage(systemName: "checkmark.circle.fill") : UIImage(systemName: "circle"), for: .normal)
+        sender.setImage(complete ? UIImage(systemName: "checkmark.circle.fill") :
+            UIImage(systemName: "circle"), for: .normal)
     }
 
     @IBAction func switchTableViewSegmentedControlAction(_ sender: UISegmentedControl) {
@@ -130,13 +97,14 @@ class TodoListViewController: UIViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        // You also need a separate segue to make edit work properly
+        // (a new segue from the cell to the vc with it's own identifier).
+        // The add segue wasnt working for adding because indexPath was nil
+        // line 121 is not working because we have to insert a todo data model object into the todoEditVC..
+        // todoEditVC.todo = fetchedResultsController.object(at: indexPath)
         if segue.identifier == "AddTaskSegue" {
             if let todoEditVC = segue.destination as?
-                TodoEditAndAddViewController,
-                let indexPath = tableView.indexPathForSelectedRow {
-                // line 121 is not working because we have to insert a todo data model object into the todoEditVC..
-                // todoEditVC.todo = fetchedResultsController.object(at: indexPath)
+                TodoEditAndAddViewController {
                 todoEditVC.todoController = todoController
             }
         }
@@ -181,7 +149,8 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             // Delete the row from the data source
             let todo = fetchedResultsController.object(at: indexPath)
-            todoController.deleteTodosFromServer(todo: todo) { result in
+            guard let todoRep = todo.todoRepresentation else { return }
+            todoController.deleteTodosFromServer(todo: todoRep) { result in
                 let result = try? result.get()
                 if result == nil {
                     return

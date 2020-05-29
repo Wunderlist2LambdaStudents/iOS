@@ -1,26 +1,28 @@
 [
     {
-      "identifier": "eef75326-9fcd-11ea-bb37-0242ac130002",
-      "title": "Title",
-      "body": "Body",
-      "due_date": "2020-05-25T02:16:55+0000",
+      "identifier": "034f5c92-9fce-11ea-bb37-0242ac130002",
+      "title": "Title2",
+      "body": "Body2",
+      "dueDate": "2020-05-26T02:16:55+0000",
       "complete": true,
       "recurring": "none",
       "location": {
         "x": 0,
         "y": 0
-      }
+      },
+      "creatorId":"c4e718c2-9fce-11ea-bb37-0242ac130002"
     },
     {
-      "identifier": "034f5c92-9fce-11ea-bb37-0242ac130002",
-      "title": "Title2",
-      "body": "Body2",
-      "due_date": "2020-05-26T02:16:55+0000",
-      "complete": false,
+      "identifier": "eef75326-9fcd-11ea-bb37-0242ac130002",
+      "title": "Title",
+      "body": "Body",
+      "dueDate": "2020-05-25T02:16:55+0000",
+      "complete": true,
       "recurring": "none",
       "location": {
         "x": 0,
         "y": 0
-      }
+      },
+      "creatorId":"c4e718c2-9fce-11ea-bb37-0242ac130002"
     }
 ]

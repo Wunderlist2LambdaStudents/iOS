@@ -43,7 +43,8 @@ class TodoEditAndAddViewController: UIViewController {
             dueDate: Date(),
             complete: true,
             recurring: recurring,
-            location: location
+            location: location,
+            creatorId: AuthService.activeUser?.identifier ?? UUID()
         )
         guard let user = user else { return }
         let todo = Todo(todoRepresentation: todoRep, userRep: user)
@@ -59,6 +60,7 @@ class TodoEditAndAddViewController: UIViewController {
     }
 
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
+        //should probably reset context here since this view controller has a live coredata object
         dismiss(animated: true, completion: nil)
     }
 }
