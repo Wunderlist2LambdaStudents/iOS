@@ -9,21 +9,24 @@
 import UIKit
 
 class TodoTableViewCell: UITableViewCell {
-    //MARK: - Outlets
+    // MARK: - Outlets
     @IBOutlet weak var todoTitleLabel: UILabel!
     @IBOutlet weak var completeButton: UIButton!
-    
-    //MARK: - Properties
+
+    // MARK: - Properties
     var todo: Todo? {
         didSet {
             updateViews()
         }
     }
-    
-    //MARK: - Class funcs
+
+    // MARK: - Class Methods
     func updateViews() {
         guard let todo = todo else { return }
+
         todoTitleLabel.text = todo.title
+        completeButton.setImage(todo.complete ?
+                  UIImage(systemName: "checkmark.circle.fill") :
+                  UIImage(systemName: "circle"), for: .normal)
     }
-    
 }

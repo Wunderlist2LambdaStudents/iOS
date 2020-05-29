@@ -74,14 +74,14 @@ class TodoListViewController: UIViewController {
          todoController.sendTodosToServer(todo: todos[1])
          */
     }
-
-    @IBAction func completeButton(_ sender: UIButton) {
-        complete.toggle()
-
-        sender.setImage(complete ?
-            UIImage(systemName: "checkmark.circle.fill") :
-            UIImage(systemName: "circle"), for: .normal)
-    }
+    //
+    //        @IBAction func completeButton(_ sender: UIButton) {
+    //            complete.toggle()
+    //
+    //            sender.setImage(complete ?
+    //                UIImage(systemName: "checkmark.circle.fill") :
+    //                UIImage(systemName: "circle"), for: .normal)
+    //        }
 
     // MARK: - Navigation
 
@@ -132,6 +132,15 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
             return nil
         }
         return sectionInfo.name.capitalized
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = fetchedResultsController.sections?[indexPath.section].objects?[indexPath.row] as? TodoTableViewCell else { return }
+
+        cell.todo?.complete.toggle()
+
+        print(cell.todoTitleLabel)
+
     }
 
     func tableView(
