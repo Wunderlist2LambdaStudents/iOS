@@ -36,7 +36,9 @@ class TodoController {
 
     // MARK: - Get -
     func fetchTodosFromServer(completion: @escaping CompletionHandler = { _ in }) {
-        let requestURL = baseURL.appendingPathComponent(AuthService.activeUser?.identifier?.uuidString ?? "").appendingPathExtension("json")
+        let requestURL = baseURL.appendingPathComponent(
+            AuthService.activeUser?.identifier?.uuidString ?? "")
+            .appendingPathExtension("json")
         guard let request = networkService.createRequest(url: requestURL, method: .get) else {
             print("bad request")
             completion(.failure(.otherError))

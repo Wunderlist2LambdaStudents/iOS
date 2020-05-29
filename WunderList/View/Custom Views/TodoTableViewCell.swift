@@ -7,23 +7,54 @@
 //
 
 import UIKit
+import CoreData
 
 class TodoTableViewCell: UITableViewCell {
-    //MARK: - Outlets
+
+    // MARK: - Outlets
     @IBOutlet weak var todoTitleLabel: UILabel!
     @IBOutlet weak var completeButton: UIButton!
-    
-    //MARK: - Properties
+
+    // MARK: - Properties
+
+    var todoController = TodoController()
+    var context: NSManagedObjectContext?
+
     var todo: Todo? {
         didSet {
+            context = todo?.managedObjectContext
             updateViews()
         }
     }
-    
-    //MARK: - Class funcs
+
+    // MARK: - Class Methods
     func updateViews() {
         guard let todo = todo else { return }
+
         todoTitleLabel.text = todo.title
+
+        completeButton.setImage(todo.complete ?
+            UIImage(systemName: "checkmark.circle.fill") :
+            UIImage(systemName: "circle"), for: .normal)
     }
-    
+
+    // MARK: - Actions
+
+    @IBAction func completeButtonToggle(_ sender: UIButton) {
+
+        guard let todo = todo else { return }
+        todo.complete.toggle()
+
+        sender.setImage(todo.complete ?
+            UIImage(systemName: "checkmark.circle.fill") :
+            UIImage(systemName: "circle"), for: .normal)
+
+        guard let todoRep = todo.todoRepresentation else { return }
+
+        todoController.sendTodosToServer(todo: todoRep)
+
+        DispatchQueue.main.async {
+            try? self.context?.save()
+        }
+    }
 }
