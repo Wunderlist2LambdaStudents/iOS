@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class TodoTableViewCell: UITableViewCell {
 
@@ -17,9 +18,11 @@ class TodoTableViewCell: UITableViewCell {
     // MARK: - Properties
 
     var todoController = TodoController()
-    
+    var context: NSManagedObjectContext?
+
     var todo: Todo? {
         didSet {
+            context = todo?.managedObjectContext
             updateViews()
         }
     }
@@ -51,8 +54,7 @@ class TodoTableViewCell: UITableViewCell {
         todoController.sendTodosToServer(todo: todoRep)
 
         DispatchQueue.main.async {
-         try? CoreDataStack.shared.save()
-
+            try? self.context?.save()
         }
     }
 }
