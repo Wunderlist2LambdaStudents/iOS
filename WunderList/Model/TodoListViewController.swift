@@ -140,15 +140,31 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         forRowAt indexPath: IndexPath
     ) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+
             let todo = fetchedResultsController.object(at: indexPath)
+            //check to see if it's already deleted, and delete it permanently
+            if todo.recurring == Recurring.deleted.rawValue {
+                DispatchQueue.main.async {
+                    let context = CoreDataStack.shared.mainContext
+                    context.delete(todo)
+                    do {
+                        try context.save()
+                    } catch {
+                        context.reset()
+                        NSLog("Error saving managed object context (delete task): \(error)")
+                    }
+                }
+                return
+            }
+            //This is the first time the todo is being deleted
+            //Delete the todo from the server
             guard let todoRep = todo.todoRepresentation else { return }
             todoController.deleteTodosFromServer(todo: todoRep) { result in
                 let result = try? result.get()
                 if result == nil {
                     return
                 }
-                //save changes only if it deleted from the server
+                //save changes in CoreData only if it deleted from the server
                 todo.recurring = "deleted"
                 DispatchQueue.main.async {
                     let context = CoreDataStack.shared.mainContext
@@ -205,7 +221,8 @@ extension TodoListViewController: NSFetchedResultsControllerDelegate {
             tableView.deleteRows(at: [oldIndexPath], with: .automatic)
             tableView.insertRows(at: [newIndexPath], with: .automatic)
         case .delete:
-            break
+            guard let indexPath = indexPath else { return }
+            tableView.deleteRows(at: [indexPath], with: .automatic)
         @unknown default:
             break
         }
