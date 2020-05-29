@@ -25,7 +25,7 @@ class TodoEditAndAddViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
 
     // MARK: - View Lifecycle
- 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.titleTextField.addBottomBorder()
@@ -49,7 +49,7 @@ class TodoEditAndAddViewController: UIViewController {
             title: title,
             body: bodyText,
             dueDate: Date(),
-            complete: true,
+            complete: false,
             recurring: recurring,
             creatorId: AuthService.activeUser?.identifier ?? UUID()
         )
@@ -69,7 +69,6 @@ class TodoEditAndAddViewController: UIViewController {
             todoRep.identifier = todo.identifier ?? UUID()
             try? todoController?.sendTodosToServer(todo: todoRep)
         }
-
 
         do {
             try CoreDataStack.shared.save()
