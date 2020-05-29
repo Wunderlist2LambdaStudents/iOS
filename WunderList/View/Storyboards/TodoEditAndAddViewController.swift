@@ -22,6 +22,7 @@ class TodoEditAndAddViewController: UIViewController {
 
     @IBOutlet weak var addLocationButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
+
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
@@ -29,6 +30,7 @@ class TodoEditAndAddViewController: UIViewController {
         self.titleTextField.addBottomBorder()
         saveButton.layer.cornerRadius = 12.0
         addLocationButton.layer.cornerRadius = 12.0
+        hideKeyboardOnTap()
     }
 
 // MARK: - Actions
@@ -63,5 +65,17 @@ class TodoEditAndAddViewController: UIViewController {
 
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension UIViewController {
+    internal func hideKeyboardOnTap() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+    }
+
+    @objc private func hideKeyboard() {
+        self.view.endEditing(true)
     }
 }

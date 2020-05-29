@@ -188,7 +188,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="yeR-Qq-Jwc">
-                                <rect key="frame" x="25" y="670" width="364" height="191.5"/>
+                                <rect key="frame" x="25" y="671.5" width="364" height="190"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNk-5u-1Tg">
                                         <rect key="frame" x="0.0" y="0.0" width="364" height="44"/>
@@ -213,7 +213,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wunderlist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0go-UM-cjp">
-                                        <rect key="frame" x="0.0" y="120" width="364" height="71.5"/>
+                                        <rect key="frame" x="0.0" y="120" width="364" height="70"/>
                                         <color key="tintColor" name="Purple"/>
                                         <fontDescription key="fontDescription" name="sweetpurple" family="sweet purple" pointSize="60"/>
                                         <color key="textColor" name="Aqua"/>
@@ -232,7 +232,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="76u-ZZ-hSV">
-                                <rect key="frame" x="18" y="223.5" width="378" height="332"/>
+                                <rect key="frame" x="18" y="223.5" width="378" height="333.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -256,7 +256,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RDn-4b-wC8">
-                                <rect key="frame" x="25" y="575.5" width="364" height="69.5"/>
+                                <rect key="frame" x="25" y="577" width="364" height="69.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recurring: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWn-MD-Ao1">
                                         <rect key="frame" x="0.0" y="0.0" width="364" height="30.5"/>
