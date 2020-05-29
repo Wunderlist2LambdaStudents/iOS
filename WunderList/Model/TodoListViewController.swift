@@ -156,17 +156,17 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
                     return
                 }
 //
-//                DispatchQueue.main.async {
-//                    let context = CoreDataStack.shared.mainContext
-//
-//                    context.delete(todo)
-//                    do {
-//                        try context.save()
-//                    } catch {
-//                        context.reset()
-//                        NSLog("Error saving managed object context (delete task): \(error)")
-//                    }
-//                }
+                DispatchQueue.main.async {
+                    let context = CoreDataStack.shared.mainContext
+
+                    context.delete(todo)
+                    do {
+                        try context.save()
+                    } catch {
+                        context.reset()
+                        NSLog("Error saving managed object context (delete task): \(error)")
+                    }
+                }
             }
         }
     }
