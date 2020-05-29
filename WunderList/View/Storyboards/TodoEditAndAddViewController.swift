@@ -14,6 +14,7 @@ class TodoEditAndAddViewController: UIViewController {
     var user = AuthService.activeUser
     var todoController: TodoController?
     var todo: Todo?
+    var wasEdited = false
 
     // MARK: - IBOutlets
 
@@ -25,20 +26,21 @@ class TodoEditAndAddViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
 
     // MARK: - View Lifecycle
-
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.titleTextField.addBottomBorder()
         saveButton.layer.cornerRadius = 12.0
         addLocationButton.layer.cornerRadius = 12.0
+        updateViews()
         hideKeyboardOnTap()
     }
 
-// MARK: - Actions
+    // MARK: - Actions
 
     @IBAction func saveButtonTapped(_ sender: Any) {
         guard let title = titleTextField.text, !title.isEmpty else { return }
-
+        
         let bodyText = bodyTextView.text!
         let recurringIndex = recurringSegmentedControl.selectedSegmentIndex
         let recurring = Recurring.allCases[recurringIndex]
@@ -52,7 +54,8 @@ class TodoEditAndAddViewController: UIViewController {
             location: location,
             creatorId: AuthService.activeUser?.identifier ?? UUID()
         )
-        guard let user = user else { return }
+
+guard let user = user else { return }
         let todo = Todo(todoRepresentation: todoRep, userRep: user)
         #warning("This should be taken care of in the init, but it's nil")
         todo?.complete = todoRep.complete
@@ -68,6 +71,20 @@ class TodoEditAndAddViewController: UIViewController {
     @IBAction func cancelButtonTapped(_ sender: UIBarButtonItem) {
         //should probably reset context here since this view controller has a live coredata object
         dismiss(animated: true, completion: nil)
+    }
+
+    private func updateViews() {
+        titleTextField.text = todo?.title
+        bodyTextView.text = todo?.body
+        let recurring: Recurring
+
+        if let todoRecurring = todo?.recurring {
+            recurring = Recurring(rawValue: todoRecurring)!
+        } else {
+            recurring = .none
+        }
+        
+        recurringSegmentedControl.selectedSegmentIndex = Recurring.allCases.firstIndex(of: recurring) ?? 0
     }
 }
 
