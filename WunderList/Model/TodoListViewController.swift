@@ -131,7 +131,7 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         guard let sectionInfo = fetchedResultsController.sections?[section] else {
             return nil
         }
-         return sectionInfo.name.capitalized
+        return sectionInfo.name.capitalized
     }
 
     func tableView(
@@ -148,11 +148,10 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
                 if result == nil {
                     return
                 }
-//
+                //save changes only if it deleted from the server
+                todo.recurring = "deleted"
                 DispatchQueue.main.async {
                     let context = CoreDataStack.shared.mainContext
-
-                    context.delete(todo)
                     do {
                         try context.save()
                     } catch {
@@ -206,8 +205,7 @@ extension TodoListViewController: NSFetchedResultsControllerDelegate {
             tableView.deleteRows(at: [oldIndexPath], with: .automatic)
             tableView.insertRows(at: [newIndexPath], with: .automatic)
         case .delete:
-            guard let indexPath = indexPath else { return }
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            break
         @unknown default:
             break
         }

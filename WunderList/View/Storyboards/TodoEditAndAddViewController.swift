@@ -85,6 +85,10 @@ class TodoEditAndAddViewController: UIViewController {
     }
 
     private func updateViews() {
+        if todo?.recurring == Recurring.deleted.rawValue {
+            recurringSegmentedControl.isHidden = true
+            saveButton.setTitle("Undelete", for: .normal)
+        }
         titleTextField.text = todo?.title
         bodyTextView.text = todo?.body
         let recurring: Recurring

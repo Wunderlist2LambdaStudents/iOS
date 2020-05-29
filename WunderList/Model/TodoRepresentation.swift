@@ -13,6 +13,7 @@ enum Recurring: String, Codable, CaseIterable {
     case daily
     case weekly
     case monthly
+    case deleted
 }
 
 struct LocationRepresentation: Codable {
