@@ -31,6 +31,8 @@ class WunderListUITests: XCTestCase {
         case addTitleTextField = "TodoEditAndAddViewController.titleText"
         case completeButton = "TodoListViewController.completeToggleButton"
         case toDoListItem = "TodoListViewController.todoItem"
+        case saveToDoButton = "TodoEditAndAddViewController.saveButton"
+        case cancelToDoButton = "TodoEditAndAddViewController.cancelButton"
     }
 
     private var testUserName = "Test Name"
