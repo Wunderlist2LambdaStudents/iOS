@@ -53,13 +53,8 @@ class TodoListViewController: UIViewController {
     @IBOutlet weak var todoTitle: UILabel!
     @IBOutlet weak var todoBodyTextView: UITextView!
 
-    @IBOutlet weak var switchTableViewSegmentedControlAction: UISegmentedControl!
-    var currentSelectedSegment = 1
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        switchTableViewSegmentedControlAction.backgroundColor = #colorLiteral(red: 0.3939243257, green: 0.3406436443, blue: 0.820184648, alpha: 0.7223886986)
-        switchTableViewSegmentedControlAction.selectedSegmentTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
 
     func updateViews() {
@@ -88,19 +83,6 @@ class TodoListViewController: UIViewController {
             UIImage(systemName: "circle"), for: .normal)
     }
 
-    @IBAction func switchTableViewSegmentedControlAction(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 0 {
-            currentSelectedSegment = 0
-        } else if sender.selectedSegmentIndex == 1 {
-            currentSelectedSegment = 1
-        } else if sender.selectedSegmentIndex == 2 {
-            currentSelectedSegment = 2
-        } else if sender.selectedSegmentIndex == 3 {
-            currentSelectedSegment = 3
-        }
-        self.tableView.reloadData()
-    }
-
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -127,19 +109,7 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let numSections = fetchedResultsController.sections?.count ?? 0
-        if numSections >= currentSelectedSegment {
-            if currentSelectedSegment == 0 {
-                return fetchedResultsController.sections?[0].numberOfObjects ?? 0
-            } else if currentSelectedSegment == 1 {
-                return fetchedResultsController.sections?[1].numberOfObjects ?? 0
-            } else if currentSelectedSegment == 2 {
-                return fetchedResultsController.sections?[2].numberOfObjects ?? 0
-            } else {
-                return fetchedResultsController.sections?[3].numberOfObjects ?? 0
-            }
-        }
-        return 0
+        fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
