@@ -93,6 +93,7 @@ class TodoListViewController: UIViewController {
             if segue.identifier == "EditTaskSegue" {
                 guard let indexPath = tableView.indexPathForSelectedRow else { return }
                 todoEditVC.todo = fetchedResultsController.object(at: indexPath)
+                todoEditVC.todoController = todoController
             } else if segue.identifier == "AddTaskSegue" {
                 todoEditVC.todoController = todoController
             }
