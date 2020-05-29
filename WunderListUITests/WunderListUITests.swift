@@ -107,6 +107,10 @@ class WunderListUITests: XCTestCase {
         return textView(identifier: .addDetailTextView)
     }
 
+    private var saveToDoButton: XCUIElement {
+        return buttons(identifier: .saveToDoButton)
+    }
+
     func testUserSignUp() throws {
         let signUpButton = app.segmentedControls.buttons["Sign Up"]
         XCTAssert(signUpButton.isHittable)
@@ -167,7 +171,7 @@ class WunderListUITests: XCTestCase {
 
     }
 
-    func testDetailView() {
+    func testCreateToDo() {
         signInHelper()
         XCTAssert(addToDoButton.isHittable)
         addToDoButton.tap()
@@ -181,6 +185,12 @@ class WunderListUITests: XCTestCase {
         addDetailTextView.tap()
         addDetailTextView.typeText(detailTextEntry)
         XCTAssertTrue(addDetailTextView.value as? String == detailTextEntry)
+
+        let point = CGPoint(x: 100, y: 100)
+        app.tapCoordinate(at: point)
+
+        XCTAssert(saveToDoButton.isHittable)
+        saveToDoButton.tap()
     }
 
     func testLaunchPerformance() throws {
