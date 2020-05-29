@@ -122,7 +122,7 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         guard let todo = fetchedResultsController
             .sections?[indexPath.section]
             .objects?[indexPath.row] as? Todo else { return UITableViewCell() }
-        cell.todoTitleLabel.text = todo.title
+        cell.todo = todo
 
         return cell
     }
@@ -134,14 +134,12 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         return sectionInfo.name.capitalized
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = fetchedResultsController.sections?[indexPath.section].objects?[indexPath.row] as? TodoTableViewCell else { return }
-
-        cell.todo?.complete.toggle()
-
-        print(cell.todoTitleLabel)
-
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        guard let cell = tableView.cellForRow(at: indexPath) as? TodoTableViewCell else { return }
+//
+//        cell.todo?.complete.toggle()
+//    }
 
     func tableView(
         _ tableView: UITableView,
