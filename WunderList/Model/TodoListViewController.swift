@@ -153,7 +153,6 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
             if todo.recurring == Recurring.deleted.rawValue {
                 DispatchQueue.main.async {
                     let context = CoreDataStack.shared.mainContext
-                    context.delete(todo)
                     do {
                         try context.save()
                     } catch {

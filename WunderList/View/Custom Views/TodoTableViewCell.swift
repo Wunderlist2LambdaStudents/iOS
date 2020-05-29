@@ -26,7 +26,7 @@ class TodoTableViewCell: UITableViewCell {
         guard let todo = todo else { return }
 
         todoTitleLabel.text = todo.title
-    
+
         completeButton.setImage(todo.complete ?
             UIImage(systemName: "checkmark.circle.fill") :
             UIImage(systemName: "circle"), for: .normal)
@@ -43,12 +43,15 @@ class TodoTableViewCell: UITableViewCell {
             UIImage(systemName: "checkmark.circle.fill") :
             UIImage(systemName: "circle"), for: .normal)
 
-                      do {
-                          try CoreDataStack.shared.mainContext.save()
-                      } catch {
-                          NSLog("Error saving managed object context: \(error)")
-                      }
+        DispatchQueue.main.async {
+            let context = CoreDataStack.shared.mainContext
+            do {
+                try context.save()
+            } catch {
+                context.reset()
+                NSLog("Error saving managed object context (\(error)")
+            }
 
+        }
     }
-
 }
