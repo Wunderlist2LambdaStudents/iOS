@@ -104,7 +104,6 @@ class TodoListViewController: UIViewController {
 // MARK: - TableView Methods
 
 extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController.sections?.count ?? 1
     }
@@ -127,7 +126,7 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
 
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard let sectionInfo = fetchedResultsController.sections?[section] else {
             return nil

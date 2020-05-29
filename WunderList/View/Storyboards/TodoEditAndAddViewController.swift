@@ -14,7 +14,6 @@ class TodoEditAndAddViewController: UIViewController {
     var user = AuthService.activeUser
     var todoController: TodoController?
     var todo: Todo?
-    var wasEdited = false
 
     // MARK: - IBOutlets
 
@@ -39,11 +38,15 @@ class TodoEditAndAddViewController: UIViewController {
     // MARK: - Actions
 
     @IBAction func saveButtonTapped(_ sender: Any) {
-        guard let title = titleTextField.text, !title.isEmpty else { return }
-        let bodyText = bodyTextView.text!
+        guard let title = titleTextField.text,
+            !title.isEmpty,
+            let bodyText = bodyTextView.text
+        else { return }
         let recurringIndex = recurringSegmentedControl.selectedSegmentIndex
-        let recurring = Recurring.allCases[recurringIndex]
-        let todoRep = TodoRepresentation(
+        //segmented control has 1 less beginning index due to .none not being there
+        let recurring = Recurring.allCases[recurringIndex + 1]
+        var todoRep = TodoRepresentation(
+            identifier: UUID(),
             title: title,
             body: bodyText,
             dueDate: Date(),
@@ -52,20 +55,23 @@ class TodoEditAndAddViewController: UIViewController {
             creatorId: AuthService.activeUser?.identifier ?? UUID()
         )
 
-guard let user = user else { return }
         var todo = self.todo
         if todo == nil {
+            guard let user = user else { return }
             todo = Todo(todoRepresentation: todoRep, userRep: user)
             #warning("This should be taken care of in the init, but it's nil")
             todo?.complete = todoRep.complete
+            todoController?.sendTodosToServer(todo: todoRep)
         } else {
             guard let todo = todo else { return }
             todo.body = bodyText
             todo.title = title
             todo.recurring = recurring.rawValue
+            todoRep.identifier = todo.identifier ?? UUID()
+            try? todoController?.sendTodosToServer(todo: todoRep)
         }
 
-        todoController?.sendTodosToServer(todo: todoRep)
+
         do {
             try CoreDataStack.shared.save()
             dismiss(animated: true, completion: nil)
