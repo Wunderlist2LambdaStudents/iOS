@@ -257,10 +257,10 @@
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3NV-Y2-9nd">
                                         <rect key="frame" x="0.0" y="38.5" width="364" height="32"/>
                                         <segments>
+                                            <segment title="None"/>
                                             <segment title="Daily"/>
                                             <segment title="Weekly"/>
                                             <segment title="Monthly"/>
-                                            <segment title="None"/>
                                         </segments>
                                     </segmentedControl>
                                 </subviews>

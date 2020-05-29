@@ -43,8 +43,7 @@ class TodoEditAndAddViewController: UIViewController {
             let bodyText = bodyTextView.text
         else { return }
         let recurringIndex = recurringSegmentedControl.selectedSegmentIndex
-        //segmented control has 1 less beginning index due to .none not being there
-        let recurring = Recurring.allCases[recurringIndex + 1]
+        let recurring = Recurring.allCases[recurringIndex]
         var todoRep = TodoRepresentation(
             identifier: UUID(),
             title: title,
@@ -95,7 +94,6 @@ class TodoEditAndAddViewController: UIViewController {
         } else {
             recurring = .none
         }
-
         recurringSegmentedControl.selectedSegmentIndex = Recurring.allCases.firstIndex(of: recurring) ?? 0
     }
 }
