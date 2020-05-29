@@ -48,7 +48,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         //customizing views
-        //        self.nameTextField.addBottomBorder()
         self.passwordTextField.addBottomBorder()
         self.emailTextField.addBottomBorder()
         loginButtonOutlet.layer.cornerRadius = 12.0
@@ -62,10 +61,8 @@ class LoginViewController: UIViewController {
 
         //handling keyboard
         self.emailScrollView.translatesAutoresizingMaskIntoConstraints = false
-        //        nameTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        //        nameTextField.tag = 1
         emailTextField.tag = 1
         passwordTextField.tag = 2
 

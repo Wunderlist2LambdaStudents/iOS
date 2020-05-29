@@ -20,7 +20,8 @@ enum NetworkError: Error {
 }
 
 typealias CompletionHandler = (Result<Bool, NetworkError>) -> Void
-private let baseURL = URL(string: "https://bw-wunderlist.herokuapp.com/todo")!
+private let backupUserId = "c4e718c2-9fce-11ea-bb37-0242ac130002"
+private let baseURL = URL(string: "https://bw-wunderlist2.firebaseio.com/")!
 
 class TodoController {
 
@@ -35,14 +36,12 @@ class TodoController {
 
     // MARK: - Get -
     func fetchTodosFromServer(completion: @escaping CompletionHandler = { _ in }) {
-        //#error("Need to provide authentication information (token)")
-        let requestURL = baseURL.appendingPathComponent(AuthService.activeUser?.identifier?.uuidString ?? "")
-        guard var request = networkService.createRequest(url: requestURL, method: .get) else {
+        let requestURL = baseURL.appendingPathComponent(AuthService.activeUser?.identifier?.uuidString ?? "").appendingPathExtension("json")
+        guard let request = networkService.createRequest(url: requestURL, method: .get) else {
             print("bad request")
             completion(.failure(.otherError))
             return
         }
-        request.addValue(AuthService.activeUser?.token ?? "", forHTTPHeaderField: "Authorization")
         networkService.dataLoader.loadData(using: request) { data, _, error in
             if let error = error {
                 NSLog("Error fetching tasks: \(error)")
@@ -57,15 +56,15 @@ class TodoController {
             }
 
             //decode representations
-            let reps = self.networkService.decode(to: [TodoRepresentation].self, data: data)
-            guard let unwrappedReps = reps else {
-                print("Error decoding Todos")
-                completion(.failure(.noDecode))
-                return
-            }
+            let reps = self.networkService.decode(
+                to: [String: TodoRepresentation].self,
+                data: data
+                )
+            let unwrappedReps = reps?.compactMap { $1 }
             //update Todos
             do {
-                try self.updateTodos(with: unwrappedReps)
+                try self.updateTodos(with: unwrappedReps ?? [])
+                completion(.success(true))
             } catch {
                 completion(.failure(.otherError))
                 NSLog("Error updating todos: \(error)")
@@ -75,7 +74,10 @@ class TodoController {
     }
 
     func sendTodosToServer(todo: TodoRepresentation, completion: @escaping CompletionHandler = { _ in }) {
-        let requestURL = baseURL.appendingPathComponent(todo.identifier.uuidString).appendingPathComponent("json")
+        let identity = todo.identifier.uuidString
+        let requestURL = baseURL.appendingPathComponent(
+            AuthService.activeUser?.identifier?.uuidString ?? backupUserId
+        ).appendingPathComponent(identity).appendingPathExtension("json")
         guard var request = networkService.createRequest(url: requestURL, method: .put) else { return }
         networkService.encode(from: todo, request: &request)
         networkService.dataLoader.loadData(using: request) { _, _, error in
@@ -89,7 +91,6 @@ class TodoController {
     }
 
     func updateTodos(with representations: [TodoRepresentation]) throws {
-
         let identifiersToFetch = representations.compactMap {$0.identifier}
         let representationsByID = Dictionary(uniqueKeysWithValues: zip(identifiersToFetch, representations))
         var todosToCreate = representationsByID
@@ -98,11 +99,11 @@ class TodoController {
 
         let context = CoreDataStack.shared.container.newBackgroundContext()
         var error: Error?
-        guard let activeUser = AuthService.activeUser else { return }
+        if AuthService.activeUser != nil {
             context.performAndWait {
                 do {
                     let existingTodos = try context.fetch(fetchRequest)
-                    for todo in existingTodos {                        
+                    for todo in existingTodos {
                         guard let identifier = todo.identifier,
                             let representation = representationsByID[identifier] else { continue }
                         self.updateTodoRep(todo: todo, with: representation)
@@ -111,22 +112,46 @@ class TodoController {
                 } catch let fetchError {
                     error = fetchError
                 }
-
                 for representation in todosToCreate.values {
-                    guard let userRep = AuthService.activeUser else { return }
+                    guard let userRep = AuthService.activeUser else { continue }
                     Todo(todoRepresentation: representation, context: context, userRep: userRep )
                 }
+                syncTodosWithFirebase(identifiersOnServer: identifiersToFetch, context: context)
+
             }
             if let error = error { throw error }
             try CoreDataStack.shared.save(context: context)
         }
 
-    func deleteTodosFromServer(todo: Todo, completion: @escaping CompletionHandler = { _ in }) {
-        guard let uuid = todo.identifier else {
-            completion(.failure(.noIdentifier))
-            return
+    }
+    ///The API is the source of truth, delete the invaders
+    func syncTodosWithFirebase(identifiersOnServer: [UUID], context: NSManagedObjectContext) {
+        guard let identifier = AuthService.activeUser?.identifier else { return }
+        let fetchRequest: NSFetchRequest<Todo> = Todo.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "creatorId == %@", identifier as CVarArg)
+        //        //There's one in CoreData that isn't on the server.
+        do {
+            let existingTodos = try context.fetch(fetchRequest)
+            for todo in existingTodos {
+                guard let todoId = todo.identifier else { return }
+                if !identifiersOnServer.contains(todoId) {
+                    context.delete(todo)
+                }
+            }
+        } catch {
+            print("Error fetching all Todos in \(#function)")
         }
-        let requestURL = baseURL.appendingPathComponent(uuid.uuidString).appendingPathExtension("json")
+
+    }
+
+    func deleteTodosFromServer(todo: TodoRepresentation, completion: @escaping CompletionHandler = { _ in }) {
+        let uuid = todo.identifier
+        let userId = AuthService.activeUser?.identifier?.uuidString ?? backupUserId
+        let requestURL = baseURL
+            .appendingPathComponent(userId)
+            .appendingPathComponent(uuid.uuidString)
+            .appendingPathExtension("json")
+
         guard let request = networkService.createRequest(url: requestURL, method: .delete) else { return }
         networkService.dataLoader.loadData(using: request) { _, _, error in
             if let error = error {
@@ -168,9 +193,9 @@ class TodoController {
             to: [TodoRepresentation].self,
             data: Data.mockData(with: .goodTodoData),
             dateFormatter: NetworkService.dateFormatter
-        ) else {
-            print("error decoding todos while adding todos to mockUser, check for decode errors.")
-            return
+            ) else {
+                print("error decoding todos while adding todos to mockUser, check for decode errors.")
+                return
         }
         mockUser.todos = todos
     }

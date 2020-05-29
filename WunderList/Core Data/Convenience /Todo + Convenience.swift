@@ -13,10 +13,6 @@ extension Todo {
     // MARK: - Properties
     var todoRepresentation: TodoRepresentation? {
 
-        // Grabbing locationRep property made in 'Location' extension below
-        let locationRep = Location()
-        guard let representedLocation = locationRep.locationRepresentation else { return  nil }
-
         guard let identifier = identifier,
             let title = title,
             let body = body,
@@ -28,7 +24,7 @@ extension Todo {
             dueDate: dueDate,
             complete: complete,
             recurring: .none,
-            location: representedLocation
+            creatorId: user?.identifier ?? UUID()
         )
     }
 
@@ -47,6 +43,7 @@ extension Todo {
         self.title = title
         self.body = body
         self.dueDate = dueDate
+        self.complete = complete
         self.recurring = recurring
     }
 
@@ -58,17 +55,14 @@ extension Todo {
         //used to establish relationship
         guard let user = User(userRep: userRep, context: context) else { return nil }
 
-        self.init(
-            identifier: todoRepresentation.identifier,
-            title: todoRepresentation.title,
-            body: todoRepresentation.body,
-            dueDate: todoRepresentation.dueDate,
-            complete: todoRepresentation.complete,
-            recurring: todoRepresentation.recurring.rawValue,
-            user: user,
-            context: context
-        )
-
+        self.init(context: context)
+        identifier = todoRepresentation.identifier
+        title = todoRepresentation.title
+        body = todoRepresentation.body
+        dueDate = todoRepresentation.dueDate
+        complete = todoRepresentation.complete
+        recurring = todoRepresentation.recurring.rawValue
+        self.user = user
     }
 }
 
@@ -83,6 +77,7 @@ extension Location {
         self.init(context: context)
         self.xLocation = xLocation
         self.yLocation = yLocation
+        //establishes relationship
         self.todo = todo
     }
 

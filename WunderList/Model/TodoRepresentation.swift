@@ -13,6 +13,7 @@ enum Recurring: String, Codable, CaseIterable {
     case daily
     case weekly
     case monthly
+    case deleted
 }
 
 struct LocationRepresentation: Codable {
@@ -26,21 +27,23 @@ struct LocationRepresentation: Codable {
 }
 //everything in the backend is "not-nullable" (not optional)
 struct TodoRepresentation: Codable {
-    var identifier: UUID = UUID()
+    var identifier: UUID
     var title: String
     var body: String
     var dueDate: Date
     var complete: Bool
     var recurring: Recurring
     var location: LocationRepresentation?
+    var creatorId: UUID
 
     enum CodingKeys: String, CodingKey {
         case identifier
         case title
         case body
-        case dueDate = "due_date"
+        case dueDate
         case complete
         case recurring
         case location
+        case creatorId
     }
 }

@@ -3,16 +3,17 @@
     <entity name="Location" representedClassName="Location" syncable="YES" codeGenerationType="class">
         <attribute name="xLocation" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="yLocation" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="todo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Todo" inverseName="location" inverseEntity="Todo"/>
+        <relationship name="todo" maxCount="1" deletionRule="Nullify" destinationEntity="Todo" inverseName="location" inverseEntity="Todo"/>
     </entity>
     <entity name="Todo" representedClassName="Todo" syncable="YES" codeGenerationType="class">
         <attribute name="body" attributeType="String"/>
         <attribute name="complete" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="creatorId" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="dueDate" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="identifier" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="recurring" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
-        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="todo" inverseEntity="Location"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Location" inverseName="todo" inverseEntity="Location"/>
         <relationship name="user" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="todo" inverseEntity="User"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
@@ -22,7 +23,7 @@
     </entity>
     <elements>
         <element name="Location" positionX="25.45703125" positionY="114.5390625" width="128" height="88"/>
-        <element name="Todo" positionX="-237.50390625" positionY="54.48828125" width="128" height="163"/>
+        <element name="Todo" positionX="-237.50390625" positionY="54.48828125" width="128" height="178"/>
         <element name="User" positionX="-241.43359375" positionY="-121.765625" width="128" height="88"/>
     </elements>
 </model>

@@ -21,21 +21,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eel-nH-uhT">
-                                <rect key="frame" x="20" y="44" width="374" height="32"/>
-                                <segments>
-                                    <segment title="All"/>
-                                    <segment title="Daily"/>
-                                    <segment title="Weekly"/>
-                                    <segment title="Monthly"/>
-                                    <segment title="Deleted"/>
-                                </segments>
-                                <connections>
-                                    <action selector="switchTableViewSegmentedControlAction:" destination="r0a-pS-5qF" eventType="valueChanged" id="xZP-IX-PQG"/>
-                                </connections>
-                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ehE-4A-mkA">
-                                <rect key="frame" x="20" y="83" width="374" height="652"/>
+                                <rect key="frame" x="20" y="56" width="374" height="679"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="tintColor" name="Purple"/>
                                 <color key="sectionIndexColor" name="Brown"/>
@@ -74,6 +61,7 @@
                                         <connections>
                                             <outlet property="completeButton" destination="quk-RH-HkS" id="lJT-E0-5sG"/>
                                             <outlet property="todoTitleLabel" destination="JkO-Xj-ab6" id="oQA-Wc-MGf"/>
+                                            <segue destination="dJ8-Z6-aEe" kind="presentation" identifier="EditTaskSegue" id="Fk2-30-xty"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -85,6 +73,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6cT-Gw-HpN">
                                 <rect key="frame" x="30" y="743" width="354" height="54"/>
                                 <color key="backgroundColor" name="Purple"/>
+                                <accessibility key="accessibilityConfiguration" identifier="ToDoListViewController.addToDo"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="azg-Au-ki4"/>
                                 </constraints>
@@ -101,15 +90,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="NeR-MT-irl" firstAttribute="trailing" secondItem="6cT-Gw-HpN" secondAttribute="trailing" constant="30" id="Aip-4d-4Ue"/>
+                            <constraint firstItem="ehE-4A-mkA" firstAttribute="top" secondItem="NeR-MT-irl" secondAttribute="top" constant="12" id="B6w-5v-tMD"/>
                             <constraint firstItem="6cT-Gw-HpN" firstAttribute="leading" secondItem="NeR-MT-irl" secondAttribute="leading" constant="30" id="DVH-Ye-04K"/>
                             <constraint firstItem="NeR-MT-irl" firstAttribute="bottom" secondItem="6cT-Gw-HpN" secondAttribute="bottom" constant="16" id="EoX-yS-Gdu"/>
-                            <constraint firstItem="eel-nH-uhT" firstAttribute="top" secondItem="NeR-MT-irl" secondAttribute="top" id="FI9-fF-Mf1"/>
                             <constraint firstItem="NeR-MT-irl" firstAttribute="trailing" secondItem="ehE-4A-mkA" secondAttribute="trailing" constant="20" id="RlM-0x-t4g"/>
                             <constraint firstItem="6cT-Gw-HpN" firstAttribute="top" secondItem="ehE-4A-mkA" secondAttribute="bottom" constant="8" id="S37-3F-VxX"/>
                             <constraint firstItem="ehE-4A-mkA" firstAttribute="leading" secondItem="NeR-MT-irl" secondAttribute="leading" constant="20" id="WnA-xn-nRu"/>
-                            <constraint firstItem="ehE-4A-mkA" firstAttribute="top" secondItem="eel-nH-uhT" secondAttribute="bottom" constant="8" id="dR4-WY-6Sj"/>
-                            <constraint firstItem="eel-nH-uhT" firstAttribute="leading" secondItem="ehE-4A-mkA" secondAttribute="leading" id="hEb-uA-2B1"/>
-                            <constraint firstItem="eel-nH-uhT" firstAttribute="trailing" secondItem="ehE-4A-mkA" secondAttribute="trailing" id="t4w-ly-E1V"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NeR-MT-irl"/>
                     </view>
@@ -117,7 +103,6 @@
                     <navigationItem key="navigationItem" id="DJV-Mw-T4y"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="switchTableViewSegmentedControlAction" destination="eel-nH-uhT" id="hdL-Rk-VAc"/>
                         <outlet property="tableView" destination="ehE-4A-mkA" id="4Vf-P1-WGl"/>
                     </connections>
                 </viewController>
@@ -188,11 +173,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="yeR-Qq-Jwc">
-                                <rect key="frame" x="25" y="670" width="364" height="191.5"/>
+                                <rect key="frame" x="25" y="671.5" width="364" height="190"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNk-5u-1Tg">
                                         <rect key="frame" x="0.0" y="0.0" width="364" height="44"/>
                                         <color key="backgroundColor" name="Purple"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="TodoEditAndAddViewController.addLocationButton"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="23"/>
                                         <state key="normal" title="Add Location">
                                             <color key="titleColor" name="Aqua"/>
@@ -204,6 +190,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ad-XG-msW">
                                         <rect key="frame" x="0.0" y="60" width="364" height="44"/>
                                         <color key="backgroundColor" name="Purple"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="TodoEditAndAddViewController.saveButton"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="23"/>
                                         <state key="normal" title="Save">
                                             <color key="titleColor" name="Aqua"/>
@@ -213,7 +200,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wunderlist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0go-UM-cjp">
-                                        <rect key="frame" x="0.0" y="120" width="364" height="71.5"/>
+                                        <rect key="frame" x="0.0" y="120" width="364" height="70"/>
                                         <color key="tintColor" name="Purple"/>
                                         <fontDescription key="fontDescription" name="sweetpurple" family="sweet purple" pointSize="60"/>
                                         <color key="textColor" name="Aqua"/>
@@ -223,6 +210,7 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="caN-6b-Woy">
                                 <rect key="frame" x="339" y="44" width="54" height="36"/>
+                                <accessibility key="accessibilityConfiguration" identifier="TodoEditAndAddViewController.cancelButton"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" name="Purple"/>
@@ -232,14 +220,16 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="76u-ZZ-hSV">
-                                <rect key="frame" x="18" y="223.5" width="378" height="332"/>
+                                <rect key="frame" x="18" y="223.5" width="378" height="333.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <accessibility key="accessibilityConfiguration" identifier="TodoEditAndAddViewController.addDetailTextView"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Title Here: " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lhi-ht-jcQ">
                                 <rect key="frame" x="20" y="115" width="374" height="34"/>
+                                <accessibility key="accessibilityConfiguration" identifier="TodoEditAndAddViewController.titleText"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -256,7 +246,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RDn-4b-wC8">
-                                <rect key="frame" x="25" y="575.5" width="364" height="69.5"/>
+                                <rect key="frame" x="25" y="577" width="364" height="69.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recurring: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWn-MD-Ao1">
                                         <rect key="frame" x="0.0" y="0.0" width="364" height="30.5"/>
@@ -267,10 +257,10 @@
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3NV-Y2-9nd">
                                         <rect key="frame" x="0.0" y="38.5" width="364" height="32"/>
                                         <segments>
+                                            <segment title="None"/>
                                             <segment title="Daily"/>
                                             <segment title="Weekly"/>
                                             <segment title="Monthly"/>
-                                            <segment title="None"/>
                                         </segments>
                                     </segmentedControl>
                                 </subviews>
@@ -314,6 +304,9 @@
             <point key="canvasLocation" x="2492.753623188406" y="-555.13392857142856"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Fk2-30-xty"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="circle" catalog="system" width="128" height="121"/>
         <image name="gear" catalog="system" width="128" height="119"/>
