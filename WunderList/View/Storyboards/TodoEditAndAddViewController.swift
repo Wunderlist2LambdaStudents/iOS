@@ -49,7 +49,7 @@ class TodoEditAndAddViewController: UIViewController {
             title: title,
             body: bodyText,
             dueDate: Date(),
-            complete: true,
+            complete: false,
             recurring: recurring,
             creatorId: AuthService.activeUser?.identifier ?? UUID()
         )
@@ -58,8 +58,6 @@ class TodoEditAndAddViewController: UIViewController {
         if todo == nil {
             guard let user = user else { return }
             todo = Todo(todoRepresentation: todoRep, userRep: user)
-            #warning("This should be taken care of in the init, but it's nil")
-            todo?.complete = todoRep.complete
             todoController?.sendTodosToServer(todo: todoRep)
         } else {
             guard let todo = todo else { return }
@@ -67,9 +65,8 @@ class TodoEditAndAddViewController: UIViewController {
             todo.title = title
             todo.recurring = recurring.rawValue
             todoRep.identifier = todo.identifier ?? UUID()
-            try? todoController?.sendTodosToServer(todo: todoRep)
+            todoController?.sendTodosToServer(todo: todoRep)
         }
-
 
         do {
             try CoreDataStack.shared.save()
