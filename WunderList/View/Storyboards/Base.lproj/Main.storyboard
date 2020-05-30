@@ -46,7 +46,7 @@
                                                     <accessibility key="accessibilityConfiguration" identifier="TodoListViewController.completeToggleButton"/>
                                                     <state key="normal" image="circle" catalog="system"/>
                                                     <connections>
-                                                        <action selector="completeButton:" destination="r0a-pS-5qF" eventType="touchUpInside" id="BZs-8Q-Mhe"/>
+                                                        <action selector="completeButtonToggle:" destination="Dyr-lp-242" eventType="touchUpInside" id="7NC-E2-Rsf"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

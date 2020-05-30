@@ -122,11 +122,8 @@ class AuthService {
                     to: UserRepresentation.self,
                     data: data
                 ) else { return }
-                print(loginUser.identifier)
                 //assign the static activeUser
-                #warning("Identifier isn't being assigned here. loginUser has it, activeUser doesn't")
                 AuthService.activeUser = loginUser
-                print(AuthService.activeUser?.identifier)
                 completion()
                 return
             } else {

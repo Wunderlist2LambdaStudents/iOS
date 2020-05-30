@@ -74,14 +74,14 @@ class TodoListViewController: UIViewController {
          todoController.sendTodosToServer(todo: todos[1])
          */
     }
-
-    @IBAction func completeButton(_ sender: UIButton) {
-        complete.toggle()
-
-        sender.setImage(complete ?
-            UIImage(systemName: "checkmark.circle.fill") :
-            UIImage(systemName: "circle"), for: .normal)
-    }
+    //
+    //        @IBAction func completeButton(_ sender: UIButton) {
+    //            complete.toggle()
+    //
+    //            sender.setImage(complete ?
+    //                UIImage(systemName: "checkmark.circle.fill") :
+    //                UIImage(systemName: "circle"), for: .normal)
+    //        }
 
     // MARK: - Navigation
 
@@ -118,12 +118,7 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
             for: indexPath
             ) as? TodoTableViewCell
             else { return UITableViewCell() }
-
-        guard let todo = fetchedResultsController
-            .sections?[indexPath.section]
-            .objects?[indexPath.row] as? Todo else { return UITableViewCell() }
-        cell.todoTitleLabel.text = todo.title
-
+        cell.todo = fetchedResultsController.object(at: indexPath)
         return cell
     }
 
@@ -133,6 +128,13 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return sectionInfo.name.capitalized
     }
+
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        guard let cell = tableView.cellForRow(at: indexPath) as? TodoTableViewCell else { return }
+//
+//        cell.todo?.complete.toggle()
+//    }
 
     func tableView(
         _ tableView: UITableView,
@@ -146,7 +148,6 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
             if todo.recurring == Recurring.deleted.rawValue {
                 DispatchQueue.main.async {
                     let context = CoreDataStack.shared.mainContext
-                    context.delete(todo)
                     do {
                         try context.save()
                     } catch {
