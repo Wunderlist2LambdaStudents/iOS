@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class TodoEditAndAddViewController: UIViewController {
     // MARK: - Properties
@@ -33,6 +34,20 @@ class TodoEditAndAddViewController: UIViewController {
         addLocationButton.layer.cornerRadius = 12.0
         updateViews()
         hideKeyboardOnTap()
+        fetchCoreDataTodo()
+    }
+
+    private func fetchCoreDataTodo() {
+        guard let identifier = todo?.body else { return }
+        let fetchRequest: NSFetchRequest<Todo> = Todo.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "body == %@", identifier as CVarArg)
+        //        //There's one in CoreData that isn't on the server.
+        do {
+            let existingTodos = try CoreDataStack.shared.mainContext.fetch(fetchRequest)
+            self.todo = existingTodos.first
+        } catch {
+            print("error fetching Todo: \(error)")
+        }
     }
 
     // MARK: - Actions
@@ -54,7 +69,6 @@ class TodoEditAndAddViewController: UIViewController {
             creatorId: AuthService.activeUser?.identifier ?? UUID()
         )
 
-        var todo = self.todo
         if todo == nil {
             guard let user = user else { return }
             todo = Todo(todoRepresentation: todoRep, userRep: user)
@@ -67,7 +81,6 @@ class TodoEditAndAddViewController: UIViewController {
             todoRep.identifier = todo.identifier ?? UUID()
             todoController?.sendTodosToServer(todo: todoRep)
         }
-
         do {
             try CoreDataStack.shared.save()
             dismiss(animated: true, completion: nil)

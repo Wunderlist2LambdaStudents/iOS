@@ -29,6 +29,7 @@ class CoreDataStack {
     }
     ///save any object, relationship change, etc... on the main context
     func save(context: NSManagedObjectContext = CoreDataStack.shared.mainContext) throws {
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         var error: Error?
         context.performAndWait {
             do {

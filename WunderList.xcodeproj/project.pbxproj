@@ -20,6 +20,13 @@
 		8E90DE87247A25EC000916A3 /* Jonah-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E90DE86247A25EC000916A3 /* Jonah-Regular.ttf */; };
 		8E90DE89247A2767000916A3 /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E90DE88247A2767000916A3 /* CustomFonts.swift */; };
 		8EF2C099247ECD5C0077B280 /* TodoEditAndAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF2C098247ECD5C0077B280 /* TodoEditAndAddViewController.swift */; };
+		B9599D812482F42000B15C5D /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9599D802482F42000B15C5D /* CoreDataTests.swift */; };
+		B9599D822482F5F800B15C5D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4DE211247A197500EF76E4 /* CoreDataStack.swift */; };
+		B9599D832482F5F800B15C5D /* Todo + Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E56EF59247D697C00D53083 /* Todo + Convenience.swift */; };
+		B9599D842482F5F800B15C5D /* User+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB594247D8DD500EBFB2D /* User+Convenience.swift */; };
+		B9599D912482F8D400B15C5D /* WunderList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B98DB591247D88E600EBFB2D /* WunderList.xcdatamodeld */; };
+		B9599D922482F90900B15C5D /* TodoRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB588247B5CA900EBFB2D /* TodoRepresentation.swift */; };
+		B9599D932482F90D00B15C5D /* UserRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58C247C210D00EBFB2D /* UserRepresentation.swift */; };
 		B95B65572478EBE0009C6D16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65562478EBE0009C6D16 /* AppDelegate.swift */; };
 		B95B65592478EBE0009C6D16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B65582478EBE0009C6D16 /* SceneDelegate.swift */; };
 		B95B655E2478EBE0009C6D16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95B655C2478EBE0009C6D16 /* Main.storyboard */; };
@@ -41,16 +48,11 @@
 		B98DB593247D88E700EBFB2D /* WunderList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B98DB591247D88E600EBFB2D /* WunderList.xcdatamodeld */; };
 		B98DB595247D8DD500EBFB2D /* User+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB594247D8DD500EBFB2D /* User+Convenience.swift */; };
 		B98DB597247DAE1A00EBFB2D /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */; };
-		B98DB599247DB10100EBFB2D /* MockDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB57E247AE71A00EBFB2D /* MockDataLoader.swift */; };
 		B98DB59A247DB10700EBFB2D /* GoodUserData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB580247AF01C00EBFB2D /* GoodUserData.json */; };
 		B98DB59B247DB10900EBFB2D /* BadUserData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB582247B5B5400EBFB2D /* BadUserData.json */; };
 		B98DB59C247DB10B00EBFB2D /* GoodTodoData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB584247B5B7300EBFB2D /* GoodTodoData.json */; };
 		B98DB59D247DB10E00EBFB2D /* BadTodoData.json in Resources */ = {isa = PBXBuildFile; fileRef = B98DB586247B5C0800EBFB2D /* BadTodoData.json */; };
 		B98DB59F247DB43B00EBFB2D /* Data+MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB59E247DB43B00EBFB2D /* Data+MockData.swift */; };
-		B98DB5A0247DB52400EBFB2D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95B658F2478ED61009C6D16 /* NetworkService.swift */; };
-		B98DB5A1247DB57900EBFB2D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58A247C202200EBFB2D /* AuthService.swift */; };
-		B98DB5A2247DB5A700EBFB2D /* TodoRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB588247B5CA900EBFB2D /* TodoRepresentation.swift */; };
-		B98DB5A3247DB5AB00EBFB2D /* UserRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98DB58C247C210D00EBFB2D /* UserRepresentation.swift */; };
 		FEE1D4BC247F23C4006C9852 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE1D4BB247F23C4006C9852 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +87,7 @@
 		8E90DE86247A25EC000916A3 /* Jonah-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jonah-Regular.ttf"; sourceTree = "<group>"; };
 		8E90DE88247A2767000916A3 /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
 		8EF2C098247ECD5C0077B280 /* TodoEditAndAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TodoEditAndAddViewController.swift; path = WunderList/View/Storyboards/TodoEditAndAddViewController.swift; sourceTree = SOURCE_ROOT; };
+		B9599D802482F42000B15C5D /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
 		B95B65532478EBE0009C6D16 /* WunderList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WunderList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95B65562478EBE0009C6D16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B95B65582478EBE0009C6D16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -233,6 +236,7 @@
 			children = (
 				B95B656D2478EBE1009C6D16 /* NetworkTests.swift */,
 				B95B656F2478EBE1009C6D16 /* Info.plist */,
+				B9599D802482F42000B15C5D /* CoreDataTests.swift */,
 			);
 			path = WunderListTests;
 			sourceTree = "<group>";
@@ -535,12 +539,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B98DB599247DB10100EBFB2D /* MockDataLoader.swift in Sources */,
-				B98DB5A3247DB5AB00EBFB2D /* UserRepresentation.swift in Sources */,
-				B98DB5A2247DB5A700EBFB2D /* TodoRepresentation.swift in Sources */,
-				B98DB5A0247DB52400EBFB2D /* NetworkService.swift in Sources */,
+				B9599D812482F42000B15C5D /* CoreDataTests.swift in Sources */,
+				B9599D832482F5F800B15C5D /* Todo + Convenience.swift in Sources */,
+				B9599D842482F5F800B15C5D /* User+Convenience.swift in Sources */,
+				B9599D922482F90900B15C5D /* TodoRepresentation.swift in Sources */,
 				B95B656E2478EBE1009C6D16 /* NetworkTests.swift in Sources */,
-				B98DB5A1247DB57900EBFB2D /* AuthService.swift in Sources */,
+				B9599D932482F90D00B15C5D /* UserRepresentation.swift in Sources */,
+				B9599D912482F8D400B15C5D /* WunderList.xcdatamodeld in Sources */,
+				B9599D822482F5F800B15C5D /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

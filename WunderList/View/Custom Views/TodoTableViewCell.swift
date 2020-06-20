@@ -53,8 +53,8 @@ class TodoTableViewCell: UITableViewCell {
 
         todoController.sendTodosToServer(todo: todoRep)
 
-        DispatchQueue.main.async {
+
             try? self.context?.save()
-        }
+        
     }
 }

@@ -53,9 +53,11 @@ extension Todo {
         userRep: UserRepresentation
     ) {
         //used to establish relationship
-        guard let user = User(userRep: userRep, context: context) else { return nil }
+        guard let user = User(userRep: userRep, context: context),
+            let userContext = user.managedObjectContext
+        else { return nil }
 
-        self.init(context: context)
+        self.init(context: userContext)
         identifier = todoRepresentation.identifier
         title = todoRepresentation.title
         body = todoRepresentation.body
