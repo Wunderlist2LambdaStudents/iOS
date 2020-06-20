@@ -42,7 +42,7 @@ class TodoListViewController: UIViewController {
         return frc
     }()
 
-    // Quick Dummy data
+    // Quick Dummy data for mocking
     var nonRecurringTodos = AuthService.activeUser?.todos?.filter { $0.recurring == .none }
     var dailyTodos = AuthService.activeUser?.todos?.filter { $0.recurring == .daily }
     var weeklyTodos = AuthService.activeUser?.todos?.filter { $0.recurring == .weekly }
@@ -118,7 +118,12 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
             for: indexPath
             ) as? TodoTableViewCell
             else { return UITableViewCell() }
-        guard let todo = fetchedResultsController.sections?[indexPath.section].objects?[indexPath.row] as? Todo else { return UITableViewCell()}
+        guard let todo = fetchedResultsController
+            .sections?[indexPath.section]
+            .objects?[indexPath.row] as? Todo else {
+                print("couldn't load Todo")
+                return UITableViewCell()
+        }
         cell.todo = todo
         return cell
     }
@@ -130,32 +135,23 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         return sectionInfo.name.capitalized
     }
 
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        guard let cell = tableView.cellForRow(at: indexPath) as? TodoTableViewCell else { return }
-//
-//        cell.todo?.complete.toggle()
-//    }
-
     func tableView(
         _ tableView: UITableView,
         commit editingStyle: UITableViewCell.EditingStyle,
         forRowAt indexPath: IndexPath
     ) {
         if editingStyle == .delete {
-
             let todo = fetchedResultsController.object(at: indexPath)
             //check to see if it's already deleted, and delete it permanently
             if todo.recurring == Recurring.deleted.rawValue {
-                    let context = CoreDataStack.shared.mainContext
-                    do {
-                        context.delete(todo)
-                        try context.save()
-                    } catch {
-                        context.reset()
-                        NSLog("Error saving managed object context (delete task): \(error)")
-                    }
-                
+                let context = CoreDataStack.shared.mainContext
+                do {
+                    context.delete(todo)
+                    try context.save()
+                } catch {
+                    context.reset()
+                    NSLog("Error saving managed object context (delete task): \(error)")
+                }
                 return
             }
             //This is the first time the todo is being deleted
@@ -169,14 +165,13 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
                 //save changes in CoreData only if it deleted from the server
                 todo.recurring = "deleted"
 
-                    let context = CoreDataStack.shared.mainContext
-                    do {
-                        try context.save()
-                    } catch {
-                        context.reset()
-                        NSLog("Error saving managed object context (delete task): \(error)")
-                    }
-                
+                let context = CoreDataStack.shared.mainContext
+                do {
+                    try context.save()
+                } catch {
+                    context.reset()
+                    NSLog("Error saving managed object context (delete task): \(error)")
+                }
             }
         }
     }
