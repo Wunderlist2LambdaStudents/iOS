@@ -18,11 +18,9 @@ class TodoTableViewCell: UITableViewCell {
     // MARK: - Properties
 
     var todoController = TodoController()
-    var context: NSManagedObjectContext?
 
     var todo: Todo? {
         didSet {
-            context = todo?.managedObjectContext
             updateViews()
         }
     }
@@ -52,9 +50,6 @@ class TodoTableViewCell: UITableViewCell {
         guard let todoRep = todo.todoRepresentation else { return }
 
         todoController.sendTodosToServer(todo: todoRep)
-
-
-            try? self.context?.save()
-        
+        try? CoreDataStack.shared.save()
     }
 }
