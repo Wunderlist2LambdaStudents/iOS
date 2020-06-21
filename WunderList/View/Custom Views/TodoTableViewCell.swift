@@ -19,15 +19,17 @@ class TodoTableViewCell: UITableViewCell {
 
     var todoController = TodoController()
 
-    var todo: Todo? {
+    var todoRep: TodoRepresentation? {
         didSet {
             updateViews()
         }
     }
 
+    private var todo: Todo?
+
     // MARK: - Class Methods
     func updateViews() {
-        guard let todo = todo else { return }
+        guard let todo = todoRep else { return }
 
         todoTitleLabel.text = todo.title
 
@@ -39,17 +41,31 @@ class TodoTableViewCell: UITableViewCell {
     // MARK: - Actions
 
     @IBAction func completeButtonToggle(_ sender: UIButton) {
+        fetchCoreDataTodo()
 
-        guard let todo = todo else { return }
-        todo.complete.toggle()
-
-        sender.setImage(todo.complete ?
+        guard let todoRep = todoRep else { return }
+        self.todoRep?.complete.toggle()
+        self.todo?.complete.toggle()
+        try? CoreDataStack.shared.save()
+        
+        sender.setImage(todoRep.complete ?
             UIImage(systemName: "checkmark.circle.fill") :
             UIImage(systemName: "circle"), for: .normal)
 
-        guard let todoRep = todo.todoRepresentation else { return }
-
         todoController.sendTodosToServer(todo: todoRep)
-        try? CoreDataStack.shared.save()
+
+    }
+
+    private func fetchCoreDataTodo() {
+        guard let identifier = todoRep?.identifier else { return }
+        let fetchRequest: NSFetchRequest<Todo> = Todo.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "identifier == %@", identifier as CVarArg)
+        //        //There's one in CoreData that isn't on the server.
+        do {
+            let existingTodos = try CoreDataStack.shared.mainContext.fetch(fetchRequest)
+            self.todo = existingTodos.first
+        } catch {
+            print("error fetching Todo: \(error)")
+        }
     }
 }

@@ -38,9 +38,9 @@ class TodoEditAndAddViewController: UIViewController {
     }
 
     private func fetchCoreDataTodo() {
-        guard let identifier = todo?.body else { return }
+        guard let identifier = todo?.identifier else { return }
         let fetchRequest: NSFetchRequest<Todo> = Todo.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "body == %@", identifier as CVarArg)
+        fetchRequest.predicate = NSPredicate(format: "identifier == %@", identifier as CVarArg)
         //        //There's one in CoreData that isn't on the server.
         do {
             let existingTodos = try CoreDataStack.shared.mainContext.fetch(fetchRequest)

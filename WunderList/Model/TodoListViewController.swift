@@ -105,7 +105,7 @@ class TodoListViewController: UIViewController {
 
 extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController.sections?.count ?? 1
+        return fetchedResultsController.sections?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -124,7 +124,7 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
                 print("couldn't load Todo")
                 return UITableViewCell()
         }
-        cell.todo = todo
+        cell.todoRep = todo.todoRepresentation
         return cell
     }
 
