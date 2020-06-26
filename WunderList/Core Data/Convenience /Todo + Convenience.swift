@@ -29,14 +29,16 @@ extension Todo {
     }
 
     // MARK: - Convenience Inits
-    @discardableResult convenience init(identifier: UUID = UUID(),
-                                        title: String,
-                                        body: String,
-                                        dueDate: Date = Date(),
-                                        complete: Bool,
-                                        recurring: String,
-                                        user: User,
-                                        context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+    @discardableResult convenience init(
+        identifier: UUID = UUID(),
+        title: String,
+        body: String,
+        dueDate: Date = Date(),
+        complete: Bool,
+        recurring: String,
+        user: User,
+        context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+
         self.init(context: context)
         self.user = user
         self.identifier = identifier
@@ -55,7 +57,7 @@ extension Todo {
         //used to establish relationship
         guard let user = User(userRep: userRep, context: context),
             let userContext = user.managedObjectContext
-        else { return nil }
+            else { return nil }
 
         self.init(context: userContext)
         identifier = todoRepresentation.identifier
